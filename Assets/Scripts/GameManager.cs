@@ -1,0 +1,108 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;   // コレクションクラスの定義に必要
+using System.Linq;
+
+public class GameManager : SingletonMonoBehaviour<GameManager>
+{
+    // --- スターティングオプションシーン -- //
+    public int opt_unitNum = 0;         // ユニット数
+    public int opt_giftJud = 0;         // ギフト有無判定フラグ
+    public float opt_haveTime = 0;      // 持ち時間
+    public int opt_abilityJud = 0;      // アビリティシステム有無判定フラグ（廃止）
+    // オプション設定完了フラグ
+    // オプション設定画面以降のシーンにおいてオプション設定値が変更される事を
+    // 抑止する（マネージャクラスは永続オブジェクトであるためのフェールセーフ）
+    public bool opt_compJud = false;
+
+    // --- ユニットセレクトシーン -- //
+    public int unt_Sodler = 0;         // 戦闘参加ユニット数 - ソルジャー
+    public int unt_Wizard = 0;         // 戦闘参加ユニット数 - ウィザード
+    public int unt_Archer = 0;         // 戦闘参加ユニット数 - アーチャー
+    public int unt_Knight = 0;         // 戦闘参加ユニット数 - ナイト
+    public int unt_Guard = 0;          // 戦闘参加ユニット数 - ガード
+    public int unt_Undead = 0;         // 戦闘参加ユニット数 - アンデッド
+    public int unt_DeepOne = 0;        // 戦闘参加ユニット数 - 深きもの
+    public int unt_Commander = 0;      // 戦闘参加ユニット数 - コマンダー
+    public int unt_NowAllUnits = 0;    // 現在選択されている選択参加ユニットの総数
+    public SortedList<int, int> unt_myUnitList = new SortedList<int, int>();        // 確定済み全ユニットリスト
+    public List<UCApare> unt_ucaList = new List<UCApare>();                             // UCAペアリスト
+    // ユニットセレクト完了フラグ
+    // ユニットセレクト画面以降のシーンにおいて選択したユニット数が変更される事を
+    // 抑止する（マネージャクラスは永続オブジェクトであるためのフェールセーフ）
+    public bool unt_compJud = false;
+
+    // キャラテーブル
+    // C_ListはUnitSelectButtonOK.cs内のMyUnitListConstメソッドでユニット確定時に初期化する
+    // A_Listは本クラス内のStart()で初期化する
+    public List<int> C_List = new List<int>();  //CA対応リスト - C（クラス）
+    public List<int> A_List = new List<int>();  //CA対応リスト - A（アビリティ）
+    public List<int> Z_List = new List<int>();  //CA対応リスト - Z（属性エレメント）
+    public List<int> S_List = new List<int>();  //CA対応リスト - S（性別）
+
+    // --- バトルフィールドシーン -- //
+    public SortedList<float, int> btl_AtList = new SortedList<float, int>();        // ATリスト
+    public int btl_WtTime = 0;                                                      // WT（ウェイトタイム）
+    // ユニットステータス
+    // 0：異常ステータスなし
+    // 1：暗闇
+    // 2：ストップ
+    // 3：ドンアク
+    // 4：ドンムブ
+    public int btl_UnitST = 0;
+
+    // ----------------------------------------
+    // Awakeメソッド
+    // ----------------------------------------
+    void Awake()
+    {
+        // 永続オブジェクトに設定
+        DontDestroyOnLoad(this);
+    }
+
+    // ----------------------------------------
+    // Startメソッド
+    // ----------------------------------------
+    void Start()
+    {
+        // オプション設定が未完了の場合
+        // オプションセレクト画面以降において、下記が書き換えられる事を抑止する
+        if (false == opt_compJud)
+        {
+            // ユニット数初期化
+            opt_unitNum = Defines.OPT_UNITS_5;
+
+            // ギフト有無判定フラグ初期化
+            opt_giftJud = 0;
+
+            // 持ち時間初期化
+            opt_haveTime = 20.0f;
+
+            // Aリスト初期化
+            for (int x = 0; x < 16; x++)
+            {
+                A_List.Add(Defines.NON_VALUE);
+            }
+
+                // アビリティシステム有無判定フラグ初期化（廃止）
+                opt_abilityJud = 1;
+        }
+
+        // ユニットセレクトが未完了の場合
+        // ユニットセレクト画面以降において、下記が書き換えられる事を抑止する
+        if (false == unt_compJud)
+        {
+            // 戦闘参加ユニット数を初期化
+            unt_Sodler = 0;         // ソルジャー
+            unt_Wizard = 0;         // ウィザード
+            unt_Archer = 0;         // アーチャー
+            unt_Knight = 0;         // ナイト
+            unt_Guard = 0;          // ガード
+            unt_Undead = 0;         // アンデッド
+            unt_DeepOne = 0;        // 深きもの
+            unt_Commander = 0;      // コマンダー
+            unt_NowAllUnits = 0;    // 現在選択されている選択参加ユニットの総数
+        }
+	}
+
+}
