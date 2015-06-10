@@ -38,12 +38,21 @@ public class PlaceSelect : MonoBehaviour
     {
         GameObject sprite;              // スプライトprefab用フィールド1
         GameObject prefab;              // スプライトprefab用フィールド2
-        Vector3 vec = new Vector3();    // スプライト表示位置
+        Vector3 vec = new Vector3(-375, -53f, 0);    // スプライト表示位置
         int vecCor = 0;                 // スプライト表示位置補正用フィールド
 
         // リスト内を最大ユニット数分ループ
         for (int i = 0; i < Defines.OPT_UNITS_MAX; i++)
         {
+            // 2段目(9人目以降)の場合
+            if (8 == i)
+            {
+                // Y値を変更
+                vec.y = -153f;
+                // X値補正率を初期化
+                vecCor = 0;
+            }
+
             // CA対応リストのCリストを読み出し
             switch (gameManager.C_List[i])
             {
@@ -52,8 +61,7 @@ public class PlaceSelect : MonoBehaviour
                     // ソルジャーのスプライトを設定
                     sprite = Resources.Load("UnitSprite_PlaceSelect/Char_1") as GameObject;
                     // 位置を設定
-                    vec.x = -235 + vecCor;
-                    vec.y = -53;
+                    vec.x = -375 + vecCor;
                     vec.z = 0;
                     // prefabを表示
                     prefab = Instantiate(sprite, vec, Quaternion.identity) as GameObject;
@@ -68,8 +76,7 @@ public class PlaceSelect : MonoBehaviour
                     // ウィザードのスプライトを設定
                     sprite = Resources.Load("UnitSprite_PlaceSelect/Char_2") as GameObject;
                     // 位置を設定
-                    vec.x = -235 + vecCor;
-                    vec.y = -53;
+                    vec.x = -375 + vecCor;
                     vec.z = 0;
                     // prefabを表示
                     prefab = Instantiate(sprite, vec, Quaternion.identity) as GameObject;
