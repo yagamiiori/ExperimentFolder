@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
+using System.Collections.Generic;   // コレクションクラスの定義に必要
+using System.Linq;
 
 public class PlaceSelect : MonoBehaviour
 {
@@ -33,6 +37,7 @@ public class PlaceSelect : MonoBehaviour
     // ------------------------
     // キャラクター画像表示フィールド設定メソッド
     // キャラクターの画像を表示する
+    // また、子オブジェクトのTextフィールドにクラス名を入れて表示する
     // ------------------------
     void UnitSpriteSet()
     {
@@ -40,6 +45,7 @@ public class PlaceSelect : MonoBehaviour
         GameObject prefab;              // スプライトprefab用フィールド2
         Vector3 vec = new Vector3(-375, -53f, 0);    // スプライト表示位置
         int vecCor = 0;                 // スプライト表示位置補正用フィールド
+        Text child_Text;                // 子オブジェクトのTextコンポ
 
         // リスト内を最大ユニット数分ループ
         for (int i = 0; i < Defines.OPT_UNITS_MAX; i++)
@@ -68,7 +74,11 @@ public class PlaceSelect : MonoBehaviour
                     prefab.transform.SetParent(canVas.transform, false);
                     vecCor += 100;
                     // ユニットスプライト表示後、ユニットIDを設定
-                    prefab.GetComponent<UnitButtonPlace>().unitID = i;
+                    prefab.GetComponent<PlaceAreaUnitButton>().unitID = i;
+
+                    // 子のTextコンポ取得後、表示する
+                    child_Text = this.transform.gameObject.GetComponentInChildren<Text>();
+                    child_Text.text = "ソルジャー";
                     break;
 
                 // ウィザードの場合
@@ -83,7 +93,12 @@ public class PlaceSelect : MonoBehaviour
                     prefab.transform.SetParent(canVas.transform, false);
                     vecCor += 100;
                     // ユニットスプライト表示後、ユニットIDを設定
-                    prefab.GetComponent<UnitButtonPlace>().unitID = i;
+                    prefab.GetComponent<PlaceAreaUnitButton>().unitID = i;
+
+                    // 子のTextコンポ取得後、表示する
+                    child_Text = this.transform.gameObject.GetComponentInChildren<Text>();
+                    child_Text.text = "ウィザード";
+
                     break;
 
                 // ユニット未設定の場合

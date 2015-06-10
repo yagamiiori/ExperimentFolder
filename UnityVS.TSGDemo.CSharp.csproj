@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Interfaces.cs" />
     <Compile Include="Assets\Scripts\MaterialFlash.cs" />
+    <Compile Include="Assets\Scripts\PlaceSelect\PlaceAreaUnitButton.cs" />
     <Compile Include="Assets\Scripts\PlaceSelect\PlaceSelect.cs" />
     <Compile Include="Assets\Scripts\PlaceSelect\UnitButtonPlace.cs" />
     <Compile Include="Assets\Scripts\PlaceSelectButtonOK.cs" />

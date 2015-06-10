@@ -10,8 +10,9 @@ GameObject:
   - 224: {fileID: 22460958}
   - 222: {fileID: 22264462}
   - 114: {fileID: 11457634}
-  - 114: {fileID: 11490184}
   - 82: {fileID: 8296950}
+  - 114: {fileID: 11497512}
+  - 114: {fileID: 11421868}
   m_Layer: 5
   m_Name: Char_2
   m_TagString: Untagged
@@ -88,6 +89,21 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &11421868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 123692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf8639b479650448923fbb535650837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitID: 0
+  mouseOverJug: 0
+  audioCompo: {fileID: 0}
+  clickSE: {fileID: 0}
 --- !u!114 &11457634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,7 +125,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11490184
+--- !u!114 &11497512
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -117,7 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 123692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdf8639b479650448923fbb535650837, type: 3}
+  m_Script: {fileID: 11500000, guid: 01d9bfc4aad0a2c40b57c6d0a8fe9b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unitID: 0
