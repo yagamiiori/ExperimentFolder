@@ -10,6 +10,7 @@ public class PlaceSelect : MonoBehaviour
     private GameManager gameManager;                    // マネージャコンポ
     private GameObject canVas;                          // ゲームオブジェクト"Canvas"
     public int unitSelect = 100;                        // ユニット選択判定（初期化値:100）
+    public Texture2D test;
 
     // ----------------------------------------
     // Startメソッド
