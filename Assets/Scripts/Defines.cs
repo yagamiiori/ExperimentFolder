@@ -129,6 +129,18 @@ public static class Defines
     public const int BTL_PANEL_NUNO  = 8;     // 布
     public const int BTL_PANEL_YUKI  = 9;     // 雪
 
+    // ハイト（バトルフィールドシーン）
+    public const int BTL_HYTE_1  = 1;     // ハイト1
+    public const int BTL_HYTE_2  = 2;     // ハイト2
+    public const int BTL_HYTE_3  = 3;     // ハイト3
+    public const int BTL_HYTE_4  = 4;     // ハイト4
+    public const int BTL_HYTE_5  = 5;     // ハイト5
+    public const int BTL_HYTE_6  = 6;     // ハイト6
+    public const int BTL_HYTE_7  = 7;     // ハイト7
+    public const int BTL_HYTE_8  = 8;     // ハイト8
+    public const int BTL_HYTE_9  = 9;     // ハイト9
+    public const int BTL_HYTE_10 = 10;    // ハイト10
+
 
 }
 

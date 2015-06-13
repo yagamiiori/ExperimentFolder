@@ -255,6 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitSelect: 100
+  test: {fileID: 0}
 --- !u!1 &337717199
 GameObject:
   m_ObjectHideFlags: 0
