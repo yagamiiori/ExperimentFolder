@@ -28,22 +28,22 @@ public static class Defines
     public const int WIZARD    = 2;     // ウィザード
     public const int KNIGHT    = 3;     // ナイト
     public const int ARCHER    = 4;     // アーチャー
-    public const int DRAGOON   = 5;     // ドラグーン
+    public const int SAMURAI   = 5;     // 侍
     public const int RICH      = 6;     // リッチ
     public const int CLERIC    = 7;     // クレリック
     public const int FAERY     = 8;     // フェアリー
     public const int WITCH     = 9;     // ウィッチ
     public const int ANGEL     = 10;    // エンジェルナイト
-    public const int LORD      = 11;    // ロード（プロモーション）
-    public const int NECKRO    = 12;    // ネクロマンサー（プロモーション）
-    public const int PALADIN   = 13;    // パラディン（プロモーション）
-    public const int EMPEROR   = 14;    // 雷帝（プロモーション）
-    public const int WARRIOR   = 15;    // ウォリアー（プロモーション）
-    public const int DELEMENT  = 16;    // ダークエレメント（プロモーション）
-    public const int PRINCESS  = 17;    // プリンセス（プロモーション）
-    public const int BANGY     = 18;    // バンジー（プロモーション）
-    public const int ARCWITCH  = 19;    // アークウィッチ（プロモーション）
-    public const int FALLDOWN  = 20;    // 堕天使（プロモーション）
+    public const int LORD      = 11;    // ロード（ソルジャープロモーション）
+    public const int NECKRO    = 12;    // ネクロマンサー（ウィザードプロモーション）
+    public const int PALADIN   = 13;    // パラディン（ナイトプロモーション）
+    public const int EMPEROR   = 14;    // 雷帝（T.E）（アーチャープロモーション）
+    public const int KENSEI    = 15;    // 剣聖（侍プロモーション）
+    public const int DELEMENT  = 16;    // ダークエレメント（リッチプロモーション）
+    public const int PRINCESS  = 17;    // プリンセス（クレリックプロモーション）
+    public const int BANGY     = 18;    // 死の妖精（バンジー）（フェアリープロモーション）
+    public const int ARCWITCH  = 19;    // アークウィッチ（ウィッチプロモーション）
+    public const int FALLDOWN  = 20;    // 堕天使（エンジェルナイトプロモーション）
 
     // ユニット数（オプションセレクトシーン）
     public const int OPT_UNITS_5   = 5;     // ユニット数5
@@ -95,12 +95,13 @@ public static class Defines
     public const int BTL_WORP  = 4;     // ワープ
 
     // 武器タイプ（バトルフィールドシーン）※未使用
-    public const int BTL_SWORD = 1;     // 剣
-    public const int BTL_SPIRE = 2;     // 槍
-    public const int BTL_ALLOW = 3;     // 弓
-    public const int BTL_STAFF = 4;     // 杖
-    public const int BTL_MEISE = 5;     // メイス
-    public const int BTL_SUDE  = 6;     // 素手
+    public const int BTL_SWORD  = 1;     // 剣
+    public const int BTL_SPIRE  = 2;     // 槍
+    public const int BTL_ALLOW  = 3;     // 弓
+    public const int BTL_KATANA = 4;     // 刀
+    public const int BTL_STAFF  = 5;     // 杖
+    public const int BTL_MEISE  = 6;     // メイス
+    public const int BTL_SUDE   = 7;     // 素手
 
     // プロモーション判定（バトルフィールドシーン）
     public const int BTL_PROMO_OFF = 0;     // プロモーション未実施

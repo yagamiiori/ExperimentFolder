@@ -19,21 +19,23 @@ public class Soldler :
     public int abilityID;               // アビリティID
     public int atribute;                // 属性ID
     public int sex;                     // 性別ID
+    public string[] name;               // ユニット名
     public int promotionJud;            // プロモーション可否判定フラグ
-    public int hp;                       // HP
-    public int attackDamage;             // 基本攻撃ダメージ
-    public int type;                     // タイプ（軽歩/鈍歩/飛行）
-    public int weapon;                   // 武器（未使用フィールド）
-    public int anotherSkill;             // 固有スキル（未使用の予定？）
-    public float wt;                     // WT
-    public float avoid_F;                // 回避率 - 正面
-    public float avoid_S;                // 回避率 - 横
-    public float avoid_B;                // 回避率 - 後ろ
-    public float correct_W;              // ダメージ補正率 - 武器
-    public float correct_M;              // ダメージ補正率 - 魔法
+    public int hp;                      // HP
+    public int attackDamage;            // 基本攻撃ダメージ
+    public int type;                    // タイプ（軽歩/鈍歩/飛行）
+    public int weapon;                  // 武器（未使用フィールド）
+    public int anotherSkill;            // 固有スキル（未使用の予定？）
+    public int exp;                     // 経験値
+    public float wt;                    // WT
+    public float brave;                 // Brave - 物理回避率
+    public float fath;                  // Fath - 魔法回避率
+    public float seikouRitsu;           // 攻撃成功率
+    public float correct_W;             // ユニット固有ダメージ補正率 - 武器
+    public float correct_M;             // ユニット固有ダメージ補正率 - 魔法
 
-    public int myPanelType;                // 自分が立っているパネルのタイプ
-    public int targetPanelType;            // 敵が立っているパネルのタイプ
+//    public int myPanelType;                // 自分が立っているパネルのタイプ
+//    public int targetPanelType;            // 敵が立っているパネルのタイプ
 
     // ----------------------------------------
     // Startメソッド
@@ -71,21 +73,20 @@ public class Soldler :
         attackDamage = Defines.BTL_DMG_SOL;       // 基本攻撃ダメージ
         type = Defines.BTL_KEIHO;                 // タイプ（軽歩/鈍歩/飛行）
         wt = 50.0f;                               // WT
-        avoid_F = 50.0f;                          // 回避率 - 正面
-        avoid_S = 25.0F;                          // 回避率 - 横
-        avoid_B = 0f;                             // 回避率 - 後ろ
-        correct_W = 0f;                           // ダメージ補正率 - 武器
-        correct_M = 0f;                           // ダメージ補正率 - 魔法
+        brave = 50.0f + (Random.Range(0f,31f));   // Brave - 物理回避率
+        fath = 20.0F + (Random.Range(0f, 31f));   // Fath - 魔法回避率
+        correct_W = 0f;                           // ユニット固有ダメージ補正率 - 武器
+        correct_M = 0f;                           // ユニット固有ダメージ補正率 - 魔法
     }
 
     // -----------------------------
     // ダメージメソッド
     // 機能：攻撃された場合、相手から呼び出される
-    // 　　　ダメージを受け、食らいアニメを表示する
+    // 　　　ダメージを受けた時の食らいアニメを表示する
+    // 　　　なお、ダメージ処理自体は攻撃側が行う
     // -----------------------------
-    public void ApplyDamage(int dam)
+    public void ApplyDamage()
     {
-        int damage = dam;   // ダメージ値載せ替え
     }
 
     // -----------------------------
@@ -96,7 +97,16 @@ public class Soldler :
     // -----------------------------
     public void NormalAttack()
     {
+        // クリティカル判定（クリティカル発生率1/10）
+        int criticalDamage = 0;
+        int critical = Random.Range(1, 11);
 
+        // クリティカル成立時はダメージに+150
+        if (3 == critical) criticalDamage = 150;
+
+        // 最終ダメージ値決定
+        // 基本ダメージ + クリティカルダメージ
+        attackDamage = attackDamage + criticalDamage;
     }
 
 }

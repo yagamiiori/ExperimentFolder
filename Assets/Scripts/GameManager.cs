@@ -35,10 +35,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     // キャラテーブル
     // C_ListはUnitSelectButtonOK.cs内のMyUnitListConstメソッドでユニット確定時に初期化する
     // A_Listは本クラス内のStart()で初期化する
-    public List<int> C_List = new List<int>();  //CA対応リスト - C（クラス）
-    public List<int> A_List = new List<int>();  //CA対応リスト - A（アビリティ）
-    public List<int> Z_List = new List<int>();  //CA対応リスト - Z（属性エレメント）
-    public List<int> S_List = new List<int>();  //CA対応リスト - S（性別）
+    public List<int> C_List = new List<int>();        //CA対応リスト - C（クラス）
+    public List<int> A_List = new List<int>();        //CA対応リスト - A（アビリティ）
+    public List<int> Z_List = new List<int>();        //CA対応リスト - Z（属性エレメント）
+    public List<int> S_List = new List<int>();        //CA対応リスト - S（性別）
+    public List<string> N_List = new List<string>();  //CA対応リスト - S（ユニット名）
 
     // --- バトルフィールドシーン -- //
     public SortedList<float, int> btl_AtList = new SortedList<float, int>();        // ATリスト

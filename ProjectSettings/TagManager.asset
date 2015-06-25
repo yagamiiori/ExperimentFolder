@@ -39,6 +39,22 @@ TagManager:
   - Abl_SetAbilityName15
   - Canvas
   - Abl_SetAbilityName0
+  - Nam_UnitName0
+  - Nam_UnitName1
+  - Nam_UnitName2
+  - Nam_UnitName3
+  - Nam_UnitName4
+  - Nam_UnitName5
+  - Nam_UnitName6
+  - Nam_UnitName7
+  - Nam_UnitName8
+  - Nam_UnitName9
+  - Nam_UnitName10
+  - Nam_UnitName11
+  - Nam_UnitName12
+  - Nam_UnitName13
+  - Nam_UnitName14
+  - Nam_UnitName15
   layers:
   - Default
   - TransparentFX
