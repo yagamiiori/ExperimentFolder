@@ -10,7 +10,6 @@ public class PlaceSelect : MonoBehaviour
     private GameManager gameManager;                    // マネージャコンポ
     private GameObject canVas;                          // ゲームオブジェクト"Canvas"
     public int unitSelect = 100;                        // ユニット選択判定（初期化値:100）
-    public Texture2D test;
 
     // ----------------------------------------
     // Startメソッド
@@ -49,7 +48,7 @@ public class PlaceSelect : MonoBehaviour
         Text child_Text;                // 子オブジェクトのTextコンポ
 
         // リスト内を最大ユニット数分ループ
-        for (int i = 0; i < Defines.OPT_UNITS_MAX; i++)
+        for (int i = 0; i < gameManager.unitStateList.Count; i++)
         {
             // 2段目(9人目以降)の場合
             if (8 == i)
@@ -60,8 +59,8 @@ public class PlaceSelect : MonoBehaviour
                 vecCor = 0;
             }
 
-            // CA対応リストのCリストを読み出し
-            switch (gameManager.C_List[i])
+            // クラスIDを読み出し
+            switch (gameManager.unitStateList[i].classType)
             {
                 // ソルジャーの場合
                 case Defines.SOLDLER:

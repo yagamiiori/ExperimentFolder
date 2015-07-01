@@ -80,7 +80,6 @@
     <Compile Include="Assets\Scripts\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\SmoothFollow.cs" />
     <Compile Include="Assets\Scripts\StargingOption.cs" />
-    <Compile Include="Assets\Scripts\UCApare.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectButtonOK.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectButtonSol.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectButtonWiz.cs" />
@@ -88,6 +87,7 @@
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectCounterSol.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectCounterTotal.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectCounterWiz.cs" />
+    <Compile Include="Assets\Scripts\UnitState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Textures\Test\test.xml" />

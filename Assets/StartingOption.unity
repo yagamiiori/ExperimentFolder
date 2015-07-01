@@ -958,7 +958,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 18
+  m_Text: 16
 --- !u!222 &354315880
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4446,7 +4446,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 18
+          m_IntArgument: 16
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5798,7 +5798,6 @@ GameObject:
   - 114: {fileID: 1752063315}
   - 114: {fileID: 1752063317}
   - 114: {fileID: 1752063316}
-  - 114: {fileID: 1752063319}
   - 82: {fileID: 1752063318}
   m_Layer: 0
   m_Name: GameManager
@@ -5844,12 +5843,10 @@ MonoBehaviour:
   unt_DeepOne: 0
   unt_Commander: 0
   unt_NowAllUnits: 0
-  unt_ucaList: []
+  unitStateList: []
   unt_compJud: 0
   C_List: 
   A_List: 
-  Z_List: 
-  S_List: 
   btl_WtTime: 0
   btl_UnitST: 0
 --- !u!114 &1752063315
@@ -5954,20 +5951,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &1752063319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1752063312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2ab0c8a66a40754b85b67ecd2bbd32b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitID: 0
-  classType: 0
-  abilityType: 0
 --- !u!1 &1764991052
 GameObject:
   m_ObjectHideFlags: 0

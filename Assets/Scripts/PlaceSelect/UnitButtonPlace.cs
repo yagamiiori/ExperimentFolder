@@ -96,7 +96,7 @@ public class UnitButtonPlace :
                 placeCommon.unitSelect = Defines.ABL_NON_VALUE;
 
                 // アビリティを解除
-                gameManager.A_List[unitID] = Defines.ABL_NO_ABILITY;
+                gameManager.unitStateList[unitID].abilityType = Defines.ABL_NO_ABILITY;
             }
             else // フェールセーフ
             {

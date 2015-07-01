@@ -71,7 +71,7 @@ public class Soldler :
         promotionJud = Defines.BTL_PROMO_OFF;     // プロモーション可否判定フラグ
         hp = 500+Random.Range(0,201);             // HP
         attackDamage = Defines.BTL_DMG_SOL;       // 基本攻撃ダメージ
-        type = Defines.BTL_KEIHO;                 // タイプ（軽歩/鈍歩/飛行）
+        type = Defines.UNT_KEIHO;                 // タイプ（軽歩/鈍歩/飛行）
         wt = 50.0f;                               // WT
         brave = 50.0f + (Random.Range(0f,31f));   // Brave - 物理回避率
         fath = 20.0F + (Random.Range(0f, 31f));   // Fath - 魔法回避率

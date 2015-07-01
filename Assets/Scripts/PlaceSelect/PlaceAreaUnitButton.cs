@@ -70,7 +70,7 @@ public class PlaceAreaUnitButton :
     {
         // 自分のアビリティがセット済みか判定し、判定結果を設定
         bool alreadySetAbl = false;
-        if (Defines.ABL_NO_ABILITY != gameManager.A_List[unitID]) alreadySetAbl = true;
+        if (Defines.ABL_NO_ABILITY != gameManager.unitStateList[unitID].abilityType) alreadySetAbl = true;
 
         // 永続ループ（ただし、マウスオーバーを抜けたらreturnする）
         while (1 == mouseOverJug)
@@ -100,7 +100,7 @@ public class PlaceAreaUnitButton :
                 abilityCommon.unitSelect = Defines.ABL_NON_VALUE;
 
                 // アビリティを解除
-                gameManager.A_List[unitID] = Defines.ABL_NO_ABILITY;
+                gameManager.unitStateList[unitID].abilityType = Defines.ABL_NO_ABILITY;
             }
             else // フェールセーフ
             {

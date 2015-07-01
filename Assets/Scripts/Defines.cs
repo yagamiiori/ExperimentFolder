@@ -22,7 +22,7 @@ public static class Defines
     public const int ID_15 = 15;   // ID 15
     public const int ID_16 = 16;   // ID 16
 
-    // 全シーン共通
+    // クラス（全シーン共通）
     public const int NON_VALUE = 0;     // 設定なし
     public const int SOLDLER   = 1;     // ソルジャー
     public const int WIZARD    = 2;     // ウィザード
@@ -64,18 +64,25 @@ public static class Defines
     // 性別（ユニットセレクトシーン）
     public const int UNT_MALE    = 1;        // 男性
     public const int UNT_FEMALE  = 2;        // 女性
-    public const int UNT_UNKNOWN = 3;        // 未定
+    public const int UNT_UNKNOWN = 3;        // 不明
+
+    // タイプ（ユニットセレクトシーン）
+    public const int UNT_KEIHO = 1;     // 軽歩
+    public const int UNT_DONPO = 2;     // 鈍歩
+    public const int UNT_HIKOU = 3;     // 飛行
+    public const int UNT_WORP  = 4;     // ワープ
+
+    // 武器タイプ（ユニットセレクトシーン）※未使用
+    public const int UNT_SWORD  = 1;     // 剣
+    public const int UNT_SPIRE  = 2;     // 槍
+    public const int UNT_ALLOW  = 3;     // 弓
+    public const int UNT_KATANA = 4;     // 刀
+    public const int UNT_STAFF  = 5;     // 杖
+    public const int UNT_MEISE  = 6;     // メイス
+    public const int UNT_SUDE   = 7;     // 素手
 
     // 設定なし（アビリティセレクトシーン限定）
     public const int ABL_NON_VALUE = 100;    // 設定なし
-
-    // 属性（バトルフィールドシーン）
-    public const int BTL_FIRE     = 1;       // 炎
-    public const int BTL_WIND     = 2;       // 風
-    public const int BTL_EARTH    = 3;       // 土
-    public const int BTL_WATER    = 4;       // 水
-    public const int BTL_DIVINE   = 5;       // 神聖
-    public const int BTL_DARKNESS = 6;       // 暗黒
 
     // アビリティ（アビリティセレクトシーン）
     public const int ABL_NO_ABILITY = 0;   // アビリティなし
@@ -88,24 +95,17 @@ public static class Defines
     public const int ABL_HCOUNTER   = 4;   // 見切り青眼
     public const int ABL_TEREPORT   = 5;   // ダテレポ
 
-    // タイプ（バトルフィールドシーン）
-    public const int BTL_KEIHO = 1;     // 軽歩
-    public const int BTL_DONPO = 2;     // 鈍歩
-    public const int BTL_HIKOU = 3;     // 飛行
-    public const int BTL_WORP  = 4;     // ワープ
-
-    // 武器タイプ（バトルフィールドシーン）※未使用
-    public const int BTL_SWORD  = 1;     // 剣
-    public const int BTL_SPIRE  = 2;     // 槍
-    public const int BTL_ALLOW  = 3;     // 弓
-    public const int BTL_KATANA = 4;     // 刀
-    public const int BTL_STAFF  = 5;     // 杖
-    public const int BTL_MEISE  = 6;     // メイス
-    public const int BTL_SUDE   = 7;     // 素手
+    // 属性（バトルフィールドシーン）
+    public const int BTL_FIRE     = 1;       // 炎
+    public const int BTL_WIND     = 2;       // 風
+    public const int BTL_EARTH    = 3;       // 土
+    public const int BTL_WATER    = 4;       // 水
+    public const int BTL_DIVINE   = 5;       // 神聖
+    public const int BTL_DARKNESS = 6;       // 暗黒
 
     // プロモーション判定（バトルフィールドシーン）
     public const int BTL_PROMO_OFF = 0;     // プロモーション未実施
-    public const int BTL_PROMO_ON = 1;     // プロモーション実施済み
+    public const int BTL_PROMO_ON  = 1;     // プロモーション実施済み
 
     // クラス毎の基本ダメージ値（バトルフィールドシーン）
     public const int BTL_DMG_SOL = 300;     // ソルジャー
@@ -141,7 +141,5 @@ public static class Defines
     public const int BTL_HYTE_8  = 8;     // ハイト8
     public const int BTL_HYTE_9  = 9;     // ハイト9
     public const int BTL_HYTE_10 = 10;    // ハイト10
-
-
 }
 

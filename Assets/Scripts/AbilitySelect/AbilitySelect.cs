@@ -63,6 +63,12 @@ public class AbilitySelect : MonoBehaviour
         AbilityNameList.Add(GameObject.FindWithTag("Abl_SetAbilityName14").GetComponent<Text>());
         AbilityNameList.Add(GameObject.FindWithTag("Abl_SetAbilityName15").GetComponent<Text>());
 
+        // クラス名表示フィールドを初期化
+        foreach (Text field in ClassNameList)
+        {
+            field.text = "？？？";
+        }
+
         // アビリティ表示フィールドを初期化
         foreach (Text field in AbilityNameList)
         {
@@ -83,10 +89,10 @@ public class AbilitySelect : MonoBehaviour
     void ClassNameSet()
     {
         // リスト内を最大ユニット数分ループ
-        for (int i = 0; i < Defines.OPT_UNITS_MAX; i++)
+        for (int i = 0; i < gameManager.unitStateList.Count; i++)
         {
-            // CA対応リストのCリストを読み出し
-            switch (gameManager.C_List[i])
+            // クラスIDを読み出し
+            switch (gameManager.unitStateList[i].classType)
             {
                 // ソルジャーの場合
                 case Defines.SOLDLER:
@@ -120,16 +126,20 @@ public class AbilitySelect : MonoBehaviour
         // アビリティをセットする対象ユニットがすでに選択済みの場合
         if (Defines.ABL_NON_VALUE != unitSelect)
         {
+            // ユニットステートのアビリティIDを設定
+            gameManager.unitStateList[unitSelect].abilityType = abl_ID;
+
+/*          ボツここから-----------------------------------------------------------
             // AリストにアビリティIDを設定（ユニットID, アビリティID）
             gameManager.A_List.Insert(unitSelect, abl_ID);
             // Insertにより一つインデックスが挿入されるのでそれを削除
             gameManager.A_List.RemoveAt(unitSelect+1);
+            ボツここまで-----------------------------------------------------------
+ */
             // アビリティセットするユニットIDを文字列化
             string unitid_STR = unitSelect.ToString();
-
             // アビリティID→アビリティ文字列正引きメソッドをコール
             string abilityName = AbilityIDtoStringConv(abl_ID);
-
             // 表示するアビリティテキストフィールドを取得
             Text textFieldID = GameObject.FindWithTag("Abl_SetAbilityName" + unitid_STR).GetComponent<Text>();
             // アビリティ名表示フィールドにアビリティ名を設定
@@ -142,8 +152,7 @@ public class AbilitySelect : MonoBehaviour
 
     // -------------------------------------------
     // アビリティID→アビリティ文字列正引きメソッド
-    // アビリティIDを元にアビリティ名表示フィールドに表示するための
-    // アビリティ名stringを得る
+    // アビリティID（int）を元に対応するアビリティ名（string）を返す
     // -------------------------------------------
     string AbilityIDtoStringConv(int abl_ID)
     {
@@ -181,7 +190,6 @@ public class AbilitySelect : MonoBehaviour
             default:
                 break;
         }
-
         return abilityName;
     }
 
@@ -191,13 +199,13 @@ public class AbilitySelect : MonoBehaviour
     // ------------------------
     void UnitSpriteSet()
     {
-        GameObject sprite;              // スプライトprefab用フィールド1
-        GameObject prefab;              // スプライトprefab用フィールド2
+        GameObject sprite;                              // スプライトprefab用フィールド1
+        GameObject prefab;                              // スプライトprefab用フィールド2
         Vector3 vec = new Vector3(-368f, 259.6f, 0);    // スプライト表示位置
-        int vecCor = 0;                 // スプライト表示位置補正用フィールド
+        int vecCor = 0;                                 // スプライト表示位置補正用フィールド
 
         // リスト内を最大ユニット数分ループ
-        for (int i = 0; i < Defines.OPT_UNITS_MAX; i++)
+        for (int i = 0; i < gameManager.unitStateList.Count; i++)
         {
             // 2段目(9人目以降)の場合
             if (8 == i)
@@ -208,8 +216,8 @@ public class AbilitySelect : MonoBehaviour
                 vecCor = 0;
             }
 
-            // CA対応リストのCリストを読み出し
-            switch (gameManager.C_List[i])
+            // クラスIDを読み出し
+            switch (gameManager.unitStateList[i].classType)
             {
                 // ソルジャーの場合
                 case Defines.SOLDLER:

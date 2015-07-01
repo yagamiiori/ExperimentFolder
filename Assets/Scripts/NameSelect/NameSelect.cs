@@ -92,8 +92,8 @@ public class NameSelect : MonoBehaviour
         // リスト内を最大ユニット数分ループ
         for (int i = 0; i < Defines.OPT_UNITS_MAX; i++)
         {
-            // CA対応リストのCリストを読み出し
-            switch (gameManager.C_List[i])
+            // クラスIDを読み出し
+            switch (gameManager.unitStateList[i].classType)
             {
                 // ソルジャーの場合
                 case Defines.SOLDLER:
@@ -153,8 +153,8 @@ public class NameSelect : MonoBehaviour
                 vecCor = 0;
             }
 
-            // CA対応リストのCリストを読み出し
-            switch (gameManager.C_List[i])
+            // クラスIDを読み出し
+            switch (gameManager.unitStateList[i].classType)
             {
                 // ソルジャーの場合
                 case Defines.SOLDLER:

@@ -48,7 +48,8 @@ public class UnitSelectButtonOK : MonoBehaviour
     // ---------------------------------
     public void MyUnitListConst()
     {
-        int listCnt = 0;    // ブランクインデックス埋め用カウンター
+
+        int unitVal = 0;        // ユニットID
 
         // ソルジャーがいる場合
         if (0 < gameManager.unt_Sodler)
@@ -56,11 +57,33 @@ public class UnitSelectButtonOK : MonoBehaviour
             // ソルジャー数分ループ
             for (int j = 0; j < gameManager.unt_Sodler; j++)
             {
-                // CA対応リストにソルジャーを追加
-                gameManager.C_List.Add(Defines.SOLDLER);
+                // ユニットステート用GOのインスタンス化とコンポ取得
+                GameObject unitState = Instantiate(Resources.Load("UnitState"), transform.position, Quaternion.identity) as GameObject;
+                UnitState unitstate = unitState.GetComponent<UnitState>();
 
-                // ランクインデックス埋め用カウンターを加算
-                listCnt += 1;
+                // インスタンス化したユニットステート用GOをGameManagerの子オブジェクトに設定
+                unitState.transform.parent = gameManager.transform;
+
+                // ユニットIDを設定
+                unitstate.unitID = unitVal;
+
+                // クラスIDをソルジャーに設定
+                unitstate.classType = Defines.SOLDLER;
+
+                // 武器タイプを設定（クラス固有）
+                unitstate.weaponType = Defines.UNT_SWORD;
+
+                // 歩行タイプを設定（クラス固有）
+                unitstate.workType = Defines.UNT_KEIHO;
+
+                // 性別を設定（※とりあえずクラス固有にする）
+                unitstate.sex = Defines.UNT_MALE;
+
+                // ユニットステートリストに格納
+                gameManager.unitStateList.Add(unitstate);
+
+                // ユニットIDをカウントアップ
+                unitVal++;
             }
         }
 
@@ -70,22 +93,34 @@ public class UnitSelectButtonOK : MonoBehaviour
             // ウィザード数分ループ
             for (int j = 0; j < gameManager.unt_Wizard; j++)
             {
-                // CA対応リストにウィザードを追加
-                gameManager.C_List.Add(Defines.WIZARD);
+                // ユニットステート用GOのインスタンス化とコンポ取得
+                GameObject unitState = Instantiate(Resources.Load("UnitState"), transform.position, Quaternion.identity) as GameObject;
+                UnitState unitstate = unitState.GetComponent<UnitState>();
 
-                // ランクインデックス埋め用カウンターを加算
-                listCnt += 1;
+                // インスタンス化したユニットステート用GOをGameManagerの子オブジェクトに設定
+                unitState.transform.parent = gameManager.transform;
+
+                // ユニットIDを設定
+                unitstate.unitID = unitVal;
+
+                // クラスIDをウィザードに設定
+                unitstate.classType = Defines.WIZARD;
+
+                // 武器タイプを設定（クラス固有）
+                unitstate.weaponType = Defines.UNT_STAFF;
+
+                // 歩行タイプを設定（クラス固有）
+                unitstate.workType = Defines.UNT_KEIHO;
+
+                // 性別を設定（※とりあえずクラス固有にする）
+                unitstate.sex = Defines.UNT_FEMALE;
+
+                // ユニットステートリストに格納
+                gameManager.unitStateList.Add(unitstate);
+
+                // ユニットIDをカウントアップ
+                unitVal++;
             }
-        }
-
-        // 空きKey数を設定
-        int blankKeyArea = Defines.OPT_UNITS_MAX - listCnt;
-
-        // 空いているKeyを最大ユニット数の16まで設定（クリアしておく）
-        for (int i = 0; i < blankKeyArea; i++)
-        {
-            //valueは設定なしで埋める
-            gameManager.C_List.Add(Defines.NON_VALUE);
         }
     }
 }

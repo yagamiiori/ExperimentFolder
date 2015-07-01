@@ -25,21 +25,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public int unt_DeepOne = 0;        // 戦闘参加ユニット数 - 深きもの
     public int unt_Commander = 0;      // 戦闘参加ユニット数 - コマンダー
     public int unt_NowAllUnits = 0;    // 現在選択されている選択参加ユニットの総数
-    public SortedList<int, int> unt_myUnitList = new SortedList<int, int>();        // 確定済み全ユニットリスト
-    public List<UCApare> unt_ucaList = new List<UCApare>();                             // UCAペアリスト
+    public List<UnitState> unitStateList = new List<UnitState>();                   // ユニットステートリスト
     // ユニットセレクト完了フラグ
     // ユニットセレクト画面以降のシーンにおいて選択したユニット数が変更される事を
     // 抑止する（マネージャクラスは永続オブジェクトであるためのフェールセーフ）
     public bool unt_compJud = false;
 
-    // キャラテーブル
-    // C_ListはUnitSelectButtonOK.cs内のMyUnitListConstメソッドでユニット確定時に初期化する
-    // A_Listは本クラス内のStart()で初期化する
-    public List<int> C_List = new List<int>();        //CA対応リスト - C（クラス）
-    public List<int> A_List = new List<int>();        //CA対応リスト - A（アビリティ）
-    public List<int> Z_List = new List<int>();        //CA対応リスト - Z（属性エレメント）
-    public List<int> S_List = new List<int>();        //CA対応リスト - S（性別）
-    public List<string> N_List = new List<string>();  //CA対応リスト - S（ユニット名）
+    // キャラテーブル（ボツ）
+    public List<int> C_List = new List<int>();        //CA対応リスト - C（クラス）ボツ
+    public List<int> A_List = new List<int>();        //CA対応リスト - A（アビリティ）ボツ
 
     // --- バトルフィールドシーン -- //
     public SortedList<float, int> btl_AtList = new SortedList<float, int>();        // ATリスト
