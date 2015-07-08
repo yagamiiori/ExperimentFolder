@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/PlaceSelect.unity
   - enabled: 1
     path: Assets/NameSelect.unity
+  - enabled: 1
+    path: Assets/Lobby.unity

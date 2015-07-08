@@ -6,7 +6,7 @@ using System.Linq;
 public class UnitSelectButtonOK : MonoBehaviour
 {
     private GameManager gameManager;                    // マネージャコンポ
-    private string nextScene = "AbilitySelect";         // スタートボタンプッシュ時遷移先シーン
+    private string nextScene = "NameSelect";            // スタートボタンプッシュ時遷移先シーン
     private int isStarted = 0;                          // スタートボタンプッシュ判定フラグ
 
     // ----------------------------------------

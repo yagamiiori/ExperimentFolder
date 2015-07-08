@@ -65,7 +65,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         if (false == opt_compJud)
         {
             // ユニット数初期化
-            opt_unitNum = Defines.OPT_UNITS_5;
+            opt_unitNum = Defines.OPT_UNITS_16;
 
             // ギフト有無判定フラグ初期化
             opt_giftJud = 0;

@@ -4,15 +4,15 @@ using System.Collections;
 public class AbilitySelectButtonOK : MonoBehaviour
 {
     private GameManager gameManager;                    // マネージャコンポ
-    private string nextScene = "PlaceSelect";           // スタートボタンプッシュ時遷移先シーン
+    private string nextScene = "Lobby";                 // スタートボタンプッシュ時遷移先シーン
     private int isStarted = 0;                          // スタートボタンプッシュ判定フラグ
-
+    
 	void Start ()
     {
         // マネージャコンポ取得
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
 	}
-
+    
     // -------------------------------
     // OKボタンクリック判定メソッド（ユニットセレクトシーン）
     // ユニットセレクトシーンにてOKボタンが押された場合（ユニット確定した場合）にコールされ

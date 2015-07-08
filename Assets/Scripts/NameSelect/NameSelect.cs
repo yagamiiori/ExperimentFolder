@@ -9,7 +9,6 @@ public class NameSelect : MonoBehaviour
 {
     private GameManager gameManager;                               // マネージャコンポ
     private GameObject canVas;                                     // ゲームオブジェクト"Canvas"
-    public int unitSelect = 100;                                   // ユニット選択判定（初期化値:100）
     private List<string> autoNameMale = new List<string>();        // オート（英男性名）
     private List<string> autoNameFemale = new List<string>();      // オート（英女性名）
     private List<string> autoNameKanjiMa = new List<string>();     // オート（漢男性名）
@@ -18,9 +17,9 @@ public class NameSelect : MonoBehaviour
     private List<string> autoNameKataFe = new List<string>();      // オート（カ女性名）
     private List<string> autoNameKanjiDqnMa = new List<string>();  // オート（漢男性DQN名）
     private List<string> autoNameKanjiDqnFe = new List<string>();  // オート（漢女性DQN名）
-    // 全ユニット数（16個）分のクラス名表示用テキストフィールドリスト
+    // クラス名表示用テキストフィールドリスト
     public List<Text> ClassNameList = new List<Text>();
-    // 全ユニット数（16個）分のユニット名表示用テキストフィールドリスト
+    // ユニット名表示用テキストフィールドリスト
     public List<Text> UnitNameList = new List<Text>();
 
     // ----------------------------------------
@@ -70,10 +69,16 @@ public class NameSelect : MonoBehaviour
         UnitNameList.Add(GameObject.FindWithTag("Nam_UnitName14").GetComponent<Text>());
         UnitNameList.Add(GameObject.FindWithTag("Nam_UnitName15").GetComponent<Text>());
 
+        // クラス名表示フィールドを初期化
+        foreach (Text field in ClassNameList)
+        {
+            field.text = "？？？";
+        }
+
         // ユニット名表示フィールドを初期化
         foreach (Text field in UnitNameList)
         {
-            field.text = "- - - -";
+            field.text = "GuestUnit";
         }
 
         // クラス名表示フィールド設定メソッドをコール
@@ -90,7 +95,7 @@ public class NameSelect : MonoBehaviour
     void ClassNameSet()
     {
         // リスト内を最大ユニット数分ループ
-        for (int i = 0; i < Defines.OPT_UNITS_MAX; i++)
+        for (int i = 0; i < gameManager.unitStateList.Count; i++)
         {
             // クラスIDを読み出し
             switch (gameManager.unitStateList[i].classType)
@@ -116,19 +121,6 @@ public class NameSelect : MonoBehaviour
         }
     }
 
-    // ------------------------
-    // ユニット名表示フィールド設定メソッド
-    // ユニット名セレクトシーンにおいてユニット名を表示し、
-    // 同時にNリストにユニット名stringを設定する
-    // ユニットボタンオブジェクトからコールされる
-    // ------------------------
-    public void UnitNameSet()
-    {
-        // ユニット名をセットする対象ユニットがすでに選択済みの場合
-        if (Defines.ABL_NON_VALUE != unitSelect)
-        {
-        }
-    }
 
     // ------------------------
     // キャラクター画像表示フィールド設定メソッド
@@ -142,7 +134,7 @@ public class NameSelect : MonoBehaviour
         int vecCor = 0;                 // スプライト表示位置補正用フィールド
 
         // リスト内を最大ユニット数分ループ
-        for (int i = 0; i < Defines.OPT_UNITS_MAX; i++)
+        for (int i = 0; i < gameManager.unitStateList.Count; i++)
         {
             // 2段目(9人目以降)の場合
             if (8 == i)

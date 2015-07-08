@@ -10,7 +10,6 @@ public class UnitState : MonoBehaviour
     public int attribute = Defines.NON_VALUE;        // 属性
     public int sex = Defines.NON_VALUE;              // 性別
     public int color = Defines.NON_VALUE;            // カラーパレット（※とりあえず未使用）
-    public int unitName = Defines.NON_VALUE;         // ユニット名
     public int hpValue = Defines.NON_VALUE;          // HP
     public int workType = Defines.NON_VALUE;         // 歩行タイプ
     public int expValue = Defines.NON_VALUE;         // 経験値
@@ -19,6 +18,7 @@ public class UnitState : MonoBehaviour
     public int fath = Defines.NON_VALUE;             // Fath
     public int PysicsDef = Defines.NON_VALUE;        // 物理防御力
     public int MagicDef = Defines.NON_VALUE;         // 魔法防御力
+    public string unitName = "";                     // ユニット名
     public bool promJud = false;                     // プロモーション可否判定フラグ
 
     // ----------------------------------------

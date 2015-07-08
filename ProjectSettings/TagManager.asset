@@ -55,6 +55,7 @@ TagManager:
   - Nam_UnitName13
   - Nam_UnitName14
   - Nam_UnitName15
+  - Roby_PlayersNum
   layers:
   - Default
   - TransparentFX

@@ -57,11 +57,11 @@
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
-    <Reference Include="websocket-sharp">
-      <HintPath>Assets\Plugins\WebSocket\websocket-sharp.dll</HintPath>
-    </Reference>
     <Reference Include="Photon3Unity3D">
       <HintPath>Assets\Plugins\Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>Assets\Plugins\WebSocket\websocket-sharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +130,8 @@
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SmoothSyncMovement.cs" />
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SupportLogger.cs" />
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
+    <Compile Include="Assets\Resources\Prefabs\Test.cs" />
+    <Compile Include="Assets\Resources\Prefabs\Test3.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySelect.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySelectButtonOK.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\UnitAreaButton.cs" />
@@ -142,8 +144,11 @@
     <Compile Include="Assets\Scripts\FieldCreator.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Interfaces.cs" />
+    <Compile Include="Assets\Scripts\Lobby\PhotonSystem.cs" />
+    <Compile Include="Assets\Scripts\Lobby\Test2.cs" />
     <Compile Include="Assets\Scripts\MaterialFlash.cs" />
     <Compile Include="Assets\Scripts\NameSelect\NameSelect.cs" />
+    <Compile Include="Assets\Scripts\NameSelect\NameSelectButtonOK.cs" />
     <Compile Include="Assets\Scripts\PlaceSelect\PlaceAreaUnitButton.cs" />
     <Compile Include="Assets\Scripts\PlaceSelect\PlaceSelect.cs" />
     <Compile Include="Assets\Scripts\PlaceSelect\UnitButtonPlace.cs" />
@@ -165,7 +170,6 @@
     <None Include="Assets\Photon Unity Networking\readme.txt" />
     <None Include="Assets\Plugins\Photon3Unity3D.xml" />
     <None Include="Assets\Plugins\release_history.txt" />
-    <None Include="Assets\Textures\Test\test.xml" />
     <None Include="Assets\codeandweb.com\Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />

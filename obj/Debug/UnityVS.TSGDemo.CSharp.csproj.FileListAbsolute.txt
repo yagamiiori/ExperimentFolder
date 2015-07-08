@@ -11,3 +11,7 @@ C:\Users\user\Documents\TSGDemo\Temp\UnityVS_bin\Debug\UnityEditor.iOS.Extension
 C:\Users\user\Documents\TSGDemo\obj\Debug\UnityVS.TSGDemo.CSharp.csprojResolveAssemblyReference.cache
 C:\Users\user\Documents\TSGDemo\obj\Debug\Assembly-CSharp.dll
 C:\Users\user\Documents\TSGDemo\obj\Debug\Assembly-CSharp.pdb
+C:\Users\user\Documents\TSGDemo\Temp\UnityVS_bin\Debug\Photon3Unity3D.dll
+C:\Users\user\Documents\TSGDemo\Temp\UnityVS_bin\Debug\websocket-sharp.dll
+C:\Users\user\Documents\TSGDemo\Temp\UnityVS_bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\user\Documents\TSGDemo\Temp\UnityVS_bin\Debug\Photon3Unity3D.xml
