@@ -128,10 +128,10 @@ public class NameSelect : MonoBehaviour
     // ------------------------
     void UnitSpriteSet()
     {
-        GameObject sprite;              // スプライトprefab用フィールド1
-        GameObject prefab;              // スプライトprefab用フィールド2
-        Vector3 vec = new Vector3(-368f, 259.6f, 0);    // スプライト表示位置
-        int vecCor = 0;                 // スプライト表示位置補正用フィールド
+        GameObject sprite;                              // スプライトprefab用フィールド1
+        GameObject prefab;                              // スプライトprefab用フィールド2
+        Vector3 vec = new Vector3(-368f, 204.0f, 0);    // スプライト表示位置
+        int vecCor = 0;                                 // スプライト表示位置補正用フィールド
 
         // リスト内を最大ユニット数分ループ
         for (int i = 0; i < gameManager.unitStateList.Count; i++)
@@ -139,9 +139,8 @@ public class NameSelect : MonoBehaviour
             // 2段目(9人目以降)の場合
             if (8 == i)
             {
-                // Y値を変更
-                vec.y = 98.0f;
-                // X値補正率を初期化
+                // Y値の変更およびX値補正率を初期化
+                vec.y = 41.0f;
                 vecCor = 0;
             }
 
@@ -151,7 +150,7 @@ public class NameSelect : MonoBehaviour
                 // ソルジャーの場合
                 case Defines.SOLDLER:
                     // ソルジャーのスプライトを設定
-                    sprite = Resources.Load("UnitSprite_AbilitySelect/Char_1") as GameObject;
+                    sprite = Resources.Load("UnitSprite_NameSelect/Char_1") as GameObject;
                     // 位置を設定
                     vec.x = -368 + vecCor;
                     vec.z = 0;
@@ -159,14 +158,12 @@ public class NameSelect : MonoBehaviour
                     prefab = Instantiate(sprite, vec, Quaternion.identity) as GameObject;
                     prefab.transform.SetParent(canVas.transform, false);
                     vecCor += 100;
-                    // ユニットスプライト表示後、ユニットIDを設定
-                    prefab.GetComponent<UnitAreaButton>().unitID = i;
                     break;
 
                 // ウィザードの場合
                 case Defines.WIZARD:
                     // ウィザードのスプライトを設定
-                    sprite = Resources.Load("UnitSprite_AbilitySelect/Char_2") as GameObject;
+                    sprite = Resources.Load("UnitSprite_NameSelect/Char_2") as GameObject;
                     // 位置を設定
                     vec.x = -368 + vecCor;
                     vec.z = 0;
@@ -174,8 +171,6 @@ public class NameSelect : MonoBehaviour
                     prefab = Instantiate(sprite, vec, Quaternion.identity) as GameObject;
                     prefab.transform.SetParent(canVas.transform, false);
                     vecCor += 100;
-                    // ユニットスプライト表示後、ユニットIDを設定
-                    prefab.GetComponent<UnitAreaButton>().unitID = i;
                     break;
 
                 // ユニット未設定の場合

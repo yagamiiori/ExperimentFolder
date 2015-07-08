@@ -17,9 +17,6 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;    //CP専用Hashtable
 // =======================================================================
 public class PhotonSystem : Photon.MonoBehaviour
 {
-    public PhotonPlayer[] playerAllProp;     // 全ユーザ情報
-    public int playerAll;                    // 全ユーザ数（接続人数）
-    private Text playerAllText;              // 全ユーザー数表示用テキストコンポ
 
     public Hashtable customRoomPropeties;    // ルームCP
     public string roomNo = "";               // ルーム番号
@@ -43,17 +40,6 @@ public class PhotonSystem : Photon.MonoBehaviour
     // -------------------------------------------------------------
     void Start()
     {
-/*
-        // 全ユーザ数表示オブジェクトとTextコンポを取得
-        playerAllText = GameObject.FindWithTag("Roby_PlayersNum").GetComponent<Text>();
-
-        // 全てのユーザ情報とユーザ数を取得
-        playerAllProp = PhotonNetwork.playerList;
-        playerAll = PhotonNetwork.playerList.Length;
-
-        // 全プレイヤー数をTextコンポに表示
-        playerAllText.text = playerAll.ToString();
-*/
         // ルーム番号を初期化
         roomNo = "RoomNo_0";
 
@@ -201,4 +187,5 @@ public class PhotonSystem : Photon.MonoBehaviour
         PhotonNetwork.JoinRoom((string)customRoomPropeties["RoomNo"]);
 
     }
+
 }

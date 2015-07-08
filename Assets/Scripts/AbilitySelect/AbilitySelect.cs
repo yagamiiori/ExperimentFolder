@@ -261,9 +261,8 @@ public class AbilitySelect : MonoBehaviour
             // 2段目(9人目以降)の場合
             if (8 == i)
             {
-                // Y値を変更
+                // Y値の変更およびX値補正率を初期化
                 vec.y = 98.0f;
-                // X値補正率を初期化
                 vecCor = 0;
             }
 
