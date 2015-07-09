@@ -3,10 +3,24 @@ using System.Collections;
 
 public class Test : Photon.MonoBehaviour {
 
-    // プレイヤー歩行速度
-    private float speed = 0.5f;
-    // キャラ移動値スタック
-    private Vector2 vel = Vector2.zero;
+
+    private float speed = 0.5f;             // プレイヤー歩行速度
+    private Vector2 vel = Vector2.zero;     // キャラ移動値スタック
+    // TransFormコンポ
+    // ※Transformは内部的にGetComponentしていて毎回this指定するとコストがかかる(低速)
+    // ためキャッシュしておく
+    public Transform _cachedTransform;
+    public Transform cachedTransform
+    {
+        get
+        {
+            if (null == _cachedTransform)
+            {
+                _cachedTransform = this.transform;
+            }
+            return _cachedTransform;
+        }
+    }
 
 	void Update ()
     {
@@ -20,7 +34,7 @@ public class Test : Photon.MonoBehaviour {
             int input_facing2 = (int)Input.GetAxisRaw("Vertical");
 
             // 移動実施
-            this.transform.position = vel;
+            cachedTransform.position = vel;
 
             // 右に移動する場合
             // 左右のアニメは変更しないためlocalscaleで向きだけ変える
