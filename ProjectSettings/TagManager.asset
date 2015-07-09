@@ -56,6 +56,7 @@ TagManager:
   - Nam_UnitName14
   - Nam_UnitName15
   - Roby_PlayersNum
+  - InsideRoomButton
   layers:
   - Default
   - TransparentFX

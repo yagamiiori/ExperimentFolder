@@ -2,10 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;   // コレクションクラスの定義に必要
 using System.Linq;
+using Hashtable = ExitGames.Client.Photon.Hashtable;    //CP専用Hashtable
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
-    // --- スターティングオプションシーン -- //
+    // --- オプションシーン -- //
     public int opt_unitNum = 0;         // ユニット数
     public int opt_giftJud = 0;         // ギフト有無判定フラグ
     public float opt_haveTime = 0;      // 持ち時間
@@ -30,20 +31,20 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     // ユニットセレクト画面以降のシーンにおいて選択したユニット数が変更される事を
     // 抑止する（マネージャクラスは永続オブジェクトであるためのフェールセーフ）
     public bool unt_compJud = false;
-
     // キャラテーブル（ボツ）
     public List<int> C_List = new List<int>();        //CA対応リスト - C（クラス）ボツ
     public List<int> A_List = new List<int>();        //CA対応リスト - A（アビリティ）ボツ
 
     // --- バトルフィールドシーン -- //
+    public Hashtable customPropeties;                                               // プレイヤーCP
     public SortedList<float, int> btl_AtList = new SortedList<float, int>();        // ATリスト
     public int btl_WtTime = 0;                                                      // WT（ウェイトタイム）
     // ユニットステータス
-    // 0：異常ステータスなし
-    // 1：暗闇
-    // 2：ストップ
-    // 3：ドンアク
-    // 4：ドンムブ
+    // 　0：異常ステータスなし
+    // 　1：暗闇
+    // 　2：ストップ
+    // 　3：ドンアク
+    // 　4：ドンムブ
     public int btl_UnitST = 0;
 
     // ----------------------------------------

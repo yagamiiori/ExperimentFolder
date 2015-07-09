@@ -130,7 +130,6 @@
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SmoothSyncMovement.cs" />
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SupportLogger.cs" />
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
-    <Compile Include="Assets\Resources\Prefabs\Test.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySelect.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySelectButtonOK.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\UnitAreaButton.cs" />
@@ -143,9 +142,9 @@
     <Compile Include="Assets\Scripts\FieldCreator.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Interfaces.cs" />
+    <Compile Include="Assets\Scripts\Lobby\LobbyManager.cs" />
     <Compile Include="Assets\Scripts\Lobby\PhotonSystem.cs" />
-    <Compile Include="Assets\Scripts\Lobby\PlayerCount.cs" />
-    <Compile Include="Assets\Scripts\Lobby\Test2.cs" />
+    <Compile Include="Assets\Scripts\Lobby\Test.cs" />
     <Compile Include="Assets\Scripts\MaterialFlash.cs" />
     <Compile Include="Assets\Scripts\NameSelect\NameSelect.cs" />
     <Compile Include="Assets\Scripts\NameSelect\NameSelectButtonOK.cs" />
@@ -155,7 +154,7 @@
     <Compile Include="Assets\Scripts\PlaceSelectButtonOK.cs" />
     <Compile Include="Assets\Scripts\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\SmoothFollow.cs" />
-    <Compile Include="Assets\Scripts\StargingOption.cs" />
+    <Compile Include="Assets\Scripts\StartingOption.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectButtonOK.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectButtonSol.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectButtonWiz.cs" />

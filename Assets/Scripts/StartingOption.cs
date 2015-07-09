@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StargingOption : MonoBehaviour
+public class StartingOption : MonoBehaviour
 {
 
     private GameManager gameManager;                // マネージャコンポ

@@ -3,26 +3,23 @@ using System.Collections;
 using UnityEngine.UI;
 using Hashtable = ExitGames.Client.Photon.Hashtable;    //CP専用Hashtable
 
-// =======================================================================
-// 起動時awaikeでメインサーバに接続
-// ↓
-// 自動でロビーに入る
-// ↓
-// ロビーに入れたらJoiniedLobby内でJoinedRoomでルームに入室
-// ↓
-// 部屋があれば入る（2人目はここで入室）
-// ↓
-// 部屋がなければFeildRoom内でCreateRoomして作る（初回はここ）
-// 
-// =======================================================================
+// =======================================================================================
+// PhotonSystemマネージャー（バトルフィールドシーン）
+//
+// 起動直後にルーム入室する
+//
+//　ルームCP設定契機：バトルフィールドシーンにてCreateRoomの直前
+//　プレイヤーCP設定契機：ロビーシーン起動直後のStartメソッド内
+//
+// =======================================================================================
 public class PhotonSystem : Photon.MonoBehaviour
 {
-
+    private GameManager gameManager;         // マネージャコンポ
+    private GameObject canVas;               // ゲームオブジェクト"Canvas"
     public Hashtable customRoomPropeties;    // ルームCP
     public string roomNo = "";               // ルーム番号
     public int counter = 0;                  // ルーム番号用カウンタ
 
-    public Hashtable customPropeties;        // プレイヤーCP
     public string name = "Guest";            // ユーザー名
     public string rank = "";                 // ランク
     public int rip = 0;                      // RIP
@@ -30,8 +27,11 @@ public class PhotonSystem : Photon.MonoBehaviour
 
     void Awake()
     {
-        // マスターサーバーへ接続
-        PhotonNetwork.ConnectUsingSettings("v0.1");
+        // マネージャコンポ取得
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+
+        // ゲームオブジェクト"Canvas"取得
+        canVas = GameObject.FindWithTag("Canvas");
     }
 
     // -------------------------------------------------------------
@@ -48,15 +48,19 @@ public class PhotonSystem : Photon.MonoBehaviour
                                                 { "RoomNo", roomNo },
                                                 { "Blank", 0 }
                                               };
-        // プレイヤーCP要素を定義
-        customPropeties = new Hashtable() {
+/*
+        // プレイヤーCP要素を定義（ロビーシーンに移行した）
+        gameManager.customPropeties = new Hashtable()
+                                        {
                                             { "UserName", name },
                                             { "RIP", rip },
                                             { "BattleCnt", battleCnt },
                                             { "Rank", rank }
-                                          };
-        // プレイヤーCPを設定
-        PhotonNetwork.SetPlayerCustomProperties(customPropeties);
+                                        };
+*/
+        // ★ロビー入室を前シーンでやる事にしたからここに移動させた
+        // ルーム作成メソッドをコール
+        CreateRoom(customRoomPropeties);
     }
 
     // -------------------------------------------------------------
