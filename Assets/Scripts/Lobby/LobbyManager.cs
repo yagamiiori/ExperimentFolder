@@ -50,7 +50,7 @@ public class LobbyManager : MonoBehaviour
         // ゲームオブジェクト"Canvas"取得
         canVas = GameObject.FindWithTag("Canvas");
 
-        // 全入室ボタンオブジェクト取得後、非アクティブ化
+        // 入室ボタンオブジェクト取得し非アクティブ化
         insideRoomButton = GameObject.FindWithTag("InsideRoomButton");
         insideRoomButton.SetActive(false);
 
@@ -81,7 +81,7 @@ public class LobbyManager : MonoBehaviour
     {
         Debug.Log("ロビーに入室");
 
-        // ロビー入室確定後、全入室ボタンをアクティブ化
+        // ロビー入室確定後、入室ボタンをアクティブ化
         insideRoomButton.SetActive(true);
     }
 
@@ -94,6 +94,17 @@ public class LobbyManager : MonoBehaviour
         Application.LoadLevel("BattleStage");
     }
 
+    // -------------------------------------------------------------------
+    // ユニット編成ボタンがクリックした時にユニット編成ボタンのOnClickから
+    // コールされ、ユニット編成シーンへ遷移する。
+    // -------------------------------------------------------------------
+    public void UnitForm()
+    {
+        // メインサーバから一度切断
+        PhotonNetwork.Disconnect();
+        Application.LoadLevel("UnitForm");
+    }
+
     // -------------------------------------------------------------
     // 全プレイヤー数取得メソッド
     // 全ゲーム中のプレイヤー数を取得し、Textコンポに表示する
@@ -103,7 +114,7 @@ public class LobbyManager : MonoBehaviour
     {
         while (true)
         {
-            playerAllText.text = PhotonNetwork.playerList.Length.ToString();
+            playerAllText.text = PhotonNetwork.countOfPlayers.ToString();
 
             // 一時停止
             yield return new WaitForSeconds(20.0f);

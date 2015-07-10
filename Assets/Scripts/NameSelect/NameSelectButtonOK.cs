@@ -45,7 +45,7 @@ public class NameSelectButtonOK : MonoBehaviour
 
             // Scene遷移実施（アビリティセレクトへ）
             // ﾌｪｰﾄﾞｱｳﾄ時間、ﾌｪｰﾄﾞ中待機時間、ﾌｪｰﾄﾞｲﾝ時間、ｶﾗｰ、遷移先Pos情報(Vector3)、遷移先ｼｰﾝ
-            GameObject.FindWithTag("GameManager").GetComponent<FadeToScene>().FadeOut(0.1f, 0.6f, 0.1f, Color.black, nextScene);
+            gameManager.GetComponent<FadeToScene>().FadeOut(0.1f, 0.6f, 0.1f, Color.black, nextScene);
         }
     }
 }

@@ -155,6 +155,8 @@
     <Compile Include="Assets\Scripts\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\SmoothFollow.cs" />
     <Compile Include="Assets\Scripts\StartingOption.cs" />
+    <Compile Include="Assets\Scripts\UnitForm\UnitForm.cs" />
+    <Compile Include="Assets\Scripts\UnitForm\UnitFormButtonOK.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectButtonOK.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectButtonSol.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectButtonWiz.cs" />

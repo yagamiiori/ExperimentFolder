@@ -19,3 +19,5 @@ EditorBuildSettings:
     path: Assets/NameSelect.unity
   - enabled: 1
     path: Assets/Lobby.unity
+  - enabled: 1
+    path: Assets/UnitForm.unity

@@ -28,7 +28,7 @@ using System.Collections;
 // 　　　物理 - 1.10
 // 
 // ==============================================================================
-public class PanelKusa : MonoBehaviour
+public class PanelKusa : Photon.MonoBehaviour
 {
     [HideInInspector]
     public int type = Defines.BTL_PANEL_KUSA;       // パネル種別
