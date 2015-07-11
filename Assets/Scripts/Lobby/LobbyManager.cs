@@ -29,6 +29,7 @@ public class LobbyManager : MonoBehaviour
     private GameObject canVas;               // ゲームオブジェクト"Canvas"
     private GameObject insideRoomButton;     // 入室ボタンオブジェクト
     private Text playerAllText;              // 全ユーザー数表示用テキストコンポ
+    private Text roomAllText;                // 全ルーム数表示用テキストコンポ
 
     // ---- プレイヤーCP用フィールド ----
     public string name = "Guest";            // ユーザー名
@@ -54,8 +55,12 @@ public class LobbyManager : MonoBehaviour
         insideRoomButton = GameObject.FindWithTag("InsideRoomButton");
         insideRoomButton.SetActive(false);
 
-        // 全ユーザ数表示オブジェクトとTextコンポを取得
+        // 全ユーザ数表示Textコンポを取得
         playerAllText = GameObject.FindWithTag("Roby_PlayersNum").GetComponent<Text>();
+
+        // 全ルーム数表示Textコンポを取得
+        roomAllText = GameObject.FindWithTag("Roby_RoomsNum").GetComponent<Text>();
+        
 
         // プレイヤーCP要素を定義
         gameManager.customPropeties = new Hashtable()
@@ -114,7 +119,11 @@ public class LobbyManager : MonoBehaviour
     {
         while (true)
         {
+            // プレイヤー数を取得
             playerAllText.text = PhotonNetwork.countOfPlayers.ToString();
+
+            // ルーム数を取得
+            roomAllText.text = PhotonNetwork.countOfRooms.ToString();
 
             // 一時停止
             yield return new WaitForSeconds(20.0f);

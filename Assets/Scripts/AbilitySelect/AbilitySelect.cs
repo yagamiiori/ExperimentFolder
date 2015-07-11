@@ -252,7 +252,7 @@ public class AbilitySelect : MonoBehaviour
     {
         GameObject sprite;                              // スプライトprefab用フィールド1
         GameObject prefab;                              // スプライトprefab用フィールド2
-        Vector3 vec = new Vector3(-368f, 259.6f, 0);    // スプライト表示位置
+        Vector3 vec = new Vector3(-368f, 183f, 0);      // スプライト表示位置
         int vecCor = 0;                                 // スプライト表示位置補正用フィールド
 
         // リスト内を最大ユニット数分ループ
@@ -262,7 +262,7 @@ public class AbilitySelect : MonoBehaviour
             if (8 == i)
             {
                 // Y値の変更およびX値補正率を初期化
-                vec.y = 98.0f;
+                vec.y = 20.3f;
                 vecCor = 0;
             }
 
