@@ -134,8 +134,11 @@
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySelectButtonOK.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\UnitAreaButton.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\UnitSubject.cs" />
+    <Compile Include="Assets\Scripts\BattleField\BattleFieldPhoton.cs" />
+    <Compile Include="Assets\Scripts\BattleField\BattleFieldRPC.cs" />
     <Compile Include="Assets\Scripts\BattleField\PanelKusa.cs" />
     <Compile Include="Assets\Scripts\BattleField\Soldler.cs" />
+    <Compile Include="Assets\Scripts\BattleField\Test.cs" />
     <Compile Include="Assets\Scripts\CameraStalking.cs" />
     <Compile Include="Assets\Scripts\Defines.cs" />
     <Compile Include="Assets\Scripts\FadeToPos.cs" />
@@ -144,8 +147,6 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Interfaces.cs" />
     <Compile Include="Assets\Scripts\Lobby\LobbyManager.cs" />
-    <Compile Include="Assets\Scripts\Lobby\PhotonSystem.cs" />
-    <Compile Include="Assets\Scripts\Lobby\Test.cs" />
     <Compile Include="Assets\Scripts\MaterialFlash.cs" />
     <Compile Include="Assets\Scripts\NameSelect\NameSelect.cs" />
     <Compile Include="Assets\Scripts\NameSelect\NameSelectButtonOK.cs" />

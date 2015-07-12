@@ -12,7 +12,7 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;    //CP専用Hashtable
 //　プレイヤーCP設定契機：ロビーシーン起動直後のStartメソッド内
 //
 // =======================================================================================
-public class PhotonSystem : Photon.MonoBehaviour
+public class BattleFieldPhoton : Photon.MonoBehaviour
 {
     private GameManager gameManager;         // マネージャコンポ
     private GameObject canVas;               // ゲームオブジェクト"Canvas"
@@ -60,7 +60,7 @@ public class PhotonSystem : Photon.MonoBehaviour
 */
         // ★ロビー入室を前シーンでやる事にしたからここに移動させた
         // ルーム作成メソッドをコール
-        CreateRoom(customRoomPropeties);
+        JoinRoom(customRoomPropeties);
     }
 
     // -------------------------------------------------------------

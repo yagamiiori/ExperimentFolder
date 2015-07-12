@@ -28,4 +28,6 @@ MonoBehaviour:
   - PunPickupSimple
   - PunRespawn
   - RequestForPickupTimes
+  - RecivedTurnRPC
+  - SendingTurnRPC
   DisableAutoOpenWizard: 1

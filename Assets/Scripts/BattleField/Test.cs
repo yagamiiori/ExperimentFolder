@@ -24,8 +24,8 @@ public class Test : Photon.MonoBehaviour {
 
 	void Update ()
     {
-        // 自分のオブジェクトの場合
-        if (photonView.isMine)
+        // 自分のオブジェクトの場合、かつ自ターンの場合
+        if (photonView.isMine && true == BattleFieldRPC.myTurnJud)
         {
             // 左右方向キー判定（-1:左キー　1：右キー）
             int input_facing = (int)Input.GetAxisRaw("Horizontal");
