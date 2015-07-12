@@ -161,11 +161,13 @@ public class UnitForm : MonoBehaviour
             {
                 // とりあえずGustUnitという名前にする
                 UnitNameList[i].text = "NameLess";
-                break;
             }
-
-            // ユニット名(string)がある場合はTextコンポに表示
-            UnitNameList[i].text = gameManager.unitStateList[i].unitName;
+            // ユニット名が設定済みの場合
+            else
+            {
+                // Textコンポに表示
+                UnitNameList[i].text = gameManager.unitStateList[i].unitName;
+            }
         }
     }
 
@@ -292,7 +294,7 @@ public class UnitForm : MonoBehaviour
                 // ソルジャーの場合
                 case Defines.SOLDLER:
                     // ソルジャーのスプライトを設定
-                    sprite = Resources.Load("UnitSprite_AbilitySelect/Char_1") as GameObject;
+                    sprite = Resources.Load("UnitSprite_UnitForm/Char_1") as GameObject;
                     // 位置を設定
                     vec.x = -368 + vecCor;
                     vec.z = 0;
@@ -300,14 +302,12 @@ public class UnitForm : MonoBehaviour
                     prefab = Instantiate(sprite, vec, Quaternion.identity) as GameObject;
                     prefab.transform.SetParent(canVas.transform, false);
                     vecCor += 100;
-                    // ユニットスプライト表示後、ユニットIDを設定
-                    prefab.GetComponent<UnitAreaButton>().unitID = i;
                     break;
 
                 // ウィザードの場合
                 case Defines.WIZARD:
                     // ウィザードのスプライトを設定
-                    sprite = Resources.Load("UnitSprite_AbilitySelect/Char_2") as GameObject;
+                    sprite = Resources.Load("UnitSprite_UnitForm/Char_2") as GameObject;
                     // 位置を設定
                     vec.x = -368 + vecCor;
                     vec.z = 0;
@@ -315,8 +315,6 @@ public class UnitForm : MonoBehaviour
                     prefab = Instantiate(sprite, vec, Quaternion.identity) as GameObject;
                     prefab.transform.SetParent(canVas.transform, false);
                     vecCor += 100;
-                    // ユニットスプライト表示後、ユニットIDを設定
-                    prefab.GetComponent<UnitAreaButton>().unitID = i;
                     break;
 
                 // ユニット未設定の場合

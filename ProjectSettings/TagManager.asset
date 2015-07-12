@@ -58,6 +58,8 @@ TagManager:
   - Roby_PlayersNum
   - InsideRoomButton
   - Roby_RoomsNum
+  - Abl_AbilityArea
+  - Abl_UnitArea
   layers:
   - Default
   - TransparentFX

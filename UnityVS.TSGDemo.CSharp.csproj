@@ -133,6 +133,7 @@
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySelect.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySelectButtonOK.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\UnitAreaButton.cs" />
+    <Compile Include="Assets\Scripts\AbilitySelect\UnitSubject.cs" />
     <Compile Include="Assets\Scripts\BattleField\PanelKusa.cs" />
     <Compile Include="Assets\Scripts\BattleField\Soldler.cs" />
     <Compile Include="Assets\Scripts\CameraStalking.cs" />

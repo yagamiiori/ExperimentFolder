@@ -9,7 +9,10 @@ public class AbilitySelect : MonoBehaviour
 {
     private GameManager gameManager;                    // マネージャコンポ
     private GameObject canVas;                          // ゲームオブジェクト"Canvas"
-    public int unitSelect = 100;                        // ユニット選択判定（初期化値:100）
+    private GameObject abilityArea;                     // アビリティエリア統括オブジェクト
+    private GameObject unitArea;                        // ユニットエリア統括オブジェクト
+    private UnitSubject subjectComp;                    // サブジェクトコンポ
+    public int unitSelect = Defines.ABL_NON_VALUE;      // ユニットID（選択したユニットの判定）（初期化値:100）
 
     // 全ユニット数（16個）分のクラス名表示用テキストフィールドリスト
     public List<Text> ClassNameList = new List<Text>();
@@ -28,6 +31,15 @@ public class AbilitySelect : MonoBehaviour
 
         // ゲームオブジェクト"Canvas"取得
         canVas = GameObject.FindWithTag("Canvas");
+
+        // アビリティエリア統括オブジェクト取得
+        abilityArea = GameObject.FindWithTag("Abl_AbilityArea");
+
+        // ユニットエリア統括オブジェクト取得
+        unitArea = GameObject.FindWithTag("Abl_UnitArea");
+
+        // サブジェクトコンポ
+        subjectComp = canVas.GetComponent<UnitSubject>();
 
         // 全ユニット数分のクラス名表示用テキストコンポを取得し、リストに格納
         ClassNameList.Add(GameObject.FindWithTag("Abl_ClassName0").GetComponent<Text>());
@@ -112,6 +124,22 @@ public class AbilitySelect : MonoBehaviour
 	}
 
     // ------------------------
+    // Updateメソッド
+    // ------------------------
+    void Update()
+    {
+        // マウス右クリックされ、かつユニット選択済みの場合
+        if (Input.GetMouseButtonDown(1) && Defines.ABL_NON_VALUE != unitSelect)
+        {
+            // ユニット選択済みフラグクリア
+            unitSelect = Defines.ABL_NON_VALUE;
+
+            // サブジェクトのトリガーをOFFにする
+            subjectComp.status = false;
+        }
+    }
+
+    // ------------------------
     // クラス名表示フィールド設定メソッド
     // アビリティセレクトシーンにおいてクラス名を表示する
     // ------------------------
@@ -158,11 +186,13 @@ public class AbilitySelect : MonoBehaviour
             {
                 // とりあえずGustUnitという名前にする
                 UnitNameList[i].text = "NameLess";
-                break;
             }
-
-            // ユニット名(string)がある場合はTextコンポに表示
-            UnitNameList[i].text = gameManager.unitStateList[i].unitName;
+            // ユニット名が設定済みの場合
+            else
+            {
+                // Textコンポに表示
+                UnitNameList[i].text = gameManager.unitStateList[i].unitName;
+            }
         }
     }
 
@@ -180,13 +210,11 @@ public class AbilitySelect : MonoBehaviour
             // ユニットステートのアビリティIDを設定
             gameManager.unitStateList[unitSelect].abilityType = abl_ID;
 
-/*          ボツここから-----------------------------------------------------------
-            // AリストにアビリティIDを設定（ユニットID, アビリティID）
-            gameManager.A_List.Insert(unitSelect, abl_ID);
-            // Insertにより一つインデックスが挿入されるのでそれを削除
-            gameManager.A_List.RemoveAt(unitSelect+1);
-            ボツここまで-----------------------------------------------------------
- */
+            // サブジェクトのトリガーをOFFにする
+            // これによりオブサーバ（UnitAreaButton）内Notifyメソッドがコールされるので
+            // その中で自身の透明化などの処理を行う。
+            subjectComp.status = false;
+
             // アビリティセットするユニットIDを文字列化
             string unitid_STR = unitSelect.ToString();
             // アビリティID→アビリティ文字列正引きメソッドをコール

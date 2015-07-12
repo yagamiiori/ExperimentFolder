@@ -35,7 +35,6 @@ public class NameSelectButtonOK : MonoBehaviour
             // 内容が変更されたりスタートボタン連打を抑止する。
             isStarted = 1;
 
-
             // ユニットステートリスト内を最大ユニット数分ループ
             for (int i = 0; i < gameManager.unitStateList.Count; i++)
             {

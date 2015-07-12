@@ -8,17 +8,43 @@ using System.Linq;
 public class UnitAreaButton :
     MonoBehaviour,
     IPointerEnterHandler,
+    IObserver,                                   // オブサーバIF
     IPointerExitHandler
 {
     private GameManager gameManager;             // マネージャコンポ
+    private GameObject canVas;                   // ゲームオブジェクト"Canvas"
     private AbilitySelect abilityCommon;         // アビリティシーンコントローラ
-    public int unitID = 0;                       // ユニットID（InstantiateするAbilitySelectクラスから設定される）
+    private Image unitSpriteImage;               // 自分のImageコンポ
+    private Color thisAlpha;                     // 自身透明化のためのカラーフィールド
+    private UnitSubject subjectComp;             // サブジェクトコンポ
+    public int unitID = 100;                     // ユニットID（AbilitySelectクラスから設定される）
     public int mouseOverJug = 0;                 // マウスオーバー判定フラグ
-    public AudioSource audioCompo;               // オーディオコンポ
-    public AudioClip clickSE;                    // クリックSE
     private SpriteRenderer spRenderer;           // レンダラーコンポ
     private Renderer _renderer;                  // レンダラーコンポ
     private Color colorYellow = Color.yellow;    // ユニット選択時反転カラー（黄色）
+
+
+    // ----------------------------------------
+    // オブサーバ通知メソッド（オブサーバIF）
+    // ユニットがクリックされた場合にサブジェクトよりコールされる
+    // ----------------------------------------
+    public void Notify(bool num)
+    {
+        // ユニットが左クリックされた場合（アビリティ選択処理を行う）
+        if (true == num)
+        {
+            // 自分を透明化
+            thisAlpha = new Color(255, 255, 255, -255);
+            unitSpriteImage.color = thisAlpha;
+        }
+        // ユニットが右クリックされた場合（アビリティ選択の解除処理を行う）
+        else
+        {
+            // 透明化を解除
+            thisAlpha = new Color(255, 255, 255, 255);
+            unitSpriteImage.color = thisAlpha;
+        }
+    }
 
     // ----------------------------------------
     // Startメソッド
@@ -28,15 +54,20 @@ public class UnitAreaButton :
         // マネージャコンポ取得
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
 
+        // ゲームオブジェクト"Canvas"取得
+        canVas = GameObject.FindWithTag("Canvas");
+
         // アビリティシーンコントローラ取得
         abilityCommon = GameObject.FindWithTag("Canvas").GetComponent<AbilitySelect>();
 
-        // オーディオコンポを取得
-        audioCompo = this.gameObject.GetComponent<AudioSource>();
+        // 自分のImageコンポ取得
+        unitSpriteImage = this.gameObject.GetComponent<Image>();
 
-        // クリックSEを設定
-        clickSE = (AudioClip)Resources.Load("Sounds/SE/UnitSelect_CountUp");
-        audioCompo.clip = clickSE;
+        // サブジェクトコンポ
+        subjectComp =  canVas.GetComponent<UnitSubject>();
+
+        // サブジェクトのオブサーバリストに自身を追加
+        subjectComp.Attach(this);
     }
 
     // -----------------------------------
@@ -75,35 +106,16 @@ public class UnitAreaButton :
         // 永続ループ（ただし、マウスオーバーを抜けたらreturnする）
         while (1 == mouseOverJug)
         {
-            // マウス左クリックされ、かつまだ本ユニット未選択、かつアビリティ未セットの場合
-            if (Input.GetMouseButtonDown(0) && Defines.ABL_NON_VALUE == abilityCommon.unitSelect && false == alreadySetAbl)
+            // マウス左クリックされ、かつまだ本ユニット未選択の場合
+            if (Input.GetMouseButtonDown(0) && Defines.ABL_NON_VALUE == abilityCommon.unitSelect)
             {
-                // クリックSEを鳴らす
-                audioCompo.Play();
-
-                // ユニットスプライトを発光
-                this.GetComponent<Image>().color = Color.yellow;
-
                 // シーンコントローラのユニット選択判定に自分のIDを設定
                 abilityCommon.unitSelect = unitID;
-            }
-            // マウス右クリックされ、かつ本ユニット選択済みの場合
-            else if (Input.GetMouseButtonDown(1) && Defines.ABL_NON_VALUE != abilityCommon.unitSelect)
-            {
-                // クリックSEを鳴らす
-                audioCompo.Play();
 
-                // ユニットスプライトの発光を解除
-                this.GetComponent<Image>().color = Color.white;
-
-                // シーンコントローラのユニット選択判定を初期化
-                abilityCommon.unitSelect = Defines.ABL_NON_VALUE;
-
-                // アビリティを解除
-                gameManager.unitStateList[unitID].abilityType = Defines.ABL_NO_ABILITY;
-            }
-            else // フェールセーフ
-            {
+                // サブジェクトのトリガーをONにする
+                // これによりオブサーバ（このクラス）内Notifyメソッドがコールされるので
+                // その中で自身の透明化などの処理を行う。
+                subjectComp.status = true;
             }
 
             // コルーチンを抜ける

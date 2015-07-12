@@ -4,6 +4,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 public static class Defines
 {
+    // 汎用
+    public const int VALUE_OFF = 0;     // ON
+    public const int VALUE_ON  = 1;     // OFF
+
     // ユニットID（シーン無所属）
     public const int ID_1 = 1;     // ID 1
     public const int ID_2 = 2;     // ID 2
