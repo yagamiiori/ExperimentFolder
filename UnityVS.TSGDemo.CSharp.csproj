@@ -134,6 +134,7 @@
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySelect.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySelectButtonOK.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySubject.cs" />
+    <Compile Include="Assets\Scripts\AnimationFinished.cs" />
     <Compile Include="Assets\Scripts\BattleField\BattleFieldPhoton.cs" />
     <Compile Include="Assets\Scripts\BattleField\BattleFieldRPC.cs" />
     <Compile Include="Assets\Scripts\BattleField\PanelKusa.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Assets\Scripts\PlaceSelect\PlaceSelect.cs" />
     <Compile Include="Assets\Scripts\PlaceSelect\UnitButtonPlace.cs" />
     <Compile Include="Assets\Scripts\PlaceSelectButtonOK.cs" />
+    <Compile Include="Assets\Scripts\PlayEffect.cs" />
     <Compile Include="Assets\Scripts\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\SmoothFollow.cs" />
     <Compile Include="Assets\Scripts\StartingOption.cs" />

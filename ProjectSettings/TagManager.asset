@@ -62,6 +62,8 @@ TagManager:
   - Abl_UnitArea
   - Unit_CounterSold
   - Unit_CounterWiz
+  - Unit_UnitButton_Sol
+  - Unit_UnitButton_Wiz
   layers:
   - Default
   - TransparentFX

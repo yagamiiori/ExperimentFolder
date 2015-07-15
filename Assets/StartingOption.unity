@@ -5717,6 +5717,7 @@ MonoBehaviour:
   opt_haveTime: 0
   opt_abilityJud: 0
   opt_lang: 0
+  opt_volume: 0
   opt_compJud: 0
   unt_Sodler: 0
   unt_Wizard: 0
