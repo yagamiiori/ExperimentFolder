@@ -60,6 +60,8 @@ TagManager:
   - Roby_RoomsNum
   - Abl_AbilityArea
   - Abl_UnitArea
+  - Unit_CounterSold
+  - Unit_CounterWiz
   layers:
   - Default
   - TransparentFX

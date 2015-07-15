@@ -49,6 +49,10 @@ public static class Defines
     public const int ARCWITCH  = 19;    // アークウィッチ（ウィッチプロモーション）
     public const int FALLDOWN  = 20;    // 堕天使（エンジェルナイトプロモーション）
 
+    // ゲーム言語
+    public const int LANGUAGE_JPN = 1;  // 日本語
+    public const int LANGUAGE_ENG = 2;  // 英語
+
     // ユニット数（オプションセレクトシーン）
     public const int OPT_UNITS_5   = 5;     // ユニット数5
     public const int OPT_UNITS_8   = 8;     // ユニット数8

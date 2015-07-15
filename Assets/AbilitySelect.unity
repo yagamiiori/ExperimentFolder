@@ -467,7 +467,7 @@ GameObject:
   - 222: {fileID: 46781550}
   - 114: {fileID: 46781549}
   m_Layer: 5
-  m_Name: Unit_4
+  m_Name: Waku_Unit_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -594,7 +594,7 @@ GameObject:
   - 222: {fileID: 90527047}
   - 114: {fileID: 90527046}
   m_Layer: 5
-  m_Name: Unit_1
+  m_Name: Waku_Unit_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2433,7 +2433,7 @@ GameObject:
   - 222: {fileID: 317206342}
   - 114: {fileID: 317206341}
   m_Layer: 0
-  m_Name: Unit_2
+  m_Name: Waku_Unit_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2665,7 +2665,7 @@ GameObject:
   - 222: {fileID: 327020426}
   - 114: {fileID: 327020425}
   m_Layer: 5
-  m_Name: Unit_8
+  m_Name: Waku_Unit_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2897,7 +2897,7 @@ GameObject:
   - 222: {fileID: 352096214}
   - 114: {fileID: 352096213}
   m_Layer: 5
-  m_Name: Unit_13
+  m_Name: Waku_Unit_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3024,7 +3024,7 @@ GameObject:
   - 222: {fileID: 361575318}
   - 114: {fileID: 361575317}
   m_Layer: 5
-  m_Name: Unit_10
+  m_Name: Waku_Unit_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3928,7 +3928,7 @@ GameObject:
   - 222: {fileID: 545335402}
   - 114: {fileID: 545335401}
   m_Layer: 5
-  m_Name: Unit_9
+  m_Name: Waku_Unit_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4696,7 +4696,7 @@ GameObject:
   - 222: {fileID: 665004940}
   - 114: {fileID: 665004939}
   m_Layer: 5
-  m_Name: Unit_16
+  m_Name: Waku_Unit_16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4823,7 +4823,7 @@ GameObject:
   - 222: {fileID: 668198242}
   - 114: {fileID: 668198241}
   m_Layer: 5
-  m_Name: Unit_7
+  m_Name: Waku_Unit_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5082,7 +5082,7 @@ GameObject:
   - 222: {fileID: 708641193}
   - 114: {fileID: 708641192}
   m_Layer: 5
-  m_Name: Unit_14
+  m_Name: Waku_Unit_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6956,7 +6956,7 @@ GameObject:
   - 222: {fileID: 1003013346}
   - 114: {fileID: 1003013345}
   m_Layer: 5
-  m_Name: Unit_6
+  m_Name: Waku_Unit_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7540,7 +7540,7 @@ GameObject:
   - 222: {fileID: 1107200232}
   - 114: {fileID: 1107200231}
   m_Layer: 5
-  m_Name: Unit_11
+  m_Name: Waku_Unit_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7915,7 +7915,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioCompo: {fileID: 0}
-  clickSE: {fileID: 0}
+  clickSE_Unit: {fileID: 0}
+  clickSE_AblButton: {fileID: 0}
 --- !u!82 &1198677899
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7927,7 +7928,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .100000001
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8609,7 +8610,7 @@ GameObject:
   - 222: {fileID: 1346932628}
   - 114: {fileID: 1346932627}
   m_Layer: 5
-  m_Name: Unit_3
+  m_Name: Waku_Unit_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8670,7 +8671,7 @@ GameObject:
   - 222: {fileID: 1355675741}
   - 114: {fileID: 1355675740}
   m_Layer: 5
-  m_Name: Unit_12
+  m_Name: Waku_Unit_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9995,7 +9996,7 @@ GameObject:
   - 222: {fileID: 1599164628}
   - 114: {fileID: 1599164627}
   m_Layer: 5
-  m_Name: Unit_15
+  m_Name: Waku_Unit_15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10866,7 +10867,7 @@ GameObject:
   - 222: {fileID: 1745450709}
   - 114: {fileID: 1745450708}
   m_Layer: 5
-  m_Name: Unit_5
+  m_Name: Waku_Unit_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

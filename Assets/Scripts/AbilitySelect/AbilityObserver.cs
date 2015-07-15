@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;   // コレクションクラスの定義に必要
 using System.Linq;
 
-public class UnitAreaButton :
+public class AbilityObserver :
     MonoBehaviour,
     IPointerEnterHandler,
     IObserver,                                   // オブサーバIF
@@ -16,7 +16,7 @@ public class UnitAreaButton :
     private AbilitySelect abilityCommon;         // アビリティシーンコントローラ
     private Image unitSpriteImage;               // 自分のImageコンポ
     private Color thisAlpha;                     // 自身透明化のためのカラーフィールド
-    private UnitSubject subjectComp;             // サブジェクトコンポ
+    private AbilitySubject subjectComp;          // サブジェクトコンポ
     public int unitID = 100;                     // ユニットID（AbilitySelectクラスから設定される）
     public int mouseOverJug = 0;                 // マウスオーバー判定フラグ
     private SpriteRenderer spRenderer;           // レンダラーコンポ
@@ -28,10 +28,10 @@ public class UnitAreaButton :
     // オブサーバ通知メソッド（オブサーバIF）
     // ユニットがクリックされた場合にサブジェクトよりコールされる
     // ----------------------------------------
-    public void Notify(bool num)
+    public void Notify(int jud)
     {
         // ユニットが左クリックされた場合（アビリティ選択処理を行う）
-        if (true == num)
+        if (1 == jud)
         {
             // 自分を透明化
             thisAlpha = new Color(255, 255, 255, -255);
@@ -64,7 +64,7 @@ public class UnitAreaButton :
         unitSpriteImage = this.gameObject.GetComponent<Image>();
 
         // サブジェクトコンポ
-        subjectComp =  canVas.GetComponent<UnitSubject>();
+        subjectComp = canVas.GetComponent<AbilitySubject>();
 
         // サブジェクトのオブサーバリストに自身を追加
         subjectComp.Attach(this);
@@ -115,7 +115,7 @@ public class UnitAreaButton :
                 // サブジェクトのトリガーをONにする
                 // これによりオブサーバ（このクラス）内Notifyメソッドがコールされるので
                 // その中で自身の透明化などの処理を行う。
-                subjectComp.status = true;
+                subjectComp.status = 1;
             }
 
             // コルーチンを抜ける

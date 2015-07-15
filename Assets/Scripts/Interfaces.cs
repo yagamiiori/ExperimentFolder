@@ -58,7 +58,7 @@ interface IBattleField
 // =====================================
 public interface IObserver
 {
-    void Notify(bool num);
+    void Notify(int jud);
 }
 
 // =====================================
@@ -71,7 +71,7 @@ public interface ISubject
 {
     void Attach(IObserver observer);
     void Detach(IObserver observer);
-    void Notify();
+    void Notify(int jud);
 }
 
 

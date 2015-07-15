@@ -10,7 +10,7 @@ using System.Linq;
 // 全オブサーバ(ユニットスプライト)に通知し、ユニットスプライトは透明化する
 //
 // ================================================================================================
-public class UnitSubject :
+public class AbilitySubject :
     MonoBehaviour,
     ISubject                                                        // サブジェクトIF
 {
@@ -18,13 +18,18 @@ public class UnitSubject :
     private GameObject abilityArea;                                 // アビリティエリア統括オブジェクト
     private GameObject unitArea;                                    // ユニットエリア統括オブジェクト
     public AudioSource audioCompo;                                  // オーディオコンポ
-    public AudioClip clickSE;                                       // クリックSE
+    public AudioClip clickSE_Unit;                                  // ユニットクリック時のクリックSE
+    public AudioClip clickSE_AblButton;                             // アビリティボタンクリック時のクリックSE
 
     // サブジェクトのステータス
     // ここに変更があったら各オブサーバへ変更内容を通知するNotify();
     // が起動する
-    private bool _status = false;
-    public bool status
+    // 0：初期値
+    // 1：ユニットがクリックされた場合(AbilityObserver内)
+    // 2：アビリティボタンがクリックされた場合(AbilitySelect内)
+    // 3：右クリックされた場合(AbilitySelect内)
+    private int _status = 0;
+    public int status
     {
         get
         {
@@ -33,7 +38,7 @@ public class UnitSubject :
         set
         {
             _status = value;
-            Notify();
+            Notify(_status);
         }
     }
 
@@ -52,9 +57,9 @@ public class UnitSubject :
         // オーディオコンポを取得
         audioCompo = this.gameObject.GetComponent<AudioSource>();
 
-        // クリックSEを設定
-        clickSE = (AudioClip)Resources.Load("Sounds/SE/UnitSelect_CountUp");
-        audioCompo.clip = clickSE;
+        // ユニットボタンクリック時SEと、アビリティボタンクリック時SEを設定
+        clickSE_Unit = (AudioClip)Resources.Load("Sounds/SE/AbilitySelect_UnitClick");
+        clickSE_AblButton = (AudioClip)Resources.Load("Sounds/SE/AbilitySelect_Decided");
     }
 
     // --------------------------------------------
@@ -79,13 +84,13 @@ public class UnitSubject :
     // オブサーバへの通知メソッド
     // statusセッター内からコールされ、オブサーバ内Notifyへ変更を通知する
     // --------------------------------------------
-    public void Notify()
+    public void Notify(int jud)
     {
-
-        // ユニットが左クリックされた場合（アビリティ選択）
-        if (true == this.status)
+        // ユニットが左クリックされた場合（アビリティエリア表示）
+        if (1 == this.status)
         {
             // クリックSEを鳴らす
+            audioCompo.clip = clickSE_Unit;
             audioCompo.Play();
 
             // アビリティエリアアクティブ化 / ユニットエリア非アクティブ化
@@ -94,12 +99,24 @@ public class UnitSubject :
 
         }
         // ユニットが右クリックされた場合（キャンセル）
+        else if (3 == this.status)
+        {
+            // クリックSEを鳴らす
+            audioCompo.clip = clickSE_Unit;
+            audioCompo.Play();
+
+            // アビリティエリア非アクティブ化 / ユニットエリアアクティブ化
+            abilityArea.SetActive(false);
+            unitArea.SetActive(true);
+        }
+        // アビリティボタンがクリックされた場合（アビリティ決定）
         else
         {
             // クリックSEを鳴らす
+            audioCompo.clip = clickSE_AblButton;
             audioCompo.Play();
 
-            // アビリティエリアアクティブ非化 / ユニットエリアアクティブ化
+            // アビリティエリア非アクティブ化 / ユニットエリアアクティブ化
             abilityArea.SetActive(false);
             unitArea.SetActive(true);
         }

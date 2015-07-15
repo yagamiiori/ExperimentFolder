@@ -7,10 +7,13 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;    //CP専用Hashtable
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     // --- オプションシーン -- //
-    public int opt_unitNum = 0;         // ユニット数
-    public int opt_giftJud = 0;         // ギフト有無判定フラグ
-    public float opt_haveTime = 0;      // 持ち時間
-    public int opt_abilityJud = 0;      // アビリティシステム有無判定フラグ（廃止）
+    public int opt_unitNum = 0;                    // ユニット数
+    public int opt_giftJud = 0;                    // ギフト有無判定フラグ
+    public float opt_haveTime = 0;                 // 持ち時間
+    public int opt_abilityJud = 0;                 // アビリティシステム有無判定フラグ（廃止）
+    public int opt_lang = 0;                       // ゲーム言語
+    public float opt_volume = 0f;                  // ボリューム
+
     // オプション設定完了フラグ
     // オプション設定画面以降のシーンにおいてオプション設定値が変更される事を
     // 抑止する（マネージャクラスは永続オブジェクトであるためのフェールセーフ）
@@ -80,8 +83,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 A_List.Add(Defines.NON_VALUE);
             }
 
-                // アビリティシステム有無判定フラグ初期化（廃止）
-                opt_abilityJud = 1;
+            // アビリティシステム有無判定フラグ初期化（廃止）
+            opt_abilityJud = 1;
+
+            // ゲーム言語初期化（日本語）
+            opt_lang = Defines.LANGUAGE_JPN;
         }
 
         // ユニットセレクトが未完了の場合

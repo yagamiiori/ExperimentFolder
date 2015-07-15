@@ -254,7 +254,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitSelect: 100
-  test: {fileID: 0}
 --- !u!1 &337717199
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +558,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: .262745112, g: .227450982, b: .388235301, a: .0196078438}
+  m_BackGroundColor: {r: .215686277, g: .215686277, b: .215686277, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0

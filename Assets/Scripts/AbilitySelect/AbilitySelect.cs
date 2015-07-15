@@ -11,7 +11,7 @@ public class AbilitySelect : MonoBehaviour
     private GameObject canVas;                          // ゲームオブジェクト"Canvas"
     private GameObject abilityArea;                     // アビリティエリア統括オブジェクト
     private GameObject unitArea;                        // ユニットエリア統括オブジェクト
-    private UnitSubject subjectComp;                    // サブジェクトコンポ
+    private AbilitySubject subjectComp;                 // サブジェクトコンポ
     public int unitSelect = Defines.ABL_NON_VALUE;      // ユニットID（選択したユニットの判定）（初期化値:100）
 
     // 全ユニット数（16個）分のクラス名表示用テキストフィールドリスト
@@ -39,7 +39,7 @@ public class AbilitySelect : MonoBehaviour
         unitArea = GameObject.FindWithTag("Abl_UnitArea");
 
         // サブジェクトコンポ
-        subjectComp = canVas.GetComponent<UnitSubject>();
+        subjectComp = canVas.GetComponent<AbilitySubject>();
 
         // 全ユニット数分のクラス名表示用テキストコンポを取得し、リストに格納
         ClassNameList.Add(GameObject.FindWithTag("Abl_ClassName0").GetComponent<Text>());
@@ -135,7 +135,7 @@ public class AbilitySelect : MonoBehaviour
             unitSelect = Defines.ABL_NON_VALUE;
 
             // サブジェクトのトリガーをOFFにする
-            subjectComp.status = false;
+            subjectComp.status = 3;
         }
     }
 
@@ -213,7 +213,7 @@ public class AbilitySelect : MonoBehaviour
             // サブジェクトのトリガーをOFFにする
             // これによりオブサーバ（UnitAreaButton）内Notifyメソッドがコールされるので
             // その中で自身の透明化などの処理を行う。
-            subjectComp.status = false;
+            subjectComp.status = 2;
 
             // アビリティセットするユニットIDを文字列化
             string unitid_STR = unitSelect.ToString();
@@ -309,7 +309,7 @@ public class AbilitySelect : MonoBehaviour
                     prefab.transform.SetParent(canVas.transform, false);
                     vecCor += 100;
                     // ユニットスプライト表示後、ユニットIDを設定
-                    prefab.GetComponent<UnitAreaButton>().unitID = i;
+                    prefab.GetComponent<AbilityObserver>().unitID = i;
                     break;
 
                 // ウィザードの場合
@@ -324,7 +324,7 @@ public class AbilitySelect : MonoBehaviour
                     prefab.transform.SetParent(canVas.transform, false);
                     vecCor += 100;
                     // ユニットスプライト表示後、ユニットIDを設定
-                    prefab.GetComponent<UnitAreaButton>().unitID = i;
+                    prefab.GetComponent<AbilityObserver>().unitID = i;
                     break;
 
                 // ユニット未設定の場合

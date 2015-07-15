@@ -130,10 +130,10 @@
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SmoothSyncMovement.cs" />
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SupportLogger.cs" />
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
+    <Compile Include="Assets\Scripts\AbilitySelect\AbilityObserver.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySelect.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySelectButtonOK.cs" />
-    <Compile Include="Assets\Scripts\AbilitySelect\UnitAreaButton.cs" />
-    <Compile Include="Assets\Scripts\AbilitySelect\UnitSubject.cs" />
+    <Compile Include="Assets\Scripts\AbilitySelect\AbilitySubject.cs" />
     <Compile Include="Assets\Scripts\BattleField\BattleFieldPhoton.cs" />
     <Compile Include="Assets\Scripts\BattleField\BattleFieldRPC.cs" />
     <Compile Include="Assets\Scripts\BattleField\PanelKusa.cs" />
@@ -163,9 +163,7 @@
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectButtonSol.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectButtonWiz.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectCounterFree.cs" />
-    <Compile Include="Assets\Scripts\UnitSelect\UnitSelectCounterSol.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectCounterTotal.cs" />
-    <Compile Include="Assets\Scripts\UnitSelect\UnitSelectCounterWiz.cs" />
     <Compile Include="Assets\Scripts\UnitState.cs" />
   </ItemGroup>
   <ItemGroup>
