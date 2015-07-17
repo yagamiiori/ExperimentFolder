@@ -13,6 +13,8 @@ public class AbilitySelect : MonoBehaviour
     private GameObject unitArea;                        // ユニットエリア統括オブジェクト
     private AbilitySubject subjectComp;                 // サブジェクトコンポ
     public int unitSelect = Defines.ABL_NON_VALUE;      // ユニットID（選択したユニットの判定）（初期化値:100）
+    private PlayEffect playEffect;                      // エフェクト表示クラス
+    private string effectSprite = "Effect_2";           // エフェクトスプライト名
 
     // 全ユニット数（16個）分のクラス名表示用テキストフィールドリスト
     public List<Text> ClassNameList = new List<Text>();
@@ -40,6 +42,9 @@ public class AbilitySelect : MonoBehaviour
 
         // サブジェクトコンポ
         subjectComp = canVas.GetComponent<AbilitySubject>();
+
+        // エフェクト表示クラス取得
+        playEffect = new PlayEffect();
 
         // 全ユニット数分のクラス名表示用テキストコンポを取得し、リストに格納
         ClassNameList.Add(GameObject.FindWithTag("Abl_ClassName0").GetComponent<Text>());
@@ -226,6 +231,9 @@ public class AbilitySelect : MonoBehaviour
 
             // ユニット選択判定を初期値
             unitSelect = 100;
+
+            // クリックエフェクト表示メソッドをコール
+            playEffect.PlayOnce(effectSprite, GameObject.FindWithTag("Abl_SetAbilityName" + unitid_STR), new Vector3(0, 0, 0f));
         }
     }
 

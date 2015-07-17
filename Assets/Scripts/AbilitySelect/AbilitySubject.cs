@@ -20,6 +20,7 @@ public class AbilitySubject :
     public AudioSource audioCompo;                                  // オーディオコンポ
     public AudioClip clickSE_Unit;                                  // ユニットクリック時のクリックSE
     public AudioClip clickSE_AblButton;                             // アビリティボタンクリック時のクリックSE
+    public AudioClip clickSE_Cancel;                                // キャンセル時のクリックSE
 
     // サブジェクトのステータス
     // ここに変更があったら各オブサーバへ変更内容を通知するNotify();
@@ -60,6 +61,7 @@ public class AbilitySubject :
         // ユニットボタンクリック時SEと、アビリティボタンクリック時SEを設定
         clickSE_Unit = (AudioClip)Resources.Load("Sounds/SE/AbilitySelect_UnitClick");
         clickSE_AblButton = (AudioClip)Resources.Load("Sounds/SE/AbilitySelect_Decided");
+        clickSE_Cancel = (AudioClip)Resources.Load("Sounds/SE/Cancel");
     }
 
     // --------------------------------------------
@@ -102,7 +104,7 @@ public class AbilitySubject :
         else if (3 == this.status)
         {
             // クリックSEを鳴らす
-            audioCompo.clip = clickSE_Unit;
+            audioCompo.clip = clickSE_Cancel;
             audioCompo.Play();
 
             // アビリティエリア非アクティブ化 / ユニットエリアアクティブ化

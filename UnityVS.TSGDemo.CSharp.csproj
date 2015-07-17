@@ -147,6 +147,7 @@
     <Compile Include="Assets\Scripts\FieldCreator.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Interfaces.cs" />
+    <Compile Include="Assets\Scripts\Lobby\LobbyButtonOK.cs" />
     <Compile Include="Assets\Scripts\Lobby\LobbyManager.cs" />
     <Compile Include="Assets\Scripts\MaterialFlash.cs" />
     <Compile Include="Assets\Scripts\NameSelect\NameSelect.cs" />

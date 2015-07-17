@@ -7,6 +7,8 @@ public class StartingOption : MonoBehaviour
     private GameManager gameManager;                // マネージャコンポ
     private string nextScene = "UnitSelect";        // スタートボタンプッシュ時遷移先シーン
     private int isStarted = 0;                      // スタートボタンプッシュ判定フラグ
+    public AudioSource audioCompo;                  // オーディオコンポ
+    public AudioClip clickSE_OKbutton;              // OKボタンクリックSE
 
     // ----------------------------------------
     // Startメソッド
@@ -15,6 +17,10 @@ public class StartingOption : MonoBehaviour
     {
         // マネージャコンポ取得
         gameManager = this.gameObject.GetComponent<GameManager>();
+
+        // オーディオコンポ取得とOKボタンクリック時SEの設定
+        audioCompo = this.gameObject.GetComponent<AudioSource>();
+        clickSE_OKbutton = (AudioClip)Resources.Load("Sounds/SE/OKButtonSE");
 	}
 
     // ----------------------------------------
@@ -65,13 +71,17 @@ public class StartingOption : MonoBehaviour
     // ----------------------------------------
     // ゲームスタートボタン判定メソッド
     //
-    // Startボタンが押されたらユニットセレクトシーンに遷移する。
+    // OKボタンが押されたらユニットセレクトシーンに遷移する。
     // ----------------------------------------
     public void OnButtonStart()
     {
         // スタートボタン未プッシュの場合
         if (0 == isStarted)
-        { 
+        {
+            // クリックSEの設定および再生
+            audioCompo.clip = clickSE_OKbutton;
+            audioCompo.Play();
+
             // スタートボタンプッシュ判定フラグをONにしてスタートボタンプッシュ後に
             // オプションが変更されたりスタートボタン連打を抑止する。
             isStarted = 1;

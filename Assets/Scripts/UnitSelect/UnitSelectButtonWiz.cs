@@ -12,10 +12,13 @@ public class UnitSelectButtonWiz :
     IPointerExitHandler
 {
     private GameManager gameManager;        // マネージャコンポ
+    private GameObject canVas;              // ゲームオブジェクト"Canvas"
     public int mouseOverJug = 0;            // マウスオーバー判定フラグ
     public AudioSource audioCompo;          // オーディオコンポ
     public AudioClip clickSE;               // クリックSE
     public Text counterUnitValue;           // ユニット数表示Textコンポ
+    private PlayEffect playEffect;          // エフェクト表示クラス
+    private string effectSprite = "Effect_1"; // エフェクトスプライト名
 
     // ----------------------------------------
     // Startメソッド
@@ -25,15 +28,17 @@ public class UnitSelectButtonWiz :
         // マネージャコンポ取得
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
 
+        // ゲームオブジェクト"Canvas"取得
+        canVas = GameObject.FindWithTag("Canvas");
+
+        // エフェクト表示クラス取得
+        playEffect = new PlayEffect();
+
         // オーディオコンポを取得
         audioCompo = gameObject.GetComponent<AudioSource>();
 
         // ユニット数表示Textコンポ取得
         counterUnitValue = GameObject.FindWithTag("Unit_CounterWiz").GetComponent<Text>();
-
-        // クリックSEを設定
-        clickSE = (AudioClip)Resources.Load("Sounds/SE/UnitSelect_Decided");
-        audioCompo.clip = clickSE;
     }
 
     // -----------------------------------
@@ -74,6 +79,10 @@ public class UnitSelectButtonWiz :
                 // 現選択ユニット数がオプションで決定したユニット数以下の場合
                 if (gameManager.opt_unitNum > gameManager.unt_NowAllUnits)
                 {
+                    // クリックSEを設定
+                    clickSE = (AudioClip)Resources.Load("Sounds/SE/UnitSelect_Decided");
+                    audioCompo.clip = clickSE;
+
                     // クリックSEを鳴らす
                     audioCompo.Play();
 
@@ -85,6 +94,9 @@ public class UnitSelectButtonWiz :
 
                     // ユニット数表示Textコンポに現ユニット数を表示
                     counterUnitValue.text = gameManager.unt_Wizard.ToString();
+
+                    // クリックエフェクト表示メソッドをコール(this.gameObjectとするとなぜかバグる)
+                    playEffect.PlayOnce(effectSprite, canVas, new Vector3(-84.1f, 162f, 0f));
                 }
             }
             // マウス右クリックされた場合
@@ -93,6 +105,10 @@ public class UnitSelectButtonWiz :
                 // ウィザードが1以上選択されている場合
                 if (1 <= gameManager.unt_Wizard)
                 {
+                    // クリックSEを設定
+                    clickSE = (AudioClip)Resources.Load("Sounds/SE/Cancel");
+                    audioCompo.clip = clickSE;
+
                     // クリックSEを鳴らす
                     audioCompo.Play();
 
