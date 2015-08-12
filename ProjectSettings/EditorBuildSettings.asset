@@ -6,18 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Login.unity
+  - enabled: 1
+    path: Assets/Register.unity
+  - enabled: 1
     path: Assets/StartingOption.unity
   - enabled: 1
     path: Assets/UnitSelect.unity
   - enabled: 1
-    path: Assets/BattleStage.unity
+    path: Assets/NameSelect.unity
   - enabled: 1
     path: Assets/AbilitySelect.unity
   - enabled: 1
-    path: Assets/PlaceSelect.unity
-  - enabled: 1
-    path: Assets/NameSelect.unity
+    path: Assets/UnitForm.unity
   - enabled: 1
     path: Assets/Lobby.unity
   - enabled: 1
-    path: Assets/UnitForm.unity
+    path: Assets/BattleStage.unity

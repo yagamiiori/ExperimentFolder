@@ -6,6 +6,10 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;    //CP専用Hashtable
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
+    // --- ログイン画面 -- //
+    public string userName = "";                   // ユーザー名（文字列）
+    public string userGuid = "";                   // ユーザー名（GUID値）
+
     // --- オプションシーン -- //
     public int opt_unitNum = 0;                    // ユニット数
     public int opt_giftJud = 0;                    // ギフト有無判定フラグ

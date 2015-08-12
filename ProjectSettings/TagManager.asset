@@ -64,6 +64,10 @@ TagManager:
   - Unit_CounterWiz
   - Unit_UnitButton_Sol
   - Unit_UnitButton_Wiz
+  - Login_InputField_Name
+  - Login_InputField_Guid
+  - Canvas_MW
+  - TextField_MW
   layers:
   - Default
   - TransparentFX

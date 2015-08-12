@@ -96,7 +96,7 @@ public static class Defines
     public const int ABL_NO_ABILITY = 0;   // アビリティなし
     public const int ABL_ON_ABILITY = 1;   // アビリティあり
 
-    // アビリティID（アビリティセレクトシーン）
+    // アビリティID - アタック系（アビリティセレクトシーン）
     public const int ABL_POWERUP    = 1;   // 攻撃力Up
     public const int ABL_DIFFENCEUP = 2;   // 防御力Up
     public const int ABL_MOVEPLUS   = 3;   // ムーブプラス
