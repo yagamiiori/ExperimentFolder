@@ -15,6 +15,10 @@ public class AbilitySelect : MonoBehaviour
     public int unitSelect = Defines.ABL_NON_VALUE;      // ユニットID（選択したユニットの判定）（初期化値:100）
     private PlayEffect playEffect;                      // エフェクト表示クラス
     private string effectSprite = "Effect_2";           // エフェクトスプライト名
+    private AddObjectColor palfxColor;
+    private GameObject sprite_Ability;
+    float timer;
+    float waitingTime = 3.0f;
 
     // 全ユニット数（16個）分のクラス名表示用テキストフィールドリスト
     public List<Text> ClassNameList = new List<Text>();
@@ -45,6 +49,9 @@ public class AbilitySelect : MonoBehaviour
 
         // エフェクト表示クラス取得
         playEffect = new PlayEffect();
+
+        sprite_Ability = GameObject.FindWithTag("Sprite_Ability");
+        palfxColor = canVas.GetComponent<AddObjectColor>();
 
         // 全ユニット数分のクラス名表示用テキストコンポを取得し、リストに格納
         ClassNameList.Add(GameObject.FindWithTag("Abl_ClassName0").GetComponent<Text>());
@@ -133,6 +140,14 @@ public class AbilitySelect : MonoBehaviour
     // ------------------------
     void Update()
     {
+        timer += Time.deltaTime;
+        if (timer > waitingTime)
+        {
+            // 文字「Ability」オブジェクトのカラーを変更
+            palfxColor.PalfxStart(0.5f, 0.1f, 0.5f, Color.gray, sprite_Ability);
+            timer = 0; // タイマーリセット
+        }
+
         // マウス右クリックされ、かつユニット選択済みの場合
         if (Input.GetMouseButtonDown(1) && Defines.ABL_NON_VALUE != unitSelect)
         {
@@ -189,8 +204,8 @@ public class AbilitySelect : MonoBehaviour
             // ユニット名が空欄の場合
             if ("名前を入力" == gameManager.unitStateList[i].unitName)
             {
-                // とりあえずGustUnitという名前にする
-                UnitNameList[i].text = "NameLess";
+                // とりあえずNo＋固有番号を振る
+                UnitNameList[i].text = "Unit No." + (i+1).ToString();
             }
             // ユニット名が設定済みの場合
             else
@@ -204,7 +219,7 @@ public class AbilitySelect : MonoBehaviour
     // ------------------------
     // アビリティ名表示フィールド設定メソッド
     // アビリティセレクトシーンにおいてアビリティ名を表示し、
-    // 同時にAリストにアビリティIDを設定する
+    // 同時にユニットリストにアビリティIDを設定する
     // アビリティボタンオブジェクトからコールされる
     // ------------------------
     public void AbilityNameSet(int abl_ID)
@@ -213,23 +228,23 @@ public class AbilitySelect : MonoBehaviour
         if (Defines.ABL_NON_VALUE != unitSelect)
         {
             // ユニットステートのアビリティIDを設定
-            gameManager.unitStateList[unitSelect].abilityType = abl_ID;
+            gameManager.unitStateList[unitSelect].ability_A = abl_ID;
 
             // サブジェクトのトリガーをOFFにする
             // これによりオブサーバ（UnitAreaButton）内Notifyメソッドがコールされるので
             // その中で自身の透明化などの処理を行う。
             subjectComp.status = 2;
 
-            // アビリティセットするユニットIDを文字列化
-            string unitid_STR = unitSelect.ToString();
             // アビリティID→アビリティ文字列正引きメソッドをコール
             string abilityName = AbilityIDtoStringConv(abl_ID);
-            // 表示するアビリティテキストフィールドを取得
+
+            // アビリティセットするユニットIDを文字列化
+            string unitid_STR = unitSelect.ToString();
+            // アビリティテキストコンポを取得し、表示する
             Text textFieldID = GameObject.FindWithTag("Abl_SetAbilityName" + unitid_STR).GetComponent<Text>();
-            // アビリティ名表示フィールドにアビリティ名を設定
             textFieldID.text = abilityName;
 
-            // ユニット選択判定を初期値
+            // ユニット選択判定をユニット未選択状態に設定
             unitSelect = 100;
 
             // クリックエフェクト表示メソッドをコール
@@ -290,6 +305,7 @@ public class AbilitySelect : MonoBehaviour
         GameObject prefab;                              // スプライトprefab用フィールド2
         Vector3 vec = new Vector3(-368f, 183f, 0);      // スプライト表示位置
         int vecCor = 0;                                 // スプライト表示位置補正用フィールド
+        ISpriteViewer spViewer = null;
 
         // リスト内を最大ユニット数分ループ
         for (int i = 0; i < gameManager.unitStateList.Count; i++)
@@ -298,47 +314,38 @@ public class AbilitySelect : MonoBehaviour
             if (8 == i)
             {
                 // Y値の変更およびX値補正率を初期化
-                vec.y = 20.3f;
+                vec.y = -20.14f;
                 vecCor = 0;
             }
 
-            // クラスIDを読み出し
+            // 位置を設定
+            vec.x = -368 + vecCor;
+            vec.z = 0;
+
+            // クラスIDを読み出し（Strategyパターン）
             switch (gameManager.unitStateList[i].classType)
             {
                 // ソルジャーの場合
                 case Defines.SOLDLER:
-                    // ソルジャーのスプライトを設定
-                    sprite = Resources.Load("UnitSprite_AbilitySelect/Char_1") as GameObject;
-                    // 位置を設定
-                    vec.x = -368 + vecCor;
-                    vec.z = 0;
-                    // prefabを表示
-                    prefab = Instantiate(sprite, vec, Quaternion.identity) as GameObject;
-                    prefab.transform.SetParent(canVas.transform, false);
-                    vecCor += 100;
-                    // ユニットスプライト表示後、ユニットIDを設定
-                    prefab.GetComponent<AbilityObserver>().unitID = i;
+                    spViewer = new SpriteViewer_Sol();
                     break;
 
                 // ウィザードの場合
                 case Defines.WIZARD:
-                    // ウィザードのスプライトを設定
-                    sprite = Resources.Load("UnitSprite_AbilitySelect/Char_2") as GameObject;
-                    // 位置を設定
-                    vec.x = -368 + vecCor;
-                    vec.z = 0;
-                    // prefabを表示
-                    prefab = Instantiate(sprite, vec, Quaternion.identity) as GameObject;
-                    prefab.transform.SetParent(canVas.transform, false);
-                    vecCor += 100;
-                    // ユニットスプライト表示後、ユニットIDを設定
-                    prefab.GetComponent<AbilityObserver>().unitID = i;
+                    spViewer = new SpriteViewer_Wiz();
                     break;
 
                 // ユニット未設定の場合
                 default:
                     break;
             }
+
+            // Strategyパターン - スプライト表示メソッドをコール
+            spViewer.SpriteViewer(canVas, vec, vecCor, i);
+
+            // 補正値を加算
+            vecCor += 100;
+
         }
     }
 }

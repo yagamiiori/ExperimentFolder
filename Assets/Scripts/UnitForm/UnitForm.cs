@@ -181,7 +181,7 @@ public class UnitForm : MonoBehaviour
         for (int i = 0; i < gameManager.unitStateList.Count; i++)
         {
             // アビリティIDからアビリティ名(string)を正引き
-            string ability = AbilityIDtoStringConv(gameManager.unitStateList[i].abilityType);
+            string ability = AbilityIDtoStringConv(gameManager.unitStateList[i].ability_A);
 
             // アビリティ名をTextコンポに表示
             AbilityNameList[i].text = ability;
@@ -199,7 +199,7 @@ public class UnitForm : MonoBehaviour
         if (Defines.ABL_NON_VALUE != unitSelect)
         {
             // ユニットステートのアビリティIDを設定
-            gameManager.unitStateList[unitSelect].abilityType = abl_ID;
+            gameManager.unitStateList[unitSelect].ability_A = abl_ID;
 
             /*          ボツここから-----------------------------------------------------------
                         // AリストにアビリティIDを設定（ユニットID, アビリティID）

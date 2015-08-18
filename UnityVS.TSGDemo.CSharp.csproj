@@ -143,6 +143,9 @@
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySelect.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySelectButtonOK.cs" />
     <Compile Include="Assets\Scripts\AbilitySelect\AbilitySubject.cs" />
+    <Compile Include="Assets\Scripts\AbilitySelect\SpriteViewer_Sol.cs" />
+    <Compile Include="Assets\Scripts\AbilitySelect\SpriteViewer_Wiz.cs" />
+    <Compile Include="Assets\Scripts\AddObjectColor.cs" />
     <Compile Include="Assets\Scripts\AnimationFinished.cs" />
     <Compile Include="Assets\Scripts\BattleField\BattleFieldPhoton.cs" />
     <Compile Include="Assets\Scripts\BattleField\BattleFieldRPC.cs" />

@@ -101,7 +101,7 @@ public class AbilityObserver :
     {
         // 自分のアビリティがセット済みか判定し、判定結果を設定
         bool alreadySetAbl = false;
-        if (Defines.ABL_NO_ABILITY != gameManager.unitStateList[unitID].abilityType) alreadySetAbl = true;
+        if (Defines.ABL_NO_ABILITY != gameManager.unitStateList[unitID].ability_A) alreadySetAbl = true;
 
         // 永続ループ（ただし、マウスオーバーを抜けたらreturnする）
         while (1 == mouseOverJug)

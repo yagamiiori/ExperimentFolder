@@ -50,7 +50,7 @@ interface IBattleField
 }
 
 // =====================================
-// オブサーバIF
+// オブサーバIF　【◆Observerパターン用IF】
 // ・Subject から通知を受け取る機能を定義する。
 // ・ConcreteSubject‐ConcreteObserver 間の結合を抽象的に
 //  （直接的な依存関係を排除）するためのインターフェース。
@@ -62,7 +62,7 @@ public interface IObserver
 }
 
 // =====================================
-// サブジェクトIF
+// サブジェクトIF　【◆Observerパターン用IF】
 // ・Observer の登録。
 // ・削除、状態変化の通知の機能を定義する。
 //
@@ -102,6 +102,14 @@ public interface IMessageWriteToMW
 }
 
 
+// =====================================
+// スプライト表示IF　【◆Strategyパターン用IF】
+// アビリティセレクトシーンでユニット画像を表示する
+// =====================================
+public interface ISpriteViewer
+{
+    void SpriteViewer(GameObject a, Vector3 b, int vecCor, int c);
+}
 
 
 

@@ -83,17 +83,19 @@ public class FadeToPos : MonoBehaviour
     // =====================================================
     // ②
     // フェードイン,アウトコルーチン起動メソッド
-    // フェードイン / フェードアウトのどちらかの
-    // メソッドを起動する。
-    // どちらを起動するかは引数の文字列により分岐する。
+    // フェードイン / フェードアウトのどちらかのコルーチンを
+    // 起動するか、引数の文字列により振り分ける。
     // =====================================================
     public void StartSequence(string function_name)
     {
+        // すでに起動済みの場合
         if (sequence != null)
         {
+            // 起動している機能を一旦停止
             StopCoroutine(sequence);
             sequence = null;
         }
+
         sequence = function_name;
         StartCoroutine(sequence);
     }

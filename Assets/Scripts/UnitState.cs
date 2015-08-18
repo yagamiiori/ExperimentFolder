@@ -5,11 +5,11 @@ public class UnitState : Photon.MonoBehaviour
 {
     public int unitID = Defines.NON_VALUE;           // ユニットID
     public int classType = Defines.NON_VALUE;        // クラスタイプ
-    public int ability_A = Defines.NON_VALUE;        // アビリティA
-    public int ability_B = Defines.NON_VALUE;        // アビリティB
-    public int ability_C = Defines.NON_VALUE;        // アビリティC
-    public int ability_D = Defines.NON_VALUE;        // アビリティD
-    public int ability_E = Defines.NON_VALUE;        // アビリティE
+    public int ability_A = Defines.NON_VALUE;        // アビリティA（ユーザーアビリティA）
+    public int ability_B = Defines.NON_VALUE;        // アビリティB（ユーザーアビリティB）
+    public int ability_C = Defines.NON_VALUE;        // アビリティC（ランダムアビリティ）
+    public int ability_D = Defines.NON_VALUE;        // アビリティD（ドロップアビリティ）
+    public int ability_E = Defines.NON_VALUE;        // アビリティE（？？？アビリティ）
     public int weaponType = Defines.NON_VALUE;       // 武器タイプ
     public int attribute = Defines.NON_VALUE;        // 属性
     public int sex = Defines.NON_VALUE;              // 性別
