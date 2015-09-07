@@ -15,8 +15,6 @@ public class AbilitySelect : MonoBehaviour
     public int unitSelect = Defines.ABL_NON_VALUE;      // ユニットID（選択したユニットの判定）（初期化値:100）
     private PlayEffect playEffect;                      // エフェクト表示クラス
     private string effectSprite = "Effect_2";           // エフェクトスプライト名
-    private AddObjectColor palfxColor;
-    private GameObject sprite_Ability;
     float timer;
     float waitingTime = 3.0f;
 
@@ -49,9 +47,6 @@ public class AbilitySelect : MonoBehaviour
 
         // エフェクト表示クラス取得
         playEffect = new PlayEffect();
-
-        sprite_Ability = GameObject.FindWithTag("Sprite_Ability");
-        palfxColor = canVas.GetComponent<AddObjectColor>();
 
         // 全ユニット数分のクラス名表示用テキストコンポを取得し、リストに格納
         ClassNameList.Add(GameObject.FindWithTag("Abl_ClassName0").GetComponent<Text>());
@@ -140,14 +135,6 @@ public class AbilitySelect : MonoBehaviour
     // ------------------------
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > waitingTime)
-        {
-            // 文字「Ability」オブジェクトのカラーを変更
-            palfxColor.PalfxStart(0.5f, 0.1f, 0.5f, Color.gray, sprite_Ability);
-            timer = 0; // タイマーリセット
-        }
-
         // マウス右クリックされ、かつユニット選択済みの場合
         if (Input.GetMouseButtonDown(1) && Defines.ABL_NON_VALUE != unitSelect)
         {
