@@ -109,28 +109,5 @@ public class FadeColorBlinking : MonoBehaviour
     {
         roopFlag = false;
     }
-
-    // =====================================================
-    // オブジェクトカラー変更メソッド
-    // 入力されたオブジェクトのカラーを変更する
-    // とりあえず使わない
-    // =====================================================
-    private void ChangeColorOfGameObject(GameObject targetObject, Color color)
-    {
-        //入力されたオブジェクトのRendererを全て取得し、さらにそのRendererに設定されている全Materialの色を変える
-        foreach (Renderer targetRenderer in targetObject.GetComponents<Renderer>())
-        {
-            foreach (Material material in targetRenderer.materials)
-            {
-                material.color = color;
-            }
-        }
-
-        //入力されたオブジェクトの子にも同様の処理を行う
-        for (int i = 0; i < targetObject.transform.childCount; i++)
-        {
-            ChangeColorOfGameObject(targetObject.transform.GetChild(i).gameObject, color);
-        }
-    }
 }
 

@@ -21,16 +21,17 @@ using System.Linq;
 //　履歴：
 //
 ////////////////////////////////////////////////////////////////////////////////////////
+// TODO レビュー待ち（CameraPan）
 public class CameraPan : MonoBehaviour
 {
     /// <summary>パンする対象のゲームオブジェクトの位置</summary>
-	public Vector3 targetPosition = Vector3.zero;
+	public GameObject targetObject;
     /// <summary>パンする対象のゲームオブジェクトの位置（補正済み）</summary>
 	public Vector3 targetPositionCor = Vector3.zero;
     /// <summary>パンする速度の基準値</summary>
-    public float panSpeed = 2.0f;
+    public float panSpeed = 120.0f;
     /// <summary>補正するZ値</summary>
-    public float correctVal = 60.0f;
+    public float correctZval = 60.0f;
     /// <summary>パン有無</summary>
 	public bool isEnable = true;
     /// <summary>停止処理種別判定（true：手動停止　false：自動停止）</summary>
@@ -39,16 +40,16 @@ public class CameraPan : MonoBehaviour
     public void Start()
     {
 		// パンするターゲットオブジェクトの位置を取得しz軸を補正する
-		targetPosition = GameObject.FindWithTag("xxx").transform.position;
-		targetPositionCor.x = targetPosition.x;
-		targetPositionCor.y = targetPosition.y;
-        targetPositionCor.z = targetPosition.z - correctVal;
+//		targetObject = GameObject.FindWithTag("xxx");
+        targetPositionCor.x = targetObject.transform.position.x;
+        targetPositionCor.y = targetObject.transform.position.y;
+        targetPositionCor.z = targetObject.transform.position.z - correctZval;
     }
 
     public void Update()
     {
-		// 自動停止の場合はカメラの位置がターゲットオブジェクトに到達したら処理を停止
-		if(this.transform.position == targetPosition && !isManual) isEnable = false;
+		// 停止処理種別が自動停止の場合はカメラの位置がターゲットオブジェクトに到達したら処理を停止
+        if (this.transform.position == targetPositionCor && !isManual) isEnable = false;
 		
 		if(isEnable)
 		{

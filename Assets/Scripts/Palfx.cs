@@ -112,30 +112,5 @@ public class Palfx : MonoBehaviour
         // 経過時間を0にする
         elapsedSec = 0;
     }
-
-    /// <summary>
-    /// オブジェクトカラー変更メソッド<br></br>
-    /// 入力されたオブジェクトのカラーを変更する<br></br>
-    /// とりあえず使わない
-    /// </summary>
-    /// <param name="targetObject">カラー変更対象のゲームオブジェクト</param>
-    /// <param name="color">変更したい色</param>
-    private void ChangeColorOfGameObject(GameObject targetObject, Color color)
-    {
-        //入力されたオブジェクトのRendererを全て取得し、さらにそのRendererに設定されている全Materialの色を変える
-        foreach (Renderer targetRenderer in targetObject.GetComponents<Renderer>())
-        {
-            foreach (Material material in targetRenderer.materials)
-            {
-                material.color = color;
-            }
-        }
-
-        //入力されたオブジェクトの子にも同様の処理を行う
-        for (int i = 0; i < targetObject.transform.childCount; i++)
-        {
-            ChangeColorOfGameObject(targetObject.transform.GetChild(i).gameObject, color);
-        }
-    }
 }
 
