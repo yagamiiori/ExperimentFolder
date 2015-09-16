@@ -33,6 +33,49 @@ public class LoginManager :
         messageWindow.SetActive(false);
     }
 
+    void Update()
+    {
+        // エンターキーが押された場合
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            // メッセージウィンドウ未表示の場合
+            if (!IsWindow)
+            {
+                // IDフィールドに何も入力されていない場合
+                if ("" == nameField.text)
+                {
+                    MessageWriteToWindow("未入力。\nログインIDを入力して下さい。");
+                    return;
+                }
+                // 入力されたIDが「NameLess」の場合
+                else if ("NameLess" == nameField.text)
+                {
+                    gameManager.userName = "NameLess";
+                }
+                // IDが正常に入力された場合
+                else
+                {
+                    // ID検索して一致したらロードする
+                    // 処理はまだ書いてない
+                    // 一致するIDがなければエラー文をメッセージウィンドウで表示
+                    // 入力されたIDから名前を逆引きしてGMのフィールドに格納
+                    gameManager.userName = nameField.text.ToString();
+                }
+                // シーン遷移メソッドコール
+                NextScene();
+            }
+            // メッセージウィンドウ表示中にエンターキーが押された場合
+            else
+            {
+                // メッセージウィンドウを非アクティブ化
+                messageWindow.SetActive(false);
+
+                // メッセージウィンドウ表示有無判定フラグを変更
+                IsWindow = false;
+            }
+        }
+    }
+
     // -------------------------------------------------------------------
     // OKボタンがクリックした時にOKボタンのOnClickからコールされ、
     // ロビーへ遷移する。
@@ -100,7 +143,7 @@ public class LoginManager :
         messageWindow.SetActive(true);
 
         // メッセージウィンドウ表示有無判定フラグを変更
-        IsWindow = false;
+        IsWindow = true;
 
         // メッセージ表示
         messageText.text = a;

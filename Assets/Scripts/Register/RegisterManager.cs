@@ -20,6 +20,8 @@ public class RegisterManager :
     private string nextScene = "Login";               // 遷移先シーン名
     private string loginName = "Login";               // 遷移先シーン名
     private bool IsWindow = false;                    // メッセージウィンドウ表示有無判定フラグ
+    private bool IsGuidDecided = false;               // GUID決定済み判定（0:GUID未発行　1:GUID発行済み）
+
 
     void Start()
     {
@@ -34,6 +36,65 @@ public class RegisterManager :
         messageText = GameObject.FindWithTag("TextField_MW").GetComponent<InputField>();
         messageWindow.SetActive(false);
 
+    }
+
+    void Update()
+    {
+        // エンターキーが押された場合
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            // メッセージウィンドウ未表示の場合
+            if (!IsWindow)
+            {
+                // IDフィールドに何も入力されていない場合
+                if ("" == nameField.text || "NameLess" == nameField.text)
+                {
+                    // メッセージウィンドウ描画メソッドをコールして未入力メッセージを表示
+                    MessageWriteToWindow("未入力もしくはゲスト名です。\n正しいユーザー名を入力して下さい。");
+                    return;
+                }
+                // IDが正常に入力された場合
+                else
+                {
+                    // GUIDを生成
+                    Guid guidValue = Guid.NewGuid();
+
+                    // ユーザ名とGUIDをGMのフィールドに格納
+                    gameManager.userName = nameField.text;
+                    gameManager.userGuid = guidValue.ToString();
+
+                    // 生成したGUIDをメッセージウィンドウで表示
+                    MessageWriteToWindow("Complete!!\n" +
+                                         "UserID was generated, copy here.：\n" +
+                                         gameManager.userGuid + "\n" +
+                                         "CAUTION!! When you push OK button, change scene\n"
+                                         );
+
+                    // GUID決定済み判定を発行済み(true)にする
+                    IsGuidDecided = true;
+
+                    return;
+                }
+            }
+            else
+            {
+                // 未入力メッセージ表示中にエンターキーが押された場合
+                if (!IsGuidDecided)
+                {
+                    // メッセージウィンドウを非アクティブ化
+                    messageWindow.SetActive(false);
+
+                    // メッセージウィンドウ表示有無判定フラグを変更
+                    IsWindow = false;
+                }
+                // GUIDメッセージ表示中にエンターキーが押された場合
+                else
+                {
+                    // シーン遷移メソッドコール
+                    NextScene();
+                }
+            }
+        }
     }
 
     // -------------------------------------------------------------------
@@ -57,6 +118,16 @@ public class RegisterManager :
 
                 // 生成したGUIDをメッセージウィンドウで表示
                 MessageWriteToWindow("Complete!!\n" + "UserID was generated, copy here.：\n" + gameManager.userGuid);
+
+                // GUID決定済み判定を発行済み(true)にする
+                IsGuidDecided = true;
+            }
+            // インプットフィールドが空欄またはNameLessが入力されている場合
+            else
+            {
+                // メッセージウィンドウ描画メソッドをコールして未入力メッセージを表示
+                MessageWriteToWindow("未入力もしくはゲスト名です。\n正しいユーザー名を入力して下さい。");
+                return;
             }
         }
     }
@@ -67,8 +138,21 @@ public class RegisterManager :
     // -------------------------------------------------------------------
     public void OnMessageWindowOK()
     {
-        // シーン遷移メソッドコール
-        NextScene();
+        // GUID発行済みの場合
+        if (IsGuidDecided)
+        {
+            // シーン遷移メソッドをコール
+            NextScene();
+        }
+        // GUID未発行の場合
+        else
+        {
+            // メッセージウィンドウを非アクティブ化
+            messageWindow.SetActive(false);
+
+            // メッセージウィンドウ表示有無判定フラグを変更
+            IsWindow = false;
+        }
     }
 
     // =====================================
