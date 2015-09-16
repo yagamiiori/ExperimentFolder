@@ -7,7 +7,7 @@ using System.Linq;
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //　関数名：オブジェクトカラーPalfxクラス
-//　機能：オブジェクトのカラーを変更するmugenで言うPalfx
+//　機能：オブジェクトの持つマテリアルの光沢(輝度)を変更する
 //　継承：MonoBehaviour
 //　種別：通常クラス
 //　アタッチ先：GameObject
@@ -22,7 +22,7 @@ using System.Linq;
 //　履歴：
 //
 ////////////////////////////////////////////////////////////////////////////////////////
-public class Palfx : MonoBehaviour
+public class Palfx2 : MonoBehaviour
 {
     /// <summary>フェードアウト処理を行う秒</summary>
     public float fadeoutSec;
@@ -32,53 +32,60 @@ public class Palfx : MonoBehaviour
     public float fadeinSec;
     /// <summary>フェードイン処理後にその状態を維持する秒</summary>
     public float fadeinKeepSec;
-    /// <summary>色を明滅させるImage</summary>
-    public Image blinkingImage;
-    /// <summary>明滅の有無</summary>
-    public bool isBlinking = true;
-    /// <summary>明滅で変更する前の色（初期値は白）</summary>
-    public Color fromColor = Color.white;
-    /// <summary>明滅で変更したい色（初期値は青）</summary>
-    public Color toColor = Color.blue;
+    /// <summary>輝度を変えるMaterial</summary>
+    public Material flashingMaterial;
+    /// <summary>発光の有無</summary>
+    public bool isFlashing = true;
+    /// <summary>輝度（初期値）</summary>
+    private Color initialVal = new Color(0, 0, 0);
+    /// <summary>輝度（到達値）</summary>
+    private Color ReachingVal = new Color(0.7f, 0.7f, 0.7f);
     /// <summary>経過した秒</summary>
     private float elapsedSec = 0;
 
-    /// <summary>
-    /// 
-    /// </summary>
+    void Start()
+    {
+        // 参考：http://dnasoftwares.hatenablog.com/entry/2015/03/19/100108
+        flashingMaterial.EnableKeyword("_Emission");
+    }
+
     public void Update()
     {
-        if (isBlinking)
+        if (isFlashing)
         {
-            if(null == blinkingImage)
+            if ("Default UI Material" == flashingMaterial.name)
             {
-                return;
+                // Imageコンポがマテリアルを持っていない場合は発光不可のため本スクリプトを停止する
+                this.enabled = false;
             }
-            // フェードアウト及びフェードインを行う秒の設定が不正な場合は明滅を行わない
-            if(0 >= fadeoutSec || 0 >= fadeinSec)
+            if (0 >= fadeoutSec || 0 >= fadeinSec)
             {
-                return;
+	            // フェードアウト及びフェードインを行う秒の設定が不正な場合は発光不可のため本スクリプトを停止する
+                this.enabled = false;
             }
+
+            // 経過時間を測定
             elapsedSec += Time.deltaTime;
-            if(elapsedSec < fadeoutSec)
+
+            if (elapsedSec < fadeoutSec)
             {
                 // フェードアウト時間中はtoColorへと徐々に変化させる
-                blinkingImage.color = Color.Lerp(fromColor, toColor, elapsedSec / fadeoutSec);
+                flashingMaterial.SetColor("_EmissionColor", Color.Lerp(initialVal, ReachingVal, elapsedSec / fadeoutSec));
             }
-            else if(elapsedSec < fadeoutSec + fadeoutKeepSec)
+            else if (elapsedSec < fadeoutSec + fadeoutKeepSec)
             {
                 // フェードアウト維持時間中はtoColorの色を維持する
-                blinkingImage.color = toColor;
+                flashingMaterial.SetColor("_EmissionColor", ReachingVal);
             }
-            else if(elapsedSec < fadeoutSec + fadeoutKeepSec + fadeinSec)
+            else if (elapsedSec < fadeoutSec + fadeoutKeepSec + fadeinSec)
             {
                 // フェードイン時間中はfromColorへと徐々に変化させる
-                blinkingImage.color = Color.Lerp(toColor, fromColor, (elapsedSec - fadeoutSec - fadeoutKeepSec) / fadeinSec);
+                flashingMaterial.SetColor("_EmissionColor", Color.Lerp(ReachingVal, initialVal, (elapsedSec - fadeoutSec - fadeoutKeepSec) / fadeinSec));
             }
-            else if(elapsedSec < fadeoutSec + fadeoutKeepSec + fadeinSec + fadeinKeepSec)
+            else if (elapsedSec < fadeoutSec + fadeoutKeepSec + fadeinSec + fadeinKeepSec)
             {
                 // フェードイン維持時間中はfromColorの色を維持する
-                blinkingImage.color = fromColor;
+                flashingMaterial.SetColor("_EmissionColor", initialVal);
             }
             else
             {
@@ -86,31 +93,6 @@ public class Palfx : MonoBehaviour
                 elapsedSec = 0;
             }
         }
-    }
-
-    public void blinkingStart()
-    {
-        isBlinking = true;
-    }
-
-    public void blinkingStop()
-    {
-        isBlinking = false;
-    }
-
-    public void blinkingReset()
-    {
-        if(null == blinkingImage)
-        {
-			// ターゲットとなるImageコンポが存在しない場合はリセット処理を行わない
-            return;
-        }
-        
-        // ターゲットのImageコンポのカラーを明滅で変更する前の色にする
-        blinkingImage.color = fromColor;
-        
-        // 経過時間を0にする
-        elapsedSec = 0;
     }
 }
 

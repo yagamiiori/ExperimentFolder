@@ -69,6 +69,8 @@ TagManager:
   - Canvas_MW
   - TextField_MW
   - Sprite_Ability
+  - FadeDisplayImages
+  - Canvas_FadeDisplay
   layers:
   - Default
   - TransparentFX

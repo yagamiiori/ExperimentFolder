@@ -15,7 +15,7 @@ public class LoginManager :
     private GameObject messageWindow;                 // メッセージウィンドウCanvas
     private Text messageText;                         // メッセージウィンドウのTextコンポ
     public InputField nameField;                      // 名前のインプットフィールド
-    private string nextScene = "StartingOption";      // 遷移先シーン名
+    private string nextScene = "UnitSelect";          // 遷移先シーン名
     private string regisgerName = "Register";         // 遷移先シーン名
     private bool IsWindow = false;                    // メッセージウィンドウ表示有無判定フラグ
 

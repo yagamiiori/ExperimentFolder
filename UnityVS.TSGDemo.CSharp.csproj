@@ -156,6 +156,7 @@
     <Compile Include="Assets\Scripts\CameraStalking.cs" />
     <Compile Include="Assets\Scripts\Defines.cs" />
     <Compile Include="Assets\Scripts\FadeColorBlinking.cs" />
+    <Compile Include="Assets\Scripts\FadeTextureDisplay.cs" />
     <Compile Include="Assets\Scripts\FadeTimeCalc.cs" />
     <Compile Include="Assets\Scripts\FadeToPos.cs" />
     <Compile Include="Assets\Scripts\FadeToScene.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Assets\Scripts\NameSelect\NameSelect.cs" />
     <Compile Include="Assets\Scripts\NameSelect\NameSelectButtonOK.cs" />
     <Compile Include="Assets\Scripts\Palfx.cs" />
+    <Compile Include="Assets\Scripts\Palfx2.cs" />
     <Compile Include="Assets\Scripts\PlaceSelect\PlaceAreaUnitButton.cs" />
     <Compile Include="Assets\Scripts\PlaceSelect\PlaceSelect.cs" />
     <Compile Include="Assets\Scripts\PlaceSelect\UnitButtonPlace.cs" />
@@ -185,6 +187,7 @@
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectButtonWiz.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectCounterFree.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectCounterTotal.cs" />
+    <Compile Include="Assets\Scripts\UnitSelect\UnitSelectSliderManager.cs" />
     <Compile Include="Assets\Scripts\UnitState.cs" />
     <Compile Include="Assets\Scripts\Vavava.cs" />
     <Compile Include="Assets\Scripts\VelSetCamera.cs" />

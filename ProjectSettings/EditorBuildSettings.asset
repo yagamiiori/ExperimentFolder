@@ -10,8 +10,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Register.unity
   - enabled: 1
-    path: Assets/StartingOption.unity
-  - enabled: 1
     path: Assets/UnitSelect.unity
   - enabled: 1
     path: Assets/NameSelect.unity

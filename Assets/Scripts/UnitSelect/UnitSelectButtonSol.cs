@@ -13,6 +13,7 @@ public class UnitSelectButtonSol :
 {
     private GameManager gameManager;        // マネージャコンポ
     private GameObject canVas;              // ゲームオブジェクト"Canvas"
+    private Slider sliderSolder;            // ソルジャーのスライダーコンポ
     public int mouseOverJug = 0;            // マウスオーバー判定フラグ
     public AudioSource audioCompo;          // オーディオコンポ
     public AudioClip clickSE;               // クリックSE
@@ -39,6 +40,9 @@ public class UnitSelectButtonSol :
 
         // ユニット数表示Textコンポ取得
         counterUnitValue = GameObject.FindWithTag("Unit_CounterSold").GetComponent<Text>();
+
+        // ソルジャーのスライダーコンポを取得
+        sliderSolder = GameObject.Find("Slider_Solder").GetComponent<Slider>();
     }
 
     // -----------------------------------
@@ -97,6 +101,9 @@ public class UnitSelectButtonSol :
 
                     // クリックエフェクト表示メソッドをコール(this.gameObjectとするとなぜかバグる)
                     playEffect.PlayOnce(effectSprite, canVas, new Vector3(-162f, 162f, 0f));
+
+                    // ソルジャーのスライダー値をインクリメント
+                    if (sliderSolder.value < sliderSolder.maxValue) sliderSolder.value += 1;
                 }
             }
             // マウス右クリックされた場合
@@ -120,6 +127,9 @@ public class UnitSelectButtonSol :
 
                     // ユニット数表示Textコンポに現ユニット数を表示
                     counterUnitValue.text = gameManager.unt_Sodler.ToString();
+
+                    // ソルジャーのスライダー値をデクリメント
+                    if (sliderSolder.value > sliderSolder.minValue) sliderSolder.value -= 1;
                 }
             }
 

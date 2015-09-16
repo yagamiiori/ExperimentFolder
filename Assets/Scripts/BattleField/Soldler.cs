@@ -23,10 +23,10 @@ public class Soldler :
     void Start()
     {
         // マネージャコンポ取得
-        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+        this.gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
 
         // ユニットステートコンポ取得
-        unitstate = this.gameObject.GetComponent<UnitState>();
+        this.unitstate = this.gameObject.GetComponent<UnitState>();
 
         // パラメータ設定メソッドをコール
         SettingParams();

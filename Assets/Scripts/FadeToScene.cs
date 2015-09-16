@@ -55,7 +55,6 @@ public class FadeToScene : MonoBehaviour
     // =====================================================
     public void TextureLoad()
     {
-
         // フェード関係テクスチャ
         texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
         texture.SetPixel(0, 0, Color.white);

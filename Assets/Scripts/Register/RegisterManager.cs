@@ -17,7 +17,7 @@ public class RegisterManager :
     public InputField nameField;                      // 名前のインプットフィールド
     public InputField guidField;                      // GUIDインプットフィールド
     public GameObject guidFieldGO;                    // GUID表示用オブジェクト
-    private string nextScene = "StartingOption";      // 遷移先シーン名
+    private string nextScene = "Login";               // 遷移先シーン名
     private string loginName = "Login";               // 遷移先シーン名
     private bool IsWindow = false;                    // メッセージウィンドウ表示有無判定フラグ
 

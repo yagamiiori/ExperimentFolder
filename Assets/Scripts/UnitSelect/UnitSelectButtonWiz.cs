@@ -13,6 +13,7 @@ public class UnitSelectButtonWiz :
 {
     private GameManager gameManager;        // マネージャコンポ
     private GameObject canVas;              // ゲームオブジェクト"Canvas"
+    private Slider sliderWizard;            // ウィザードのスライダーコンポ
     public int mouseOverJug = 0;            // マウスオーバー判定フラグ
     public AudioSource audioCompo;          // オーディオコンポ
     public AudioClip clickSE;               // クリックSE
@@ -39,6 +40,9 @@ public class UnitSelectButtonWiz :
 
         // ユニット数表示Textコンポ取得
         counterUnitValue = GameObject.FindWithTag("Unit_CounterWiz").GetComponent<Text>();
+
+        // ウィザードのスライダーコンポを取得
+        sliderWizard = GameObject.Find("Slider_Wizard").GetComponent<Slider>();
     }
 
     // -----------------------------------
@@ -97,6 +101,9 @@ public class UnitSelectButtonWiz :
 
                     // クリックエフェクト表示メソッドをコール(this.gameObjectとするとなぜかバグる)
                     playEffect.PlayOnce(effectSprite, canVas, new Vector3(-84.1f, 162f, 0f));
+
+                    // ウィザードのスライダー値をインクリメント
+                    if (sliderWizard.value < sliderWizard.maxValue) sliderWizard.value += 1;
                 }
             }
             // マウス右クリックされた場合
@@ -120,6 +127,9 @@ public class UnitSelectButtonWiz :
 
                     // ユニット数表示Textコンポに現ユニット数を表示
                     counterUnitValue.text = gameManager.unt_Wizard.ToString();
+
+                    // ウィザードのスライダー値をデクリメント
+                    if (sliderWizard.value > sliderWizard.minValue) sliderWizard.value -= 1;
                 }
             }
 

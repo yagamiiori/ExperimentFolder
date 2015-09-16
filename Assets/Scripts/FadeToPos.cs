@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
+using System.Collections.Generic;   // コレクションクラスの定義に必要
+using System.Linq;
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //　関数名：フェードクラス
