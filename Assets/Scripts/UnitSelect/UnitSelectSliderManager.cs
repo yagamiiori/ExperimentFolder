@@ -37,8 +37,6 @@ public class UnitSelectSliderManager : MonoBehaviour
     public Text counterSolderValue;
     /// <summary>ウィザードのユニット数表示カウンターのTextコンポ</summary>
     public Text counterWizardValue;
-    /// <summary>選択済みユニットの総数</summary>
-    private int allSelectedUnitsNum;
 
 	void Start ()
     {
@@ -71,10 +69,7 @@ public class UnitSelectSliderManager : MonoBehaviour
         counterSolderValue.text = gameManager.unt_Sodler.ToString();
 
         // 現選択済みユニット数算出メソッドをコールして選択済みユニット数を算出
-        AllSelectedUnitsCulc();
-
-        // 現在選択されている選択参加ユニットの設定
-        gameManager.unt_NowAllUnits = allSelectedUnitsNum;
+        gameManager.unt_NowAllUnits = AllSelectedUnitsCulc();
     }
 
     /// <summary>ウィザードスライダー値変更メソッド</summary>
@@ -89,17 +84,22 @@ public class UnitSelectSliderManager : MonoBehaviour
         // 現選択済みユニット数算出メソッドをコールして選択済みユニット数を算出
         AllSelectedUnitsCulc();
 
-        // 現在選択されている選択参加ユニットの設定
-        gameManager.unt_NowAllUnits = allSelectedUnitsNum;
+        // 現選択済みユニット数算出メソッドをコールして選択済みユニット数を算出
+        gameManager.unt_NowAllUnits = AllSelectedUnitsCulc();
     }
 
-    /// <summary>現選択済みユニット数算出メソッド</summary>
-    private void AllSelectedUnitsCulc()
+    /// <summary>
+    /// 全選択済みユニット数算出メソッド
+    /// 選択されているユニットの総数を算出する。
+    /// </summary>
+    /// <param name="allSelectedUnitsNum">全選択済みユニット数</param>
+    /// <returns>全選択済みユニット数</returns>
+    private int AllSelectedUnitsCulc()
     {
-        allSelectedUnitsNum =
-            gameManager.unt_Sodler +
-            gameManager.unt_Wizard;
-    }
+        int allSelectedUnitsNum =
+                gameManager.unt_Sodler +
+                gameManager.unt_Wizard;
 
-    
+        return allSelectedUnitsNum;
+    }
 }
