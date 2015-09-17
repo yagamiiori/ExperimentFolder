@@ -90,7 +90,7 @@ public class UnitSelectSliderManager : MonoBehaviour
 
     /// <summary>
     /// 全選択済みユニット数算出メソッド
-    /// 選択されているユニットの総数を算出する。
+    /// <para>選択されているユニットの総数を算出する。</para>
     /// </summary>
     /// <param name="allSelectedUnitsNum">全選択済みユニット数</param>
     /// <returns>全選択済みユニット数</returns>
