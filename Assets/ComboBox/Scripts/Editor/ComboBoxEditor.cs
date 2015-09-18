@@ -4,12 +4,12 @@ using UnityEngine.UI;
 using UnityEditor;
 using System.Collections;
 
-[CustomEditor(typeof(ComboBox))]
-public class ComboBoxEditor : Editor 
+[CustomEditor(typeof(ComboBoxClass))]
+public class ComboBoxClassEditor : Editor 
 {
 	public override void OnInspectorGUI()
 	{
-		var comboBoxGO = target as ComboBox;
+		var comboBoxGO = target as ComboBoxClass;
 
 		var allowUpdate = comboBoxGO.transform.Find("Button") != null;
 
@@ -30,6 +30,34 @@ public class ComboBoxEditor : Editor
 					comboBoxGO.RefreshSelected();
 		}
 	}
+}
+
+[CustomEditor(typeof(ComboBoxAttribute))]
+public class ComboBoxAttributeEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        var comboBoxGO = target as ComboBoxAttribute;
+
+        var allowUpdate = comboBoxGO.transform.Find("Button") != null;
+
+        if (allowUpdate)
+            comboBoxGO.UpdateGraphics();
+
+        EditorGUI.BeginChangeCheck();
+        DrawDefaultInspector();
+        if (EditorGUI.EndChangeCheck())
+        {
+            if (Application.isPlaying)
+            {
+                comboBoxGO.HideFirstItem = comboBoxGO.HideFirstItem;
+                comboBoxGO.IsComboBoxEnable = comboBoxGO.IsComboBoxEnable;
+            }
+            else
+                if (allowUpdate)
+                    comboBoxGO.RefreshSelected();
+        }
+    }
 }
 
 public class ComboBoxMenuItem
@@ -75,7 +103,7 @@ public class ComboBoxMenuItem
 			}
 		}
 		rTransform.anchoredPosition = Vector2.zero;
-		var comboBox = comboBoxGO.AddComponent<ComboBox>();
+		var comboBox = comboBoxGO.AddComponent<ComboBoxClass>();
 		LoadAssets();
 		comboBox.Sprite_UISprite = Sprite_UISprite;
 		comboBox.Sprite_Background = Sprite_Background;

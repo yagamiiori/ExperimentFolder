@@ -50,7 +50,7 @@ public class Soldler :
         unitstate.unitID = Defines.ID_1;                // ユニットID
         unitstate.classType = Defines.SOLDLER;          // クラスID
         unitstate.ability_A = 0;                        // アビリティID
-        unitstate.attribute = Random.Range(1, 5);       // 属性ID
+        unitstate.element = Random.Range(1, 5);       // 属性ID
         unitstate.sex = Defines.UNT_MALE;               // 性別ID
         unitstate.promJud = false;                      // プロモーション可否判定フラグ
         unitstate.hp = 500 + Random.Range(0, 201);      // HP

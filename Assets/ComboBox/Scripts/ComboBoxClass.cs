@@ -4,8 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class ComboBox : MonoBehaviour 
+public class ComboBoxClass : MonoBehaviour 
 {
+    /// <summary>マネージャーコンポ</summary>
+    private GameManager gameManager;
+    /// <summary>ユニットIDを表示しているTextコンポ（インスペクタからのみ設定する）</summary>
+    [SerializeField]
+    private Text text_UnitID;
     /// <summary>コンボボックスを開いた時のコンボボックスの画像</summary>
     public Sprite Sprite_UISprite;
     /// <summary>コンボボックスを開いた時のコンボボックスの背景画像</summary>
@@ -103,6 +108,10 @@ public class ComboBox : MonoBehaviour
 			{
                 // 選択されたIDが正常範囲内であればフィールドに設定する
 				_selectedClass = value;
+
+                // クラスID設定メソッドをコールし、選択されたクラスIDを設定する
+                SetClassIDtoManager(value);
+
 				RefreshSelected();
 			}
 		}
@@ -307,9 +316,41 @@ public class ComboBox : MonoBehaviour
 
 	private void Awake()
 	{
+        // マネージャコンポ取得
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
+
         // オブジェクト生成および初期化メソッドをコール
-		InitControl();
-	}
+        InitControl();
+    }
+
+    /// <summary>
+    /// クラスID設定メソッド
+    /// <para>　このプルダウンメニューが担当するユニットのIDを</para>
+    /// <para>　親オブジェクトのTextコンポの文字列より取得し、それを元に</para>
+    /// <para>　そのユニットIDのクラスフィールドへ選択されたクラスIDを設定する。</para>
+    /// </summary>
+    private void SetClassIDtoManager(int setterValue)
+    {
+        // ユニットIDのTextからユニットIDである最後の1文字(または2文字)を抜き出して定数リテラルに変換する
+        int unitID = 0;
+        if (4 == text_UnitID.text.Length)
+        {
+            // IDが1桁の場合は末尾1文字を抽出
+            unitID = int.Parse(text_UnitID.text.Substring(text_UnitID.text.Length - 1, 1));
+        }
+        else
+        {
+            // IDが2桁の場合は末尾2文字を抽出
+            unitID = int.Parse(text_UnitID.text.Substring(text_UnitID.text.Length - 2, 2));
+        }
+
+        // 設定されたクラスIDをマネージャーコンポに設定
+        gameManager.unitStateList[unitID - 1].classType = setterValue + 1;
+
+        // 表示しているユニット画像を更新
+//        var unitSpriteSet = new NameSelect();
+//        unitSpriteSet.UnitSpriteSet(gameManager);
+    }
 
 	public void OnItemClicked(int index)
 	{

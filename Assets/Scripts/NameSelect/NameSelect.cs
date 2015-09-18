@@ -129,7 +129,7 @@ public class NameSelect : MonoBehaviour
     // キャラクター画像表示フィールド設定メソッド
     // キャラクターの画像を表示する
     // ------------------------
-    void UnitSpriteSet()
+    public void UnitSpriteSet()
     {
         GameObject sprite;                              // スプライトprefab用フィールド1
         GameObject prefab;                              // スプライトprefab用フィールド2
@@ -182,4 +182,5 @@ public class NameSelect : MonoBehaviour
             }
         }
     }
+
 }

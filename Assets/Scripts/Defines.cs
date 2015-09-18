@@ -104,12 +104,12 @@ public static class Defines
     public const int ABL_TEREPORT   = 5;   // ダテレポ
 
     // 属性（バトルフィールドシーン）
-    public const int BTL_FIRE     = 1;       // 炎
-    public const int BTL_WIND     = 2;       // 風
-    public const int BTL_EARTH    = 3;       // 土
-    public const int BTL_WATER    = 4;       // 水
-    public const int BTL_DIVINE   = 5;       // 神聖
-    public const int BTL_DARKNESS = 6;       // 暗黒
+    public const int ELEM_FIRE     = 1;    // 炎
+    public const int ELEM_WATER    = 2;    // 水
+    public const int ELEM_EARTH    = 3;    // 土
+    public const int ELEM_WIND     = 4;    // 風
+    public const int ELEM_DIVINE   = 5;    // 神聖
+    public const int ELEM_DARKNESS = 6;    // 暗黒
 
     // プロモーション判定（バトルフィールドシーン）
     public const int BTL_PROMO_OFF = 0;     // プロモーション未実施

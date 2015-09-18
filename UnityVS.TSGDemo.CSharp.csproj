@@ -80,9 +80,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ComboBox\Scripts\ComboBox.cs" />
+    <Compile Include="Assets\ComboBox\Scripts\ComboBoxAttribute.cs" />
+    <Compile Include="Assets\ComboBox\Scripts\ComboBoxClass.cs" />
     <Compile Include="Assets\ComboBox\Scripts\ComboBoxItem.cs" />
-    <Compile Include="Assets\ComboBox\Scripts\SettingComboBoxItems.cs" />
+    <Compile Include="Assets\ComboBox\Scripts\SettingComboBoxAttribute.cs" />
+    <Compile Include="Assets\ComboBox\Scripts\SettingComboBoxClass.cs" />
     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\CustomTypes.cs" />
     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Enums.cs" />
     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Extensions.cs" />

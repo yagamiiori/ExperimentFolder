@@ -12,11 +12,11 @@ using System.Linq;
 /// <para>　表示クラス名やボタン画像を設定するクラス。</para>
 /// </summary>
 ////////////////////////////////////////////////////////////////////////////////
-public class SettingComboBoxItems : MonoBehaviour 
+public class SettingComboBoxClass : MonoBehaviour 
 {
     /// <summary>ComboBoxクラスを持つゲームオブジェクト（インスペクタからのみ設定する）</summary>
     [SerializeField]
-    private ComboBox comboBox;
+    private ComboBoxClass comboBox;
     /// <summary>ユニットIDを表示しているTextコンポ（インスペクタからのみ設定する）</summary>
     [SerializeField]
     private Text text_UnitID;
@@ -172,7 +172,7 @@ public class SettingComboBoxItems : MonoBehaviour
             return;
         }
 
-        // ユニットIDのTextからユニットIDである最後の一文字を抜き出して定数リテラルに変換する
+        // ユニットIDのTextからユニットIDである最後の1文字(または2文字)を抜き出して定数リテラルに変換する
         int unitID = 0;
         if (4 == text_UnitID.text.Length)
         {

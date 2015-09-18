@@ -11,7 +11,7 @@ public class UnitState : Photon.MonoBehaviour
     public int ability_D = Defines.NON_VALUE;        // アビリティD（ドロップアビリティ）
     public int ability_E = Defines.NON_VALUE;        // アビリティE（？？？アビリティ）
     public int weaponType = Defines.NON_VALUE;       // 武器タイプ
-    public int attribute = Defines.NON_VALUE;        // 属性
+    public int element = Defines.ELEM_FIRE;          // エレメント（デフォルト：火）
     public int sex = Defines.NON_VALUE;              // 性別
     public int color = Defines.NON_VALUE;            // カラーパレット（※とりあえず未使用）
     public int hp = Defines.NON_VALUE;               // HP
