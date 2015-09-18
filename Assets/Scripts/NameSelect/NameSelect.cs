@@ -33,6 +33,7 @@ public class NameSelect : MonoBehaviour
         // ゲームオブジェクト"Canvas"取得
         canVas = GameObject.FindWithTag("Canvas");
 
+/* // TODO プルダウンメニュー実装によりボツ
         // 全ユニット数分のクラス名表示用テキストコンポを取得し、リストに格納
         ClassNameList.Add(GameObject.FindWithTag("Abl_ClassName0").GetComponent<Text>());
         ClassNameList.Add(GameObject.FindWithTag("Abl_ClassName1").GetComponent<Text>());
@@ -50,7 +51,7 @@ public class NameSelect : MonoBehaviour
         ClassNameList.Add(GameObject.FindWithTag("Abl_ClassName13").GetComponent<Text>());
         ClassNameList.Add(GameObject.FindWithTag("Abl_ClassName14").GetComponent<Text>());
         ClassNameList.Add(GameObject.FindWithTag("Abl_ClassName15").GetComponent<Text>());
-
+*/
         // 全ユニット数分のユニット名表示用テキストコンポを取得し、リストに格納
         UnitNameList.Add(GameObject.FindWithTag("Nam_UnitName0").GetComponent<Text>());
         UnitNameList.Add(GameObject.FindWithTag("Nam_UnitName1").GetComponent<Text>());
@@ -69,20 +70,21 @@ public class NameSelect : MonoBehaviour
         UnitNameList.Add(GameObject.FindWithTag("Nam_UnitName14").GetComponent<Text>());
         UnitNameList.Add(GameObject.FindWithTag("Nam_UnitName15").GetComponent<Text>());
 
-        // クラス名表示フィールドを初期化
-        foreach (Text field in ClassNameList)
-        {
-            field.text = "？？？";
-        }
+/* // TODO プルダウンメニュー実装によりボツ
+                // クラス名表示フィールドを初期化
+                foreach (Text field in ClassNameList)
+                {
+                    field.text = "？？？";
+                }
+                // クラス名表示フィールド設定メソッドをコール
+                ClassNameSet();
 
+*/
         // ユニット名表示フィールドを初期化
         foreach (Text field in UnitNameList)
         {
             field.text = "GuestUnit";
         }
-
-        // クラス名表示フィールド設定メソッドをコール
-        ClassNameSet();
 
         // キャラクター画像表示フィールド設定メソッドをコール
         UnitSpriteSet();
@@ -91,6 +93,7 @@ public class NameSelect : MonoBehaviour
     // ------------------------
     // クラス名表示フィールド設定メソッド
     // ユニット名セレクトシーンにおいてクラス名を表示する
+    // TODO プルダウンメニュー実装によりボツ。使用しないメソッド
     // ------------------------
     void ClassNameSet()
     {
@@ -130,7 +133,7 @@ public class NameSelect : MonoBehaviour
     {
         GameObject sprite;                              // スプライトprefab用フィールド1
         GameObject prefab;                              // スプライトprefab用フィールド2
-        Vector3 vec = new Vector3(-368f, 183f, 0);      // スプライト表示位置
+        Vector3 vec = new Vector3(-410.0f, 183f, 0);    // スプライト表示位置
         int vecCor = 0;                                 // スプライト表示位置補正用フィールド
 
         // リスト内を最大ユニット数分ループ
@@ -140,7 +143,7 @@ public class NameSelect : MonoBehaviour
             if (8 == i)
             {
                 // Y値の変更およびX値補正率を初期化
-                vec.y = 20.3f;
+                vec.y = -39.0f;
                 vecCor = 0;
             }
 
@@ -152,12 +155,12 @@ public class NameSelect : MonoBehaviour
                     // ソルジャーのスプライトを設定
                     sprite = Resources.Load("UnitSprite_NameSelect/Char_1") as GameObject;
                     // 位置を設定
-                    vec.x = -368 + vecCor;
+                    vec.x = -410.0f + vecCor;
                     vec.z = 0;
                     // prefabを表示
                     prefab = Instantiate(sprite, vec, Quaternion.identity) as GameObject;
                     prefab.transform.SetParent(canVas.transform, false);
-                    vecCor += 100;
+                    vecCor += 110;
                     break;
 
                 // ウィザードの場合
@@ -165,12 +168,12 @@ public class NameSelect : MonoBehaviour
                     // ウィザードのスプライトを設定
                     sprite = Resources.Load("UnitSprite_NameSelect/Char_2") as GameObject;
                     // 位置を設定
-                    vec.x = -368 + vecCor;
+                    vec.x = -410.0f + vecCor;
                     vec.z = 0;
                     // prefabを表示
                     prefab = Instantiate(sprite, vec, Quaternion.identity) as GameObject;
                     prefab.transform.SetParent(canVas.transform, false);
-                    vecCor += 100;
+                    vecCor += 110;
                     break;
 
                 // ユニット未設定の場合

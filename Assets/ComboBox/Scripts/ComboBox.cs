@@ -99,7 +99,7 @@ public class ComboBox : MonoBehaviour
                 // 現IDと選択されたIDが同じなら処理する必要なし
 				return;
 
-			if (value > -1 && value < Items.Length)
+			if (value > -1 && value < ClassList.Length)
 			{
                 // 選択されたIDが正常範囲内であればフィールドに設定する
 				_selectedClass = value;
@@ -109,20 +109,20 @@ public class ComboBox : MonoBehaviour
 	}
 
 	[SerializeField]
-	private ComboBoxItem[] _items;
+	private ComboBoxItem[] _classList;
     /// <summary>プルダウンメニューを開いた時に表示されるアイテムの総数</summary>
-    public ComboBoxItem[] Items
+    public ComboBoxItem[] ClassList
 	{
 		get
 		{
-			if (_items == null)
+			if (_classList == null)
                 // 存在しなければ空の配列を生成する
-				_items = new ComboBoxItem[0];
-			return _items;
+				_classList = new ComboBoxItem[0];
+			return _classList;
 		}
 		set
 		{
-			_items = value;
+			_classList = value;
 			Refresh();
 		}
 	}
@@ -320,9 +320,15 @@ public class ComboBox : MonoBehaviour
 			OnSelectionChanged(index);
 	}
 
-	public void AddItems(params object[] list)
+    /// <summary>
+    /// プルダウンメニューアイテム追加メソッド
+    /// <para>　スクリプトからプルダウンメニューアイテムを追加する場合に</para>
+    /// <para>　コールし、アイテムを生成する。</para>
+    /// </summary>
+    public void AddItems(params object[] list)
 	{
 		var cbItems = new List<ComboBoxItem>();
+
 		foreach (var obj in list)
 		{
 			if (obj is ComboBoxItem)
@@ -345,16 +351,19 @@ public class ComboBox : MonoBehaviour
 			}
 			throw new Exception("Only ComboBoxItem, string and Sprite types are allowed");
 		}
-		var newItems = new ComboBoxItem[Items.Length + cbItems.Count];
-		Items.CopyTo(newItems, 0);
-		cbItems.ToArray().CopyTo(newItems, Items.Length);
+		var newItems = new ComboBoxItem[ClassList.Length + cbItems.Count];
+		ClassList.CopyTo(newItems, 0);
+		cbItems.ToArray().CopyTo(newItems, ClassList.Length);
 		Refresh();
-		Items = newItems;
+		ClassList = newItems;
 	}
 
-	public void ClearItems()
+    /// <summary>
+    /// 全プルダウンメニュークリアメソッド
+    /// </summary>
+    public void ClearItems()
 	{
-		Items = new ComboBoxItem[0];
+		ClassList = new ComboBoxItem[0];
 	}
 
     /// <summary>
@@ -364,7 +373,7 @@ public class ComboBox : MonoBehaviour
 	{
 		rectTransform = GetComponent<RectTransform>();
 
-        // Buttonオブジェクト生成
+        // プルダウンメニュー内のButtonオブジェクト生成
 		var buttonGO = new GameObject("Button");
 		buttonGO.transform.SetParent(transform, false);
 		buttonRectTransform = buttonGO.AddComponent<RectTransform>();
@@ -463,7 +472,7 @@ public class ComboBox : MonoBehaviour
 		}
 
 		comboButtonRectTransform.GetComponent<Button>().onClick.AddListener(() => { ToggleComboBox(false); });
-		var dropdownHeight = comboButtonRectTransform.sizeDelta.y *  Mathf.Min(ItemsToDisplay, Items.Length - (HideFirstItem ? 1 : 0));
+		var dropdownHeight = comboButtonRectTransform.sizeDelta.y *  Mathf.Min(ItemsToDisplay, ClassList.Length - (HideFirstItem ? 1 : 0));
 
         // ボタンをマスクするためのオーバーレイComboBoxオブジェクトを生成
         overlayGO = new GameObject("Overlay");
@@ -532,8 +541,10 @@ public class ComboBox : MonoBehaviour
 		scrollPanelScrollRect.scrollSensitivity = comboButtonRectTransform.sizeDelta.y;
 		scrollPanelGO.AddComponent<Mask>();
 
-		var scrollbarWidth = Items.Length - (HideFirstItem ? 1 : 0) > _itemsToDisplay ? _scrollbarWidth : 0.0f;
+        // スクロールバーの横幅を決定？
+        var scrollbarWidth = ClassList.Length - (HideFirstItem ? 1 : 0) > _itemsToDisplay ? _scrollbarWidth : 0.0f;
 
+        // Itemsオブジェクト（全てのコンボボタンの親オブジェクト）を生成
 		var itemsGO = new GameObject("Items");
 		itemsGO.transform.SetParent(scrollPanelGO.transform, false);
 		itemsRectTransfrom = itemsGO.AddComponent<RectTransform>();
@@ -551,6 +562,7 @@ public class ComboBox : MonoBehaviour
 		itemsGridLayoutGroup.constraintCount = 1;
 		scrollPanelScrollRect.content = itemsRectTransfrom;
 
+        // Scrollbarオブジェクトを生成
 		var scrollbarGO = new GameObject("Scrollbar");
 		scrollbarGO.transform.SetParent(scrollPanelGO.transform, false);
 		var scrollbarImage = scrollbarGO.AddComponent<Image>();
@@ -598,7 +610,7 @@ public class ComboBox : MonoBehaviour
 
 		IsComboBoxEnable = IsComboBoxEnable;
 
-		if (Items.Length < 1)
+		if (ClassList.Length < 1)
 			return;
 		Refresh();
 	}
@@ -606,7 +618,7 @@ public class ComboBox : MonoBehaviour
 	public void Refresh()
 	{
 		var itemsGridLayoutGroup = itemsRectTransfrom.GetComponent<GridLayoutGroup>();
-		var itemsLength = Items.Length - (HideFirstItem ? 1 : 0);
+		var itemsLength = ClassList.Length - (HideFirstItem ? 1 : 0);
 		var dropdownHeight = comboButtonRectTransform.sizeDelta.y *  Mathf.Min(_itemsToDisplay, itemsLength);
 		var scrollbarWidth = itemsLength > ItemsToDisplay ? _scrollbarWidth : 0.0f;
 		scrollPanelRectTransfrom.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, dropdownHeight);
@@ -617,29 +629,44 @@ public class ComboBox : MonoBehaviour
 		itemsGridLayoutGroup.cellSize = new Vector2(comboButtonRectTransform.sizeDelta.x - scrollbarWidth, comboButtonRectTransform.sizeDelta.y);
 		for (var i = itemsRectTransfrom.childCount - 1; i > -1; i--)
 			DestroyImmediate(itemsRectTransfrom.GetChild(0).gameObject);
-		for (var i = 0; i < Items.Length; i++)
+
+        // 指定された数分のプルダウンメニュー内ボタンについて表示名と表示画像を設定
+		for (var i = 0; i < ClassList.Length; i++)
 		{
 			if (HideFirstItem && i == 0)
 				continue;
-			var item = Items[i];
+
+			var item = ClassList[i];    // フィールド載せ替え
 			item.OnUpdate = Refresh;
 			var itemTransform = Instantiate(comboButtonRectTransform) as Transform;
 			itemTransform.SetParent(itemsRectTransfrom, false);
 			itemTransform.GetComponent<Image>().sprite = null;
+
+            // プルダウンメニュー内のボタン表示名Textを設定
 			var itemText = itemTransform.Find("Text").GetComponent<Text>();
-			itemText.text = item.Caption;
-			if (item.IsDisabled)
+			itemText.text = item.ClassName;
+
+            // プルダウンメニュー内のボタン表示名Textのカラーを設定
+            if (item.IsDisabled)
 				itemText.color = new Color32(174, 174, 174, 255);
+
+            // プルダウンメニュー内のボタン表示画像を設定
 			var itemImage = itemTransform.Find("Image").GetComponent<Image>();
 			itemImage.sprite = item.Image;
-			itemImage.color = item.Image == null ? new Color32(255, 255, 255, 0) : item.IsDisabled ? new Color32(255, 255, 255, 147) : new Color32(255, 255, 255, 255);
+
+            // プルダウンメニュー内のボタン表示画像のカラーを設定
+            itemImage.color = item.Image == null ? new Color32(255, 255, 255, 0) : item.IsDisabled ? new Color32(255, 255, 255, 147) : new Color32(255, 255, 255, 255);
+
+            // プルダウンメニュー内のButtonコンポを取得
 			var itemButton = itemTransform.GetComponent<Button>();
 			itemButton.interactable = !item.IsDisabled;
+
 			var index = i;
 			itemButton.onClick.AddListener(
 				delegate()
 				{
 					OnItemClicked(index);
+                    // インスペクタに表示するプルダウンメニュー内ボタンの設定項目を生成？
 					if (item.OnSelect != null)
 						item.OnSelect();
 				}
@@ -654,15 +681,19 @@ public class ComboBox : MonoBehaviour
 	public void RefreshSelected()
 	{
 		var comboButtonImage = comboImageRectTransform.GetComponent<Image>();
-		var item = SelectedClass > -1 && SelectedClass < Items.Length ? Items[SelectedClass] : null;
+		var item = SelectedClass > -1 && SelectedClass < ClassList.Length ? ClassList[SelectedClass] : null;
 		var includeImage = item != null && item.Image != null;
 		comboButtonImage.sprite = includeImage ? item.Image : null;
 		var comboButtonButton = comboButtonRectTransform.GetComponent<Button>();
 		comboButtonImage.color = includeImage ? (IsComboBoxEnable ? comboButtonButton.colors.normalColor : comboButtonButton.colors.disabledColor) : new Color(1.0f, 1.0f, 1.0f, 0);
 		UpdateComboBoxImage(comboButtonRectTransform, includeImage);
-		comboTextRectTransform.GetComponent<Text>().text = item != null ? item.Caption : "";
+		comboTextRectTransform.GetComponent<Text>().text = item != null ? item.ClassName : "";
+
 		if (!Application.isPlaying)
-			return;
+            // Unityプレイヤーで再生不可能な場合は終了
+            return;
+
+        // 全ての子オブジェクトのImageコンポを取得し、カラーを設定
 		var i = 0;
 		foreach (Transform child in itemsRectTransfrom)
 		{
@@ -675,7 +706,7 @@ public class ComboBox : MonoBehaviour
 	private void UpdateComboBoxImages()
 	{
 		var includeImages = false;
-		foreach (var item in Items)
+		foreach (var item in ClassList)
 		{
 			if (item.Image != null)
 			{
@@ -700,7 +731,7 @@ public class ComboBox : MonoBehaviour
 		else
 			if (selectedIndex > scrollOffset + ItemsToDisplay - 1)
 				scrollOffset = selectedIndex - ItemsToDisplay + 1;
-		var itemsCount = Items.Length - (HideFirstItem ? 1 : 0);
+		var itemsCount = ClassList.Length - (HideFirstItem ? 1 : 0);
 		if (scrollOffset > itemsCount - ItemsToDisplay)
 			scrollOffset = itemsCount - ItemsToDisplay;
 		if (scrollOffset < 0)
@@ -733,11 +764,15 @@ public class ComboBox : MonoBehaviour
         }
     }
 
+    /// <summary>
+    ///  プルダウンメニュー再構築メソッド？
+    ///  <para>　プルダウンメニューのサイズや矢印オブジェクトの配置を決めてるっぽい</para>
+    /// </summary>
 	public void UpdateGraphics()
 	{
 		if (overlayGO != null)
 		{
-			var scrollbarWidth = Items.Length - (HideFirstItem ? 1 : 0) > ItemsToDisplay ? _scrollbarWidth : 0.0f;
+			var scrollbarWidth = ClassList.Length - (HideFirstItem ? 1 : 0) > ItemsToDisplay ? _scrollbarWidth : 0.0f;
 			handleRectTransfrom.offsetMin = -scrollbarWidth / 2 * Vector2.one;
 			handleRectTransfrom.offsetMax = scrollbarWidth / 2 * Vector2.one;
 		}
@@ -756,7 +791,7 @@ public class ComboBox : MonoBehaviour
 			scrollPanelRectTransfrom.anchoredPosition = new Vector2(0.0f, -comboButtonRectTransform.sizeDelta.y);
 			scrollPanelRectTransfrom.SetParent(overlayGO.transform, false);
 			scrollPanelRectTransfrom.GetComponent<ScrollRect>().scrollSensitivity = comboButtonRectTransform.sizeDelta.y;
-			UpdateComboBoxImage(comboButtonRectTransform, Items[SelectedClass].Image != null);
+			UpdateComboBoxImage(comboButtonRectTransform, ClassList[SelectedClass].Image != null);
 			Refresh();
 		}
 	}
