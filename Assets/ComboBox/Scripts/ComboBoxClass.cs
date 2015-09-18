@@ -345,6 +345,7 @@ public class ComboBoxClass : MonoBehaviour
         }
 
         // 設定されたクラスIDをマネージャーコンポに設定
+        // TODO クラスIDやエレメントIDは0から始める？+1補正する処理が鬱陶しい
         gameManager.unitStateList[unitID - 1].classType = setterValue + 1;
 
         // 表示しているユニット画像を更新
