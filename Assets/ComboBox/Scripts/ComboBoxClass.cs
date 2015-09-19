@@ -8,9 +8,16 @@ public class ComboBoxClass : MonoBehaviour
 {
     /// <summary>マネージャーコンポ</summary>
     private GameManager gameManager;
+    /// <summary>ユニットID取得クラス</summary>
+    private GetMyUnitID getMyUnitID;
+    /// <summary>ユニット画像表示クラス</summary>
+    private SetUnitSpriteInFlame setMyUnitSprite;
     /// <summary>ユニットIDを表示しているTextコンポ（インスペクタからのみ設定する）</summary>
     [SerializeField]
     private Text text_UnitID;
+    /// <summary>ユニット画像を表示する位置（インスペクタからのみ設定する）</summary>
+    [SerializeField]
+    private Vector3 spriteVec = new Vector3(-21, 124, 0);
     /// <summary>コンボボックスを開いた時のコンボボックスの画像</summary>
     public Sprite Sprite_UISprite;
     /// <summary>コンボボックスを開いた時のコンボボックスの背景画像</summary>
@@ -109,8 +116,15 @@ public class ComboBoxClass : MonoBehaviour
                 // 選択されたIDが正常範囲内であればフィールドに設定する
 				_selectedClass = value;
 
-                // クラスID設定メソッドをコールし、選択されたクラスIDを設定する
-                SetClassIDtoManager(value);
+                // クラスID設定メソッドをコールし、属するユニットIDを取得する
+                int unitID = getMyUnitID.GetUnitID(text_UnitID);
+
+                // 設定されたクラスIDをマネージャーコンポに設定
+                // TODO クラスIDやエレメントIDは0から始めるべき？ +1補正する処理が鬱陶しい
+                gameManager.unitStateList[unitID].classType = value + 1;
+
+                // ユニット画像表示メソッドをコールし、属するユニットIDのクラス画像を表示する
+                setMyUnitSprite.UnitSpriteSet(this.gameObject, spriteVec, gameManager, unitID);
 
 				RefreshSelected();
 			}
@@ -139,7 +153,9 @@ public class ComboBoxClass : MonoBehaviour
     /// <summary>ボタンをマスクするためのオーバーレイComboBoxオブジェクト</summary>
     private GameObject overlayGO;
 	private int scrollOffset;
-	private float _scrollbarWidth = 20.0f;
+    /// <summary>ComboBoxのスクロールバー横幅のサイズ</summary>
+    [SerializeField]
+    private float _scrollbarWidth = 10.0f;
 
 	private RectTransform _rectTransform;
     /// <summary>プルダウンメニューで一番上のアイテムを表示するか否か</summary>
@@ -319,38 +335,20 @@ public class ComboBoxClass : MonoBehaviour
         // マネージャコンポ取得
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
 
+        // ユニットID取得クラス生成
+        getMyUnitID = new GetMyUnitID() { };
+
+        // ユニット画像表示クラス生成
+        setMyUnitSprite = new SetUnitSpriteInFlame() { };
+
         // オブジェクト生成および初期化メソッドをコール
         InitControl();
-    }
 
-    /// <summary>
-    /// クラスID設定メソッド
-    /// <para>　このプルダウンメニューが担当するユニットのIDを</para>
-    /// <para>　親オブジェクトのTextコンポの文字列より取得し、それを元に</para>
-    /// <para>　そのユニットIDのクラスフィールドへ選択されたクラスIDを設定する。</para>
-    /// </summary>
-    private void SetClassIDtoManager(int setterValue)
-    {
-        // ユニットIDのTextからユニットIDである最後の1文字(または2文字)を抜き出して定数リテラルに変換する
-        int unitID = 0;
-        if (4 == text_UnitID.text.Length)
-        {
-            // IDが1桁の場合は末尾1文字を抽出
-            unitID = int.Parse(text_UnitID.text.Substring(text_UnitID.text.Length - 1, 1));
-        }
-        else
-        {
-            // IDが2桁の場合は末尾2文字を抽出
-            unitID = int.Parse(text_UnitID.text.Substring(text_UnitID.text.Length - 2, 2));
-        }
+        // クラスID設定メソッドをコールし、属するユニットIDを取得する
+        int unitID = getMyUnitID.GetUnitID(text_UnitID);
 
-        // 設定されたクラスIDをマネージャーコンポに設定
-        // TODO クラスIDやエレメントIDは0から始める？+1補正する処理が鬱陶しい
-        gameManager.unitStateList[unitID - 1].classType = setterValue + 1;
-
-        // 表示しているユニット画像を更新
-//        var unitSpriteSet = new NameSelect();
-//        unitSpriteSet.UnitSpriteSet(gameManager);
+        // ユニット画像表示メソッドをコールし、属するユニットIDのクラス画像を表示する
+        setMyUnitSprite.UnitSpriteSet(this.gameObject, spriteVec, gameManager, unitID);
     }
 
 	public void OnItemClicked(int index)
@@ -456,7 +454,7 @@ public class ComboBoxClass : MonoBehaviour
 		comboArrowGO.transform.SetParent(buttonRectTransform, false);
 		var comboArrowText = comboArrowGO.AddComponent<Text>();
 		comboArrowText.color = new Color32(0, 0, 0, 255);
-		comboArrowText.alignment = TextAnchor.MiddleCenter;
+        comboArrowText.alignment = TextAnchor.MiddleRight;
 		comboArrowText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
 		comboArrowText.text = "▼";
 		comboArrowRectTransform.localScale = new Vector3(1.0f, 0.5f, 1.0f);

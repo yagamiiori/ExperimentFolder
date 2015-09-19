@@ -32,12 +32,12 @@ public class ComboBoxClassEditor : Editor
 	}
 }
 
-[CustomEditor(typeof(ComboBoxAttribute))]
-public class ComboBoxAttributeEditor : Editor
+[CustomEditor(typeof(ComboBoxElement))]
+public class ComboBoxElementEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        var comboBoxGO = target as ComboBoxAttribute;
+        var comboBoxGO = target as ComboBoxElement;
 
         var allowUpdate = comboBoxGO.transform.Find("Button") != null;
 

@@ -12,11 +12,11 @@ using System.Linq;
 /// <para>　表示クラス名やボタン画像を設定するクラス。</para>
 /// </summary>
 ////////////////////////////////////////////////////////////////////////////////
-public class SettingComboBoxAttribute : MonoBehaviour
+public class SettingComboBoxElement : MonoBehaviour
 {
     /// <summary>ComboBoxクラスを持つゲームオブジェクト（インスペクタからのみ設定する）</summary>
     [SerializeField]
-    private ComboBoxAttribute comboBox;
+    private ComboBoxElement comboBox;
     /// <summary>マネージャーコンポ</summary>
     private GameManager gameManager;
     /// <summary>炎属性ボタンの画像</summary>

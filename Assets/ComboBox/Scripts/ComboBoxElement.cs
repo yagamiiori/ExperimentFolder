@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class ComboBoxAttribute : MonoBehaviour
+public class ComboBoxElement : MonoBehaviour
 {
     /// <summary>マネージャーコンポ</summary>
     private GameManager gameManager;
@@ -138,6 +138,8 @@ public class ComboBoxAttribute : MonoBehaviour
     /// <summary>ボタンをマスクするためのオーバーレイComboBoxオブジェクト</summary>
     private GameObject overlayGO;
     private int scrollOffset;
+    /// <summary>ComboBoxのスクロールバー横幅のサイズ</summary>
+    [SerializeField]
     private float _scrollbarWidth = 20.0f;
 
     private RectTransform _rectTransform;

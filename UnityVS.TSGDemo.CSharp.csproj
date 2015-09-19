@@ -80,11 +80,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ComboBox\Scripts\ComboBoxAttribute.cs" />
     <Compile Include="Assets\ComboBox\Scripts\ComboBoxClass.cs" />
+    <Compile Include="Assets\ComboBox\Scripts\ComboBoxElement.cs" />
     <Compile Include="Assets\ComboBox\Scripts\ComboBoxItem.cs" />
-    <Compile Include="Assets\ComboBox\Scripts\SettingComboBoxAttribute.cs" />
     <Compile Include="Assets\ComboBox\Scripts\SettingComboBoxClass.cs" />
+    <Compile Include="Assets\ComboBox\Scripts\SettingComboBoxElement.cs" />
     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\CustomTypes.cs" />
     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Enums.cs" />
     <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Extensions.cs" />
@@ -172,8 +172,10 @@
     <Compile Include="Assets\Scripts\Lobby\LobbyManager.cs" />
     <Compile Include="Assets\Scripts\Login\LoginManager.cs" />
     <Compile Include="Assets\Scripts\MaterialFlash.cs" />
+    <Compile Include="Assets\Scripts\NameSelect\GetMyUnitID.cs" />
     <Compile Include="Assets\Scripts\NameSelect\NameSelect.cs" />
     <Compile Include="Assets\Scripts\NameSelect\NameSelectButtonOK.cs" />
+    <Compile Include="Assets\Scripts\NameSelect\SetUnitSpriteInFlame.cs" />
     <Compile Include="Assets\Scripts\Palfx.cs" />
     <Compile Include="Assets\Scripts\Palfx2.cs" />
     <Compile Include="Assets\Scripts\PlaceSelect\PlaceAreaUnitButton.cs" />

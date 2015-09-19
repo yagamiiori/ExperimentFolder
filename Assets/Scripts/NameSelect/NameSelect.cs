@@ -85,9 +85,6 @@ public class NameSelect : MonoBehaviour
         {
             field.text = "GuestUnit";
         }
-
-        // キャラクター画像表示フィールド設定メソッドをコール
-        UnitSpriteSet();
     }
 
     // ------------------------
@@ -123,64 +120,4 @@ public class NameSelect : MonoBehaviour
             }
         }
     }
-
-
-    // ------------------------
-    // キャラクター画像表示フィールド設定メソッド
-    // キャラクターの画像を表示する
-    // ------------------------
-    public void UnitSpriteSet()
-    {
-        GameObject sprite;                              // スプライトprefab用フィールド1
-        GameObject prefab;                              // スプライトprefab用フィールド2
-        Vector3 vec = new Vector3(-410.0f, 183f, 0);    // スプライト表示位置
-        int vecCor = 0;                                 // スプライト表示位置補正用フィールド
-
-        // リスト内を最大ユニット数分ループ
-        for (int i = 0; i < gameManager.unitStateList.Count; i++)
-        {
-            // 2段目(9人目以降)の場合
-            if (8 == i)
-            {
-                // Y値の変更およびX値補正率を初期化
-                vec.y = -39.0f;
-                vecCor = 0;
-            }
-
-            // クラスIDを読み出し
-            switch (gameManager.unitStateList[i].classType)
-            {
-                // ソルジャーの場合
-                case Defines.SOLDLER:
-                    // ソルジャーのスプライトを設定
-                    sprite = Resources.Load("UnitSprite_NameSelect/Char_1") as GameObject;
-                    // 位置を設定
-                    vec.x = -410.0f + vecCor;
-                    vec.z = 0;
-                    // prefabを表示
-                    prefab = Instantiate(sprite, vec, Quaternion.identity) as GameObject;
-                    prefab.transform.SetParent(canVas.transform, false);
-                    vecCor += 110;
-                    break;
-
-                // ウィザードの場合
-                case Defines.WIZARD:
-                    // ウィザードのスプライトを設定
-                    sprite = Resources.Load("UnitSprite_NameSelect/Char_2") as GameObject;
-                    // 位置を設定
-                    vec.x = -410.0f + vecCor;
-                    vec.z = 0;
-                    // prefabを表示
-                    prefab = Instantiate(sprite, vec, Quaternion.identity) as GameObject;
-                    prefab.transform.SetParent(canVas.transform, false);
-                    vecCor += 110;
-                    break;
-
-                // ユニット未設定の場合
-                default:
-                    break;
-            }
-        }
-    }
-
 }
