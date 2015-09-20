@@ -12,7 +12,7 @@ public class PlayEffect : MonoBehaviour
     {
         GameObject effect;  // 生成したエフェクト
 
-        // エフェクトの生成とParent設定
+        // エフェクトの生成および親オブジェクト指定がある場合はそれをParentとして設定する
         effect = Instantiate(Resources.Load(name), potision, Quaternion.identity) as GameObject;
         if(rootObject) effect.transform.SetParent(rootObject.transform, false);
     }

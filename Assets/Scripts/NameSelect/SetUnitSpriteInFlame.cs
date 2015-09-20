@@ -10,6 +10,9 @@ using UnityEngine.UI;
 /// </summary>
 public class SetUnitSpriteInFlame : MonoBehaviour
 {
+    /// <summary>コンストラクタ</summary>
+    public SetUnitSpriteInFlame() { }
+
     /// <summary>
     /// ユニット画像表示メソッド
     /// <para>　属する枠内にユニットの画像を表示する</para>
@@ -27,11 +30,11 @@ public class SetUnitSpriteInFlame : MonoBehaviour
         /// <summary>ユニット画像スプライト（Perfab）</summary>
         GameObject prefab;
 
-        // 同名のゲームオブジェクトが既に存在するか検索
+        // 同名のユニット画像ゲームオブジェクトが既に存在するか検索
         GameObject alreadyExistSprite = GameObject.Find(spriteName);
         if (null != alreadyExistSprite)
         {
-            // 同名のゲームオブジェクトがある場合は消去する
+            // 同名のゲームオブジェクトがある場合は消去して重複表示を抑止する
             Destroy(alreadyExistSprite);
         }
 
@@ -45,7 +48,8 @@ public class SetUnitSpriteInFlame : MonoBehaviour
                     // prefabを表示
                     prefab = Instantiate(sprite, setSpriteVec, Quaternion.identity) as GameObject;
                     prefab.transform.SetParent(parentGO.transform, false);
-                    prefab.name = spriteName;
+                    prefab.name = spriteName;                           // スプライト表示GOの名前を設定
+                    prefab.GetComponent<Palfx2>().StartFlashing();      // クラスチェンジ時に光沢エフェクトを付与する
                     break;
 
                 // ウィザードの場合
@@ -55,11 +59,13 @@ public class SetUnitSpriteInFlame : MonoBehaviour
                     // prefabを表示
                     prefab = Instantiate(sprite, setSpriteVec, Quaternion.identity) as GameObject;
                     prefab.transform.SetParent(parentGO.transform, false);
-                    prefab.name = spriteName;
+                    prefab.name = spriteName;                           // スプライト表示GOの名前を設定
+                    prefab.GetComponent<Palfx2>().StartFlashing();      // クラスチェンジ時に光沢エフェクトを付与する
                     break;
 
                 // ユニット未設定の場合
                 default:
+                    // 処理なし
                     break;
         }
     }

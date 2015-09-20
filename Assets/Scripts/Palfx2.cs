@@ -35,7 +35,7 @@ public class Palfx2 : MonoBehaviour
     /// <summary>輝度を変えるMaterial</summary>
     public Material flashingMaterial;
     /// <summary>発光の有無</summary>
-    public bool isFlashing = true;
+    public bool isFlashing = false;
     /// <summary>輝度（初期値）</summary>
     private Color initialVal = new Color(0, 0, 0);
     /// <summary>輝度（到達値）</summary>
@@ -49,7 +49,15 @@ public class Palfx2 : MonoBehaviour
         flashingMaterial.EnableKeyword("_Emission");
     }
 
-    public void Update()
+    /// <summary>
+    /// 光沢処理開始メソッド
+    /// </summary>
+    public void StartFlashing()
+    {
+        isFlashing = true;
+    }
+
+    private void Update()
     {
         if (isFlashing)
         {
@@ -90,6 +98,7 @@ public class Palfx2 : MonoBehaviour
             else
             {
                 // 全ての処理が完了したら経過時間を0に戻してフェードアウトから再度実行する
+                isFlashing = false;
                 elapsedSec = 0;
             }
         }
