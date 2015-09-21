@@ -33,9 +33,6 @@ public class LobbyButtonOK : Photon.MonoBehaviour
             audioCompo.clip = clickSE_OKbutton;
             audioCompo.Play();
 
-            // メインサーバから一度切断
-            PhotonNetwork.Disconnect();
-
             // スタートボタンプッシュ判定フラグをONにしてスタートボタンプッシュ後に
             // オプションが変更されたりスタートボタン連打を抑止する。
             isStarted = 1;

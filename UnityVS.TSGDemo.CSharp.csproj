@@ -171,6 +171,9 @@
     <Compile Include="Assets\Scripts\Lobby\LobbyButtonOK.cs" />
     <Compile Include="Assets\Scripts\Lobby\LobbyManager.cs" />
     <Compile Include="Assets\Scripts\Login\LoginManager.cs" />
+    <Compile Include="Assets\Scripts\Login\OnClickOKbutton.cs" />
+    <Compile Include="Assets\Scripts\Login\StreamReaderSingleLine.cs" />
+    <Compile Include="Assets\Scripts\Login\StreamWriterSingleLine.cs" />
     <Compile Include="Assets\Scripts\MaterialFlash.cs" />
     <Compile Include="Assets\Scripts\NameSelect\GetMyUnitID.cs" />
     <Compile Include="Assets\Scripts\NameSelect\NameSelect.cs" />
@@ -181,12 +184,10 @@
     <Compile Include="Assets\Scripts\PlaceSelect\PlaceAreaUnitButton.cs" />
     <Compile Include="Assets\Scripts\PlaceSelect\PlaceSelect.cs" />
     <Compile Include="Assets\Scripts\PlaceSelect\UnitButtonPlace.cs" />
-    <Compile Include="Assets\Scripts\PlaceSelectButtonOK.cs" />
     <Compile Include="Assets\Scripts\PlayEffect.cs" />
     <Compile Include="Assets\Scripts\Register\RegisterManager.cs" />
     <Compile Include="Assets\Scripts\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\SmoothFollow.cs" />
-    <Compile Include="Assets\Scripts\StartingOption.cs" />
     <Compile Include="Assets\Scripts\UnitForm\UnitForm.cs" />
     <Compile Include="Assets\Scripts\UnitForm\UnitFormButtonOK.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\HelpMsgParentGOstate.cs" />
@@ -200,8 +201,6 @@
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectCounterTotal.cs" />
     <Compile Include="Assets\Scripts\UnitSelect\UnitSelectSliderManager.cs" />
     <Compile Include="Assets\Scripts\UnitState.cs" />
-    <Compile Include="Assets\Scripts\Vavava.cs" />
-    <Compile Include="Assets\Scripts\VelSetCamera.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Photon Unity Networking\changelog.txt" />

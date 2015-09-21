@@ -8,8 +8,7 @@ using System;
 
 public class LoginManager :
     MonoBehaviour,
-    IMessageWriteToMW,                                // メッセージウィンドウ書き込みIF
-    IOnMessageWindowOK                                // OKボタンクリックIF（メッセージウィンドウ専用）
+    IMessageWriteToMW                                 // メッセージウィンドウ書き込みIF
 {
     private GameManager gameManager;                  // マネージャコンポ
     private GameObject messageWindow;                 // メッセージウィンドウCanvas
@@ -18,14 +17,22 @@ public class LoginManager :
     private string nextScene = "UnitSelect";          // 遷移先シーン名
     private string regisgerName = "Register";         // 遷移先シーン名
     private bool IsWindow = false;                    // メッセージウィンドウ表示有無判定フラグ
+    private string userIDtxt;                         // ファイルから読み出したユーザーIDの文字列
 
     void Start()
     {
         // マネージャコンポ取得
         gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
 
-        // 名前入力フィールド取得
+        // ユーザーID入力フィールド取得
         nameField = GameObject.FindWithTag("Login_InputField_Name").GetComponent<InputField>();
+
+        // ユーザーIDをtxtファイルから読み出し
+        var streamReader = new StreamReaderSingleLine();
+        string filename = "iid.txt";
+        userIDtxt = streamReader.ReadFromStream(filename);
+        // 読み出しに成功した場合、読み出したユーザーID文字列を入力フィールドに設定
+        if ("null" != userIDtxt) nameField.text = userIDtxt;
 
         // メッセージウィンドウのCanvasとTextコンポを取得し、非アクティブ化
         messageWindow = GameObject.FindWithTag("Canvas_MW");
@@ -74,63 +81,16 @@ public class LoginManager :
                 IsWindow = false;
             }
         }
-    }
 
-    // -------------------------------------------------------------------
-    // OKボタンがクリックした時にOKボタンのOnClickからコールされ、
-    // ロビーへ遷移する。
-    // -------------------------------------------------------------------
-    public void OnClickOK()
-    {
-        // メッセージウィンドウ未表示の場合
-        if (!IsWindow)
+        // メッセージウィンドウがアクティブ状態の時に左クリックされた場合
+        if (true == messageWindow.activeSelf && Input.GetMouseButtonDown(0))
         {
-            // IDフィールドに何も入力されていない場合
-            if ("" == nameField.text)
-            {
-                MessageWriteToWindow("未入力。\nログインIDを入力して下さい。");
-                return;
-            }
-            // 入力されたIDが「NameLess」の場合
-            else if ("NameLess" == nameField.text)
-            {
-                gameManager.userName = "NameLess";
-            }
-            // IDが正常に入力された場合
-            else
-            {
-                // ID検索して一致したらロードする
-                // 処理はまだ書いてない
-                // 一致するIDがなければエラー文をメッセージウィンドウで表示
-                // 入力されたIDから名前を逆引きしてGMのフィールドに格納
-                gameManager.userName = nameField.text.ToString();
-            }
-            // シーン遷移メソッドコール
-            NextScene();
+            // メッセージウィンドウを非アクティブ化
+            messageWindow.SetActive(false);
+
+            // メッセージウィンドウ表示有無判定フラグを変更
+            IsWindow = false;
         }
-    }
-
-    // -------------------------------------------------------------------
-    // メッセージウィンドウのOKボタンからコールされ、
-    // メッセージウィンドウを非アクティブ化する。
-    // -------------------------------------------------------------------
-    public void OnMessageWindowOK()
-    {
-        // メッセージウィンドウを非アクティブ化
-        messageWindow.SetActive(false);
-
-        // メッセージウィンドウ表示有無判定フラグを変更
-        IsWindow = false;
-    }
-
-    // -------------------------------------------------------------------
-    // Registrationボタンからコールされ
-    // レジストシーンへ遷移する。
-    // -------------------------------------------------------------------
-    public void OnClickRegister()
-    {
-        // シーン遷移実施
-        Application.LoadLevel(regisgerName);
     }
 
     // =====================================
@@ -149,15 +109,23 @@ public class LoginManager :
         messageText.text = a;
     }
 
-    // -------------------------------
+    // =====================================
+    // Registrationボタンからコールされ
+    // レジストシーンへ遷移する。
+    // =====================================
+    public void OnClickRegister()
+    {
+        // シーン遷移実施
+        Application.LoadLevel(regisgerName);
+    }
+
+    // =====================================
     // シーン遷移メソッド
-    // -------------------------------
+    // =====================================
     public void NextScene()
     {
         // Scene遷移
         // ﾌｪｰﾄﾞｱｳﾄ時間、ﾌｪｰﾄﾞ中待機時間、ﾌｪｰﾄﾞｲﾝ時間、ｶﾗｰ、遷移先Pos情報(Vector3)、遷移先ｼｰﾝ
         gameManager.GetComponent<FadeToScene>().FadeOut(0.1f, 0.4f, 0.1f, Color.black, nextScene);
     }
-
-
 }

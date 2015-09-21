@@ -34,7 +34,7 @@ public class LobbyManager : MonoBehaviour
     // ---- プレイヤーCP用フィールド ----
     public string name = "Guest";            // ユーザー名
     public string rank = "";                 // ランク
-    public int rip = 0;                      // RIP
+    public int battlePoint = 0;              // バトルポイント
     public int battleCnt = 0;                // 戦闘回数
 
     void Awake()
@@ -66,7 +66,7 @@ public class LobbyManager : MonoBehaviour
         gameManager.customPropeties = new Hashtable()
                                         {
                                             { "UserName", name },
-                                            { "RIP", rip },
+                                            { "BP", battlePoint },
                                             { "BattleCnt", battleCnt },
                                             { "Rank", rank }
                                         };
@@ -75,7 +75,7 @@ public class LobbyManager : MonoBehaviour
         PhotonNetwork.SetPlayerCustomProperties(gameManager.customPropeties);
 
         // ゲーム中プレイヤー数取得メソッドをコール
-        StartCoroutine("GetPlayerAll");
+        StartCoroutine(GetPlayerAll());
 	}
 
     // -------------------------------------------------------------
