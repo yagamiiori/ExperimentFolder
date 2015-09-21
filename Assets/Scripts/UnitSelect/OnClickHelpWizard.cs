@@ -32,10 +32,11 @@ public class OnClickHelpWizard : MonoBehaviour
     /// </summary>
     public void OnclickHelpMessage()
     {
-        string helpMessage = "クラス名　：ウィザード\n" +
-                         "武器　　　：杖\n" +
-                         "タイプ　　：遠距離魔法型\n" +
-                         "エレメント：4属性選択型\n\n" +
+        string helpMessage = "クラス名　　　：ウィザード\n" +
+                         "武器　　　　　：杖\n" +
+                         "クラスタイプ　：遠距離攻撃魔法型\n" +
+                         "エレメント　　：4属性選択型\n" +
+                         "移動範囲　　　：6パネル\n\n" +
 
                          "遠距離からの魔法攻撃を得意とするクラス。\n" +
                          "剣や槍などの物理武器の攻撃範囲外から、魔法で攻撃できる。\n" +

@@ -32,10 +32,11 @@ public class OnClickHelpSolder : MonoBehaviour {
     // TODO ヘルプメッセージの実装要検討
     public void OnclickHelpMessage()
     {
-        string helpMessage = "クラス名　：ソルジャー\n" +
-                         "武器　　　：剣\n" +
-                         "タイプ　　：近接物理型\n" +
-                         "エレメント：4属性選択型\n\n" +
+        string helpMessage = "クラス名　　　：ソルジャー\n" +
+                         "武器　　　　　：剣\n" +
+                         "クラスタイプ　：近接物理攻撃型\n" +
+                         "エレメント　　：4属性選択型\n" +
+                         "移動範囲　　　：5パネル\n\n" +
 
                          "剣を武器に戦うクラス。\n" +
                          "近接戦闘の要となるクラスで、基本的にバランスに優れたパラメータを持つが、魔法防御力は低め。\n" +
