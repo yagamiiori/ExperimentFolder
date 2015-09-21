@@ -42,6 +42,8 @@ public class OnClickHelpSolder : MonoBehaviour {
                          "移動やWTに癖がなく、初心者でも扱いやすいのが特徴。\n\n\n\n" +
 
                          "基礎パラメータ\n" +
+                         " HP        500\n" +
+                         " MP        200\n" +
                          " STR        50 + ランダム1～5\n" +
                          " VIT　　  45 + ランダム1～6\n" +
                          " DEX        34 + ランダム0～5\n" +

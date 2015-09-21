@@ -27,6 +27,11 @@ public class LoginManager :
         // ユーザーID入力フィールド取得
         nameField = GameObject.FindWithTag("Login_InputField_Name").GetComponent<InputField>();
 
+        // メッセージウィンドウのCanvasとTextコンポを取得し、非アクティブ化
+        messageWindow = GameObject.FindWithTag("Canvas_MW");
+        messageText = GameObject.FindWithTag("TextField_MW").GetComponent<Text>();
+        messageWindow.SetActive(false);
+
         // ユーザーIDをtxtファイルから読み出し
         var streamReader = new StreamReaderSingleLine();
         string filename = "iid.txt";
@@ -34,10 +39,6 @@ public class LoginManager :
         // 読み出しに成功した場合、読み出したユーザーID文字列を入力フィールドに設定
         if ("null" != userIDtxt) nameField.text = userIDtxt;
 
-        // メッセージウィンドウのCanvasとTextコンポを取得し、非アクティブ化
-        messageWindow = GameObject.FindWithTag("Canvas_MW");
-        messageText = GameObject.FindWithTag("TextField_MW").GetComponent<Text>();
-        messageWindow.SetActive(false);
     }
 
     void Update()

@@ -18,10 +18,13 @@ public class StreamWriterSingleLine : MonoBehaviour
     public bool WriteToStream(string filename, string writingtxt)
     {
         // 書き出すファイル名とパスを指定
-        // TODO Application.datapathが使えない？
+        // TODO 普通に開いて書いて閉じたいだけだがよく分からんので一度諦める。要修正。
         var fi = new FileInfo(filename);
 
-        // 書き出し準備
+        // ファイルが既に存在していたら一度削除する
+        if (fi.Exists) fi.Delete();
+
+        // 書き出し準備（これだと末尾に追記するメソッドなのでおかしい要修正）
         var sw = fi.AppendText();
 
         // ファイルに改行なしで書き出し

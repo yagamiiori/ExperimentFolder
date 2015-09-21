@@ -75,11 +75,8 @@ public class OnClickOKbutton :
             // 次回からの入力を自動化するため、入力された文字列をファイルに書き出し
             var streamWriter = new StreamWriterSingleLine();
             string fileName = "iid.txt";
-            string inputtxt = nameField.text;
-            bool result = streamWriter.WriteToStream(fileName, inputtxt);
-
-            // ファイル書き出し失敗時はエラーログを出力する
-            if (false == result) Debug.Log("ユーザーIDのファイルへの書き込みに失敗しました。");
+            string filetxt = nameField.text;
+            bool result = streamWriter.WriteToStream(fileName, filetxt);
 
             // シーン遷移メソッドコール
             NextScene();
