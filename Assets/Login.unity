@@ -618,11 +618,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aebe3234c4a034d459c0f968895d2e90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  nextScene: 556e697453656c656374
-  isStarted: 0
-  audioCompo: {fileID: 0}
-  clickSE_OKbutton: {fileID: 0}
 --- !u!114 &366133131
 MonoBehaviour:
   m_ObjectHideFlags: 0

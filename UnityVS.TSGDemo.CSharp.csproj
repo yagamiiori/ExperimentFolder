@@ -158,8 +158,8 @@
     <Compile Include="Assets\Scripts\BattleField\Soldler.cs" />
     <Compile Include="Assets\Scripts\BattleField\Test.cs" />
     <Compile Include="Assets\Scripts\CameraPan.cs" />
-    <Compile Include="Assets\Scripts\CameraStalking.cs" />
     <Compile Include="Assets\Scripts\Defines.cs" />
+    <Compile Include="Assets\Scripts\EnvShake.cs" />
     <Compile Include="Assets\Scripts\FadeColorBlinking.cs" />
     <Compile Include="Assets\Scripts\FadeTextureDisplay.cs" />
     <Compile Include="Assets\Scripts\FadeTimeCalc.cs" />
@@ -174,7 +174,6 @@
     <Compile Include="Assets\Scripts\Login\OnClickOKbutton.cs" />
     <Compile Include="Assets\Scripts\Login\StreamReaderSingleLine.cs" />
     <Compile Include="Assets\Scripts\Login\StreamWriterSingleLine.cs" />
-    <Compile Include="Assets\Scripts\MaterialFlash.cs" />
     <Compile Include="Assets\Scripts\NameSelect\GetMyUnitID.cs" />
     <Compile Include="Assets\Scripts\NameSelect\NameSelect.cs" />
     <Compile Include="Assets\Scripts\NameSelect\NameSelectButtonOK.cs" />
