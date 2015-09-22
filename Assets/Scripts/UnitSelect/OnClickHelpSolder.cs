@@ -33,7 +33,7 @@ public class OnClickHelpSolder : MonoBehaviour {
     public void OnclickHelpMessage()
     {
         string helpMessage = "クラス名　　　：ソルジャー\n" +
-                         "武器　　　　　：剣\n" +
+                         "武器　　　　　：片手剣\n" +
                          "クラスタイプ　：近接物理攻撃型\n" +
                          "エレメント　　：4属性選択型\n" +
                          "移動範囲　　　：5パネル\n\n" +
